@@ -125,3 +125,22 @@ Same component used 3 times
 Different data passed through props
 
 This is called Component Reusability.
+
+
+Interview Questions
+What are Props?
+
+Props are used to pass data from a parent component to a child component.
+
+Are Props Mutable?
+
+No. Props are read-only (immutable).
+
+Difference Between Props and State?
+Props	State
+Passed from parent	Managed inside component
+Read-only	Can be changed
+Used for communication	Used for dynamic data
+What is Component Reusability?
+
+Using the same component multiple times with different data by passing props.
