@@ -1,0 +1,127 @@
+Day 2: Props & Component Reusability
+1. What are Props?
+
+Props (Properties) are used to pass data from a parent component to a child component.
+
+Think of props as function parameters.
+
+Example
+Welcome.jsx
+function Welcome(props) {
+    return (
+        <h2>Welcome {props.name}</h2>
+    );
+}
+
+export default Welcome;
+App.jsx
+import Welcome from './components/Welcome';
+
+function App() {
+    return (
+        <div>
+            <Welcome name="Priyadharshini" />
+        </div>
+    );
+}
+
+export default App;
+Output
+Welcome Priyadharshini
+2. Destructuring Props (Recommended)
+
+Instead of:
+
+function Welcome(props) {
+    return (
+        <h2>{props.name}</h2>
+    );
+}
+
+Use:
+
+function Welcome({ name }) {
+    return (
+        <h2>Welcome {name}</h2>
+    );
+}
+
+export default Welcome;
+
+This is the preferred React style.
+
+3. Functional Components
+
+You've already created functional components.
+
+Example:
+
+function Header() {
+    return (
+        <h1>My Portfolio</h1>
+    );
+}
+
+export default Header;
+
+Functional Components:
+
+Easier to write
+Use Hooks
+Most commonly used in modern React
+4. Component Reusability
+
+Suppose you want to display multiple employees.
+
+Employee.jsx
+function Employee({ name, role }) {
+    return (
+        <div>
+            <h3>{name}</h3>
+            <p>{role}</p>
+        </div>
+    );
+}
+
+export default Employee;
+App.jsx
+import Employee from './components/Employee';
+
+function App() {
+    return (
+        <div>
+            <Employee
+                name="Priyadharshini"
+                role="Java Developer"
+            />
+
+            <Employee
+                name="Arun"
+                role="React Developer"
+            />
+
+            <Employee
+                name="Kumar"
+                role="Full Stack Developer"
+            />
+        </div>
+    );
+}
+
+export default App;
+Output
+Priyadharshini
+Java Developer
+
+Arun
+React Developer
+
+Kumar
+Full Stack Developer
+
+Notice:
+
+Same component used 3 times
+Different data passed through props
+
+This is called Component Reusability.
