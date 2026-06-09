@@ -1,0 +1,210 @@
+Excellent! Let's continue with Day 4: Forms & Controlled Components.
+
+Day 4: Forms in React
+
+Forms are used to collect user input such as:
+
+Name
+Email
+Mobile Number
+Password
+
+Examples:
+
+Login Form
+Registration Form
+Contact Form
+What is a Controlled Component?
+
+A Controlled Component is a form element whose value is controlled by React state.
+
+Instead of letting the browser manage the input value, React manages it using useState.
+
+Example 1: Single Input Field
+import { useState } from 'react';
+
+function UserForm() {
+
+    const [name, setName] = useState('');
+
+    return (
+        <div>
+            <input
+                type="text"
+                placeholder="Enter Name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+            />
+
+            <h3>Name: {name}</h3>
+        </div>
+    );
+}
+
+export default UserForm;
+How it works
+
+When user types:
+
+Priyadharshini
+
+onChange gets triggered:
+
+onChange={(e) => setName(e.target.value)}
+
+and updates state.
+
+React automatically updates:
+
+Name: Priyadharshini
+Understanding onChange
+onChange={(e) => setName(e.target.value)}
+
+Where:
+
+e.target.value
+
+contains the current value typed by the user.
+
+Example:
+
+Input Box : Priya
+
+then:
+
+e.target.value = "Priya"
+Example 2: Login Form
+import { useState } from 'react';
+
+function LoginForm() {
+
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+
+    return (
+        <div>
+
+            <input
+                type="text"
+                placeholder="Username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+            />
+
+            <br /><br />
+
+            <input
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+            />
+
+            <h3>Username: {username}</h3>
+            <h3>Password: {password}</h3>
+
+        </div>
+    );
+}
+
+export default LoginForm;
+Handling Form Submission
+const handleSubmit = (e) => {
+
+    e.preventDefault();
+
+    console.log(username);
+    console.log(password);
+};
+
+Why use:
+
+e.preventDefault();
+
+Because it prevents the page from refreshing when the form is submitted.
+
+Complete Example
+import { useState } from 'react';
+
+function LoginForm() {
+
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+
+    const handleSubmit = (e) => {
+
+        e.preventDefault();
+
+        alert(
+            `Username: ${username}
+Password: ${password}`
+        );
+    };
+
+    return (
+
+        <form onSubmit={handleSubmit}>
+
+            <input
+                type="text"
+                placeholder="Username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+            />
+
+            <br /><br />
+
+            <input
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+            />
+
+            <br /><br />
+
+            <button type="submit">
+                Login
+            </button>
+
+        </form>
+    );
+}
+
+export default LoginForm;
+
+
+Multiple Fields Using One State Object
+const [user, setUser] = useState({
+    name: '',
+    email: ''
+});
+
+Update field:
+
+onChange={(e) =>
+    setUser({
+        ...user,
+        name: e.target.value
+    })
+}
+
+The ...user keeps existing values intact.
+
+Interview Questions
+What is a Controlled Component?
+
+A form element whose value is controlled by React state.
+
+Why use Controlled Components?
+Easy validation
+Easy form submission
+Single source of truth
+Better control over user input
+What is e.target.value?
+
+It returns the current value entered by the user in an input field.
+
+Why use preventDefault()?
+
+To prevent the browser's default form submission behavior (page refresh).
