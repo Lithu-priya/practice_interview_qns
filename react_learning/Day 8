@@ -189,3 +189,117 @@ function CharacterCounter() {
 }
 
 export default CharacterCounter;
+
+
+React Component Lifecycle (Simplified)
+1. Mounting
+
+Component is created and displayed.
+
+App starts
+↓
+Welcome component created
+↓
+Welcome component shown on screen
+
+useEffect(..., []) runs here.
+
+useEffect(() => {
+    console.log("Mounted");
+}, []);
+
+Output:
+
+Mounted
+2. Updating
+
+When state or props change.
+
+const [count, setCount] = useState(0);
+
+Click button:
+
+setCount(count + 1);
+
+Component updates and re-renders.
+
+Count: 0
+↓
+Count: 1
+↓
+Count: 2
+3. Unmounting
+
+Component is removed from the screen.
+
+Example:
+
+{
+    show && <Welcome />
+}
+
+When:
+
+setShow(false);
+
+React removes <Welcome /> from the page.
+
+Component Unmounted
+Visual Example
+function App() {
+
+    const [show, setShow] = useState(true);
+
+    return (
+        <div>
+            <button onClick={() => setShow(!show)}>
+                Toggle
+            </button>
+
+            {show && <Welcome />}
+        </div>
+    );
+}
+
+When page loads:
+
+Welcome Mounted
+
+Click Toggle:
+
+Welcome Unmounted
+
+Click Toggle again:
+
+Welcome Mounted
+Why is React StrictMode showing it twice?
+
+In development:
+
+Mount
+↓
+Unmount
+↓
+Mount Again
+
+React does this intentionally to help detect bugs in useEffect.
+
+That's why you saw:
+
+Component loaded
+Component loaded
+
+even though your effect has:
+
+useEffect(() => {
+    console.log("Component loaded");
+}, []);
+
+A useful way to remember it:
+
+Mount = Component appears on screen for the first time.
+Update = Component re-renders because state/props changed.
+Unmount = Component is removed from the screen.
+
+
+
