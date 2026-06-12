@@ -1,0 +1,191 @@
+Day 8: useEffect Basics
+What is useEffect?
+
+useEffect is a React Hook used to perform side effects.
+
+Examples:
+
+Fetch data from an API
+Update document title
+Run code when a component loads
+Set timers
+Syntax
+import { useEffect } from "react";
+
+useEffect(() => {
+    console.log("Component Loaded");
+}, []);
+Explanation
+useEffect(() => {
+    // code
+}, []);
+First argument → function to execute
+Second argument → dependency array
+Example 1: Run Once on Component Load
+
+Create UseEffectDemo.jsx
+
+import { useEffect } from "react";
+
+function UseEffectDemo() {
+
+    useEffect(() => {
+        console.log("Component Loaded");
+    }, []);
+
+    return (
+        <div>
+            <h2>useEffect Demo</h2>
+        </div>
+    );
+}
+
+export default UseEffectDemo;
+Output
+
+When page loads:
+
+Component Loaded
+
+appears in browser console.
+
+Example 2: Counter with useEffect
+import { useState, useEffect } from "react";
+
+function CounterEffect() {
+
+    const [count, setCount] = useState(0);
+
+    useEffect(() => {
+        console.log("Count changed:", count);
+    }, [count]);
+
+    return (
+        <div>
+            <h2>Count: {count}</h2>
+
+            <button onClick={() => setCount(count + 1)}>
+                Increment
+            </button>
+        </div>
+    );
+}
+
+export default CounterEffect;
+What happens?
+
+Initial load:
+
+Count changed: 0
+
+Click button:
+
+Count changed: 1
+Count changed: 2
+Count changed: 3
+Example 3: Change Browser Title
+import { useState, useEffect } from "react";
+
+function PageTitle() {
+
+    const [count, setCount] = useState(0);
+
+    useEffect(() => {
+        document.title = `Count: ${count}`;
+    }, [count]);
+
+    return (
+        <div>
+            <h2>{count}</h2>
+
+            <button onClick={() => setCount(count + 1)}>
+                Increment
+            </button>
+        </div>
+    );
+}
+
+export default PageTitle;
+
+Notice the browser tab title changes.
+
+Dependency Array Rules
+Run Once
+useEffect(() => {
+    console.log("Loaded");
+}, []);
+
+Runs only once.
+
+Run When State Changes
+useEffect(() => {
+    console.log("Count changed");
+}, [count]);
+
+Runs whenever count changes.
+
+Run Every Render
+useEffect(() => {
+    console.log("Rendered");
+});
+
+Runs after every render.
+
+Day 8 Practice Tasks
+Task 1
+
+Create a component:
+
+WelcomeEffect
+
+When page loads:
+
+Welcome Priyadharshini
+
+should print in console.
+
+Task 2
+
+Create a counter.
+
+Whenever count changes:
+
+Current Count: X
+
+should print in console.
+
+Task 3
+
+Create a button:
+
+Increase
+
+Update browser tab title with current count.
+
+Mini Project: Live Character Counter
+import { useState, useEffect } from "react";
+
+function CharacterCounter() {
+
+    const [text, setText] = useState("");
+
+    useEffect(() => {
+        document.title = `Characters: ${text.length}`;
+    }, [text]);
+
+    return (
+        <div>
+            <h2>Character Counter</h2>
+
+            <input
+                type="text"
+                value={text}
+                onChange={(e) => setText(e.target.value)}
+            />
+
+            <p>Characters: {text.length}</p>
+        </div>
+    );
+}
+
+export default CharacterCounter;
