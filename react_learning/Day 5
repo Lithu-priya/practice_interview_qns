@@ -1,0 +1,163 @@
+Day 5: Conditional Rendering
+
+Conditional Rendering means displaying different UI based on a condition.
+
+Example:
+
+User logged in → Show Welcome message.
+User not logged in → Show Login button.
+1. Using if-else
+function Login() {
+
+    const isLoggedIn = true;
+
+    if (isLoggedIn) {
+        return <h2>Welcome Priyadharshini</h2>;
+    }
+
+    return <h2>Please Login</h2>;
+}
+
+export default Login;
+Output
+Welcome Priyadharshini
+2. Using Ternary Operator
+
+Syntax:
+
+condition ? trueValue : falseValue
+
+Example:
+
+function Login() {
+
+    const isLoggedIn = false;
+
+    return (
+        <div>
+            {
+                isLoggedIn
+                    ? <h2>Welcome User</h2>
+                    : <h2>Please Login</h2>
+            }
+        </div>
+    );
+}
+
+export default Login;
+
+Output:
+
+Please Login
+3. Using && Operator
+
+Show something only when condition is true.
+
+function App() {
+
+    const isAdmin = true;
+
+    return (
+        <div>
+            <h2>Dashboard</h2>
+
+            {isAdmin && <button>Delete User</button>}
+        </div>
+    );
+}
+
+Output:
+
+Dashboard
+Delete User
+
+If:
+
+const isAdmin = false;
+
+Output:
+
+Dashboard
+
+Button won't appear.
+
+4. Conditional Rendering with useState
+import { useState } from "react";
+
+function LoginStatus() {
+
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    return (
+        <div>
+
+            <h2>
+                {
+                    isLoggedIn
+                        ? "Welcome Priyadharshini"
+                        : "Please Login"
+                }
+            </h2>
+
+            <button
+                onClick={() => setIsLoggedIn(!isLoggedIn)}
+            >
+                Toggle Login
+            </button>
+
+        </div>
+    );
+}
+
+export default LoginStatus;
+Real-world Example
+Show/Hide Password
+import { useState } from "react";
+
+function Password() {
+
+    const [showPassword, setShowPassword] =
+        useState(false);
+
+    return (
+        <div>
+
+            <input
+                type={
+                    showPassword
+                        ? "text"
+                        : "password"
+                }
+            />
+
+            <button
+                onClick={() =>
+                    setShowPassword(!showPassword)
+                }
+            >
+                {
+                    showPassword
+                        ? "Hide"
+                        : "Show"
+                }
+            </button>
+
+        </div>
+    );
+}
+
+export default Password;
+Interview Questions
+What is Conditional Rendering?
+
+Rendering different UI based on conditions.
+
+Which operators are commonly used?
+if-else
+Ternary (? :)
+Logical AND (&&)
+Which is most commonly used?
+
+Ternary Operator
+
+condition ? value1 : value2
