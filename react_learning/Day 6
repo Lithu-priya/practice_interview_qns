@@ -1,0 +1,227 @@
+What is map()?
+
+map() is a JavaScript array method that loops through an array and returns JSX for each item.
+
+Normal JavaScript
+const numbers = [1, 2, 3];
+
+numbers.map((num) => {
+    console.log(num);
+});
+
+Output:
+
+1
+2
+3
+Rendering a List
+function App() {
+
+    const fruits = [
+        "Apple",
+        "Orange",
+        "Mango"
+    ];
+
+    return (
+        <div>
+            {
+                fruits.map((fruit) => (
+                    <h3>{fruit}</h3>
+                ))
+            }
+        </div>
+    );
+}
+
+export default App;
+
+Output:
+
+Apple
+Orange
+Mango
+Using key
+
+React requires a unique key.
+
+function App() {
+
+    const fruits = [
+        "Apple",
+        "Orange",
+        "Mango"
+    ];
+
+    return (
+        <div>
+            {
+                fruits.map((fruit, index) => (
+                    <h3 key={index}>
+                        {fruit}
+                    </h3>
+                ))
+            }
+        </div>
+    );
+}
+Why key?
+
+React uses it to identify which element changed.
+
+Array of Objects
+
+This is what you'll use most in projects.
+
+const employees = [
+    {
+        id: 1,
+        name: "Priyadharshini",
+        role: "Java Developer"
+    },
+    {
+        id: 2,
+        name: "Arun",
+        role: "React Developer"
+    },
+    {
+        id: 3,
+        name: "Kumar",
+        role: "Full Stack Developer"
+    }
+];
+
+Render:
+
+function EmployeeList() {
+
+    const employees = [
+        {
+            id: 1,
+            name: "Priyadharshini",
+            role: "Java Developer"
+        },
+        {
+            id: 2,
+            name: "Arun",
+            role: "React Developer"
+        },
+        {
+            id: 3,
+            name: "Kumar",
+            role: "Full Stack Developer"
+        }
+    ];
+
+    return (
+        <div>
+            {
+                employees.map((employee) => (
+                    <div key={employee.id}>
+                        <h3>{employee.name}</h3>
+                        <p>{employee.role}</p>
+                    </div>
+                ))
+            }
+        </div>
+    );
+}
+
+export default EmployeeList;
+Using Components with map()
+Employee.jsx
+function Employee({ name, role }) {
+
+    return (
+        <div>
+            <h3>{name}</h3>
+            <p>{role}</p>
+        </div>
+    );
+}
+
+export default Employee;
+App.jsx
+import Employee from "./Employee";
+
+function App() {
+
+    const employees = [
+        {
+            id: 1,
+            name: "Priyadharshini",
+            role: "Java Developer"
+        },
+        {
+            id: 2,
+            name: "Arun",
+            role: "React Developer"
+        }
+    ];
+
+    return (
+        <div>
+            {
+                employees.map((employee) => (
+                    <Employee
+                        key={employee.id}
+                        name={employee.name}
+                        role={employee.role}
+                    />
+                ))
+            }
+        </div>
+    );
+}
+
+export default App;
+Real Project Example
+
+Suppose backend returns:
+
+[
+  {
+    "customerNumber": "1001",
+    "customerName": "John"
+  },
+  {
+    "customerNumber": "1002",
+    "customerName": "David"
+  }
+]
+
+React:
+
+{
+    customers.map((customer) => (
+        <div key={customer.customerNumber}>
+            <h3>{customer.customerName}</h3>
+        </div>
+    ))
+}
+
+This is how you'll display API data from your Spring Boot applications.
+
+Interview Questions
+What does map() do?
+
+It iterates through an array and returns a new array.
+
+Why use map() in React?
+
+To render multiple UI elements from an array.
+
+What is key?
+
+A unique identifier used by React to efficiently update the DOM.
+
+Can we use index as key?
+key={index}
+
+Yes, for learning and static lists.
+
+For dynamic data:
+
+key={employee.id}
+
+is preferred.
