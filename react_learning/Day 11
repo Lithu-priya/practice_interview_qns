@@ -1,0 +1,174 @@
+Why do we need Loading?
+
+Without loading:
+
+Page opens
+↓
+Nothing visible
+↓
+API response arrives
+↓
+Data appears
+
+Users may think the application is stuck.
+
+Loading Example
+import { useState } from "react";
+import axios from "axios";
+
+function AxiosUsers() {
+
+    const [users, setUsers] = useState([]);
+    const [loading, setLoading] = useState(false);
+
+    const fetchUsers = async () => {
+
+        setLoading(true);
+
+        const response = await axios.get(
+            "https://jsonplaceholder.typicode.com/users"
+        );
+
+        setUsers(response.data);
+
+        setLoading(false);
+    };
+
+    return (
+        <div>
+
+            <button onClick={fetchUsers}>
+                Fetch Users
+            </button>
+
+            {
+                loading && <h3>Loading...</h3>
+            }
+
+            {
+                users.map(user => (
+                    <div key={user.id}>
+                        <h3>{user.name}</h3>
+                    </div>
+                ))
+            }
+
+        </div>
+    );
+}
+
+export default AxiosUsers;
+How it works
+
+When button is clicked:
+
+loading = true
+↓
+Loading... displayed
+↓
+API call executes
+↓
+loading = false
+↓
+Data displayed
+What is Error Handling?
+
+Sometimes:
+
+Internet is down
+API URL is wrong
+Server is unavailable
+
+Example:
+
+https://jsonplaceholder.typicode.com/abc
+
+This URL does not exist.
+
+Error Handling Example
+import { useState } from "react";
+import axios from "axios";
+
+function AxiosUsers() {
+
+    const [users, setUsers] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState("");
+
+    const fetchUsers = async () => {
+
+        try {
+
+            setLoading(true);
+            setError("");
+
+            const response =
+                await axios.get(
+                    "https://jsonplaceholder.typicode.com/users"
+                );
+
+            setUsers(response.data);
+
+        } catch (err) {
+
+            setError("Failed to load users");
+
+        } finally {
+
+            setLoading(false);
+
+        }
+    };
+
+    return (
+        <div>
+
+            <button onClick={fetchUsers}>
+                Fetch Users
+            </button>
+
+            {
+                loading && <h3>Loading...</h3>
+            }
+
+            {
+                error && <h3>{error}</h3>
+            }
+
+            {
+                users.map(user => (
+                    <div key={user.id}>
+                        <h3>{user.name}</h3>
+                    </div>
+                ))
+            }
+
+        </div>
+    );
+}
+
+export default AxiosUsers;
+Understanding try-catch-finally
+try {
+    // API call
+}
+catch(error) {
+    // Handle error
+}
+finally {
+    // Always executes
+}
+Success Flow
+try
+↓
+API Success
+↓
+finally
+Failure Flow
+try
+↓
+API Fails
+↓
+catch
+↓
+finally
