@@ -1,0 +1,120 @@
+What is Axios?
+
+Axios is a popular library used to make HTTP requests.
+
+Instead of:
+
+fetch(url)
+    .then(response => response.json())
+    .then(data => console.log(data));
+
+With Axios:
+
+axios.get(url)
+    .then(response => console.log(response.data));
+
+Axios is shorter and provides better error handling.
+
+Step 1: Install Axios
+
+Open the terminal in your React project:
+
+npm install axios
+
+After installation, check package.json:
+
+"axios": "^1.x.x"
+Step 2: Create Axios Example
+AxiosUsers.jsx
+import { useEffect, useState } from "react";
+import axios from "axios";
+
+function AxiosUsers() {
+
+    const [users, setUsers] = useState([]);
+
+    useEffect(() => {
+
+        axios
+            .get("https://jsonplaceholder.typicode.com/users")
+            .then(response => {
+                console.log(response.data);
+                setUsers(response.data);
+            });
+
+    }, []);
+
+    return (
+        <div>
+            <h2>Axios Users</h2>
+
+            {
+                users.map(user => (
+                    <div key={user.id}>
+                        <h3>{user.name}</h3>
+                    </div>
+                ))
+            }
+        </div>
+    );
+}
+
+export default AxiosUsers;
+Step 3: Add to App.jsx
+import AxiosUsers from "./components/AxiosUsers";
+
+<AxiosUsers />
+Fetch vs Axios
+Fetch	Axios
+Built into JavaScript	External library
+Need response.json()	Automatic JSON parsing
+More code	Less code
+Basic error handling	Better error handling
+Fetch
+fetch(url)
+    .then(response => response.json())
+    .then(data => setUsers(data));
+Axios
+axios.get(url)
+    .then(response => setUsers(response.data));
+Using async/await with Axios
+
+Most companies prefer this style:
+
+import { useEffect, useState } from "react";
+import axios from "axios";
+
+function AxiosUsers() {
+
+    const [users, setUsers] = useState([]);
+
+    useEffect(() => {
+
+        const fetchUsers = async () => {
+
+            const response =
+                await axios.get(
+                    "https://jsonplaceholder.typicode.com/users"
+                );
+
+            setUsers(response.data);
+        };
+
+        fetchUsers();
+
+    }, []);
+
+    return (
+        <div>
+            {
+                users.map(user => (
+                    <h3 key={user.id}>
+                        {user.name}
+                    </h3>
+                ))
+            }
+        </div>
+    );
+}
+
+export default AxiosUsers;
