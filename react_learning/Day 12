@@ -1,0 +1,157 @@
+useRef is a React Hook that lets you:
+
+Access DOM elements directly.
+Store values that persist between renders without causing re-renders.
+1. Syntax
+import { useRef } from "react";
+
+function Example() {
+  const inputRef = useRef(null);
+
+  return (
+    <input ref={inputRef} />
+  );
+}
+useRef() returns an object.
+The object contains a property called current.
+inputRef.current
+2. Focusing an Input
+Example
+import { useRef } from "react";
+
+function InputFocus() {
+  const inputRef = useRef(null);
+
+  const focusInput = () => {
+    inputRef.current.focus();
+  };
+
+  return (
+    <div>
+      <input
+        type="text"
+        ref={inputRef}
+        placeholder="Enter name"
+      />
+
+      <button onClick={focusInput}>
+        Focus Input
+      </button>
+    </div>
+  );
+}
+
+export default InputFocus;
+How it works
+React creates a reference object.
+ref={inputRef} connects the input element to the ref.
+The actual DOM element is stored in:
+inputRef.current
+Calling:
+inputRef.current.focus();
+
+moves the cursor into the input box.
+
+3. Clearing an Input
+import { useRef } from "react";
+
+function ClearInput() {
+  const inputRef = useRef(null);
+
+  const clearText = () => {
+    inputRef.current.value = "";
+  };
+
+  return (
+    <>
+      <input ref={inputRef} />
+      <button onClick={clearText}>Clear</button>
+    </>
+  );
+}
+
+export default ClearInput;
+4. Storing Values Without Re-rendering
+
+Unlike useState, changing a ref does not re-render the component.
+
+import { useRef } from "react";
+
+function Counter() {
+  const countRef = useRef(0);
+
+  const increment = () => {
+    countRef.current++;
+    console.log(countRef.current);
+  };
+
+  return (
+    <button onClick={increment}>
+      Increment
+    </button>
+  );
+}
+
+export default Counter;
+Difference
+useState
+const [count, setCount] = useState(0);
+
+setCount(count + 1);
+
+✅ Re-renders component
+
+useRef
+countRef.current++;
+
+❌ Does not re-render component
+
+5. Previous Value Example
+import { useState, useEffect, useRef } from "react";
+
+function PreviousCount() {
+  const [count, setCount] = useState(0);
+  const prevCount = useRef();
+
+  useEffect(() => {
+    prevCount.current = count;
+  }, [count]);
+
+  return (
+    <div>
+      <p>Current: {count}</p>
+      <p>Previous: {prevCount.current}</p>
+
+      <button onClick={() => setCount(count + 1)}>
+        Increment
+      </button>
+    </div>
+  );
+}
+
+export default PreviousCount;
+useRef vs useState
+Feature	useRef	useState
+Stores value	✅	✅
+Persists between renders	✅	✅
+Causes re-render	❌	✅
+Access DOM elements	✅	❌
+Common Interview Questions
+1. What is useRef?
+
+A React Hook that stores mutable values and provides direct access to DOM elements without causing re-renders.
+
+2. Does updating useRef trigger a re-render?
+
+No.
+
+ref.current = 10;
+
+will not re-render the component.
+
+3. When should you use useRef?
+Focusing inputs
+Accessing DOM elements
+Storing timers/interval IDs
+Storing previous values
+Holding mutable data without re-rendering
