@@ -1,0 +1,226 @@
+useMemo is a React Hook used to memoize (cache) expensive calculations so they are not recalculated on every render.
+
+Why use useMemo?
+
+Normally, whenever a component re-renders, all code inside it runs again.
+
+Example:
+
+function App() {
+  const [count, setCount] = useState(0);
+
+  const expensiveValue = calculateLargeData(); // Runs every render
+
+  return (
+    <>
+      <h2>{count}</h2>
+      <button onClick={() => setCount(count + 1)}>
+        Increment
+      </button>
+    </>
+  );
+}
+
+Even if only count changes, calculateLargeData() runs again.
+
+useMemo prevents unnecessary recalculations.
+
+Syntax
+const memoizedValue = useMemo(() => {
+  return expensiveCalculation();
+}, [dependencies]);
+Parameters
+First argument → Function that returns a value.
+Second argument → Dependency array.
+
+React recalculates only when dependencies change.
+
+Example 1: Basic useMemo
+import { useState, useMemo } from "react";
+
+function App() {
+  const [count, setCount] = useState(0);
+
+  const square = useMemo(() => {
+    console.log("Calculating...");
+    return count * count;
+  }, [count]);
+
+  return (
+    <div>
+      <h2>Count: {count}</h2>
+      <h2>Square: {square}</h2>
+
+      <button onClick={() => setCount(count + 1)}>
+        Increment
+      </button>
+    </div>
+  );
+}
+
+export default App;
+Output
+Count: 2
+Square: 4
+
+When count changes, square is recalculated.
+
+Example 2: Prevent Expensive Calculation
+import { useState, useMemo } from "react";
+
+function App() {
+  const [count, setCount] = useState(0);
+  const [name, setName] = useState("");
+
+  const expensiveCalculation = (num) => {
+    console.log("Running expensive calculation");
+
+    for (let i = 0; i < 1000000000; i++) {}
+
+    return num * 2;
+  };
+
+  const result = useMemo(() => {
+    return expensiveCalculation(count);
+  }, [count]);
+
+  return (
+    <div>
+      <h2>Result: {result}</h2>
+
+      <button onClick={() => setCount(count + 1)}>
+        Increment Count
+      </button>
+
+      <input
+        type="text"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        placeholder="Enter name"
+      />
+    </div>
+  );
+}
+
+export default App;
+Without useMemo
+
+Changing the input triggers the expensive calculation again.
+
+With useMemo
+
+Changing the input only updates name.
+
+Expensive calculation runs only when count changes.
+
+Example 3: Filtering a List
+import { useState, useMemo } from "react";
+
+function App() {
+  const [search, setSearch] = useState("");
+
+  const users = [
+    "John",
+    "David",
+    "Priya",
+    "Kumar",
+    "Alice"
+  ];
+
+  const filteredUsers = useMemo(() => {
+    console.log("Filtering users");
+
+    return users.filter(user =>
+      user.toLowerCase().includes(search.toLowerCase())
+    );
+  }, [search]);
+
+  return (
+    <div>
+      <input
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
+
+      <ul>
+        {filteredUsers.map((user, index) => (
+          <li key={index}>{user}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export default App;
+
+The filtering logic runs only when search changes.
+
+useMemo vs useEffect
+useMemo	useEffect
+Returns a value	Does not return a value
+Used for calculations	Used for side effects
+Runs during rendering	Runs after rendering
+Caches computed values	Performs API calls, DOM updates
+Example
+const total = useMemo(() => {
+  return price * quantity;
+}, [price, quantity]);
+useEffect(() => {
+  fetchUsers();
+}, []);
+useMemo vs useCallback
+useMemo
+
+Caches a value
+
+const total = useMemo(() => price * quantity, [price, quantity]);
+useCallback
+
+Caches a function
+
+const handleClick = useCallback(() => {
+  console.log("Clicked");
+}, []);
+When to Use useMemo
+
+✅ Expensive calculations
+
+✅ Large list filtering
+
+✅ Sorting data
+
+✅ Derived values from state
+
+✅ Performance optimization
+
+When NOT to Use useMemo
+
+❌ For simple calculations
+
+const sum = a + b;
+
+No need for useMemo.
+
+❌ Everywhere in the application
+
+Overusing useMemo can actually reduce performance.
+
+Interview Questions
+1. What is useMemo?
+
+useMemo is a React Hook that memoizes a computed value and recalculates it only when its dependencies change.
+
+2. Why use useMemo?
+
+To avoid expensive recalculations and improve performance.
+
+3. What does useMemo return?
+
+A memoized value.
+
+4. Difference between useMemo and useCallback?
+useMemo → Memoizes a value.
+useCallback → Memoizes a function.
+5. Does useMemo prevent re-rendering?
+
+No. It only prevents recalculating a value. The component still re-renders when state or props change.
