@@ -1,0 +1,231 @@
+Day 15: React Router Setup
+
+React Router is used for navigation between pages/components in a React Single Page Application (SPA) without reloading the browser.
+
+Step 1: Install React Router
+
+Open terminal:
+
+npm install react-router-dom
+Step 2: Project Structure
+src/
+│
+├── App.js
+├── Home.js
+├── About.js
+└── Contact.js
+Step 3: Create Components
+Home.js
+function Home() {
+  return <h1>Home Page</h1>;
+}
+
+export default Home;
+About.js
+function About() {
+  return <h1>About Page</h1>;
+}
+
+export default About;
+Contact.js
+function Contact() {
+  return <h1>Contact Page</h1>;
+}
+
+export default Contact;
+Step 4: Configure Router
+App.js
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import Home from "./Home";
+import About from "./About";
+import Contact from "./Contact";
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+
+        <Route path="/about" element={<About />} />
+
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+export default App;
+Understanding the Components
+BrowserRouter
+
+Provides routing functionality.
+
+<BrowserRouter>
+  ...
+</BrowserRouter>
+Routes
+
+Container for all routes.
+
+<Routes>
+  ...
+</Routes>
+Route
+
+Defines a URL path and component.
+
+<Route path="/about" element={<About />} />
+
+When user visits:
+
+http://localhost:3000/about
+
+React displays:
+
+<About />
+Step 5: Add Navigation Links
+
+Update App.js:
+
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Link
+} from "react-router-dom";
+
+import Home from "./Home";
+import About from "./About";
+import Contact from "./Contact";
+
+function App() {
+  return (
+    <BrowserRouter>
+
+      <nav>
+        <Link to="/">Home</Link> |
+        <Link to="/about"> About</Link> |
+        <Link to="/contact"> Contact</Link>
+      </nav>
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+
+    </BrowserRouter>
+  );
+}
+
+export default App;
+Why Use Link Instead of <a>?
+
+❌ Avoid:
+
+<a href="/about">About</a>
+
+This reloads the page.
+
+✅ Use:
+
+<Link to="/about">About</Link>
+
+No page reload.
+
+Faster navigation.
+
+Example with Navigation Menu
+<nav>
+  <ul>
+    <li>
+      <Link to="/">Home</Link>
+    </li>
+
+    <li>
+      <Link to="/about">About</Link>
+    </li>
+
+    <li>
+      <Link to="/contact">Contact</Link>
+    </li>
+  </ul>
+</nav>
+404 Not Found Page
+
+Create:
+
+NotFound.js
+function NotFound() {
+  return <h1>404 - Page Not Found</h1>;
+}
+
+export default NotFound;
+
+Update routes:
+
+import NotFound from "./NotFound";
+
+<Routes>
+  <Route path="/" element={<Home />} />
+
+  <Route path="/about" element={<About />} />
+
+  <Route path="/contact" element={<Contact />} />
+
+  <Route path="*" element={<NotFound />} />
+</Routes>
+
+* matches all unknown URLs.
+
+URL Examples
+URL	Component
+/	Home
+/about	About
+/contact	Contact
+/xyz	NotFound
+Interview Questions
+What is React Router?
+
+A library used for client-side routing in React applications.
+
+What is BrowserRouter?
+
+Provides routing context to the application.
+
+What is Routes?
+
+A container that holds multiple Route components.
+
+What is Route?
+
+Maps a URL path to a React component.
+
+Difference between Link and <a>?
+Link	a
+No page reload	Reloads page
+SPA navigation	Traditional navigation
+Faster	Slower
+What does path="*" mean?
+
+It matches all undefined routes and is commonly used for a 404 page.
+
+Practice Task
+
+Create a small React app with:
+
+Pages
+Home
+About
+Services
+Contact
+NotFound
+Navigation
+Home | About | Services | Contact
+Routes
+/          → Home
+/about     → About
+/services  → Services
+/contact   → Contact
+*          → NotFound
