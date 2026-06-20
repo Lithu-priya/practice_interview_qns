@@ -1,0 +1,203 @@
+Day 16: Route Parameters in React Router (useParams)
+
+Route Parameters allow you to pass dynamic values through the URL.
+
+For example:
+
+/user/101
+/user/102
+/user/103
+
+Instead of creating separate routes for each user, you can create one dynamic route.
+
+What is useParams?
+
+useParams is a React Router Hook used to read route parameters from the URL.
+
+import { useParams } from "react-router-dom";
+Example 1: Basic Route Parameter
+App.jsx
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import User from "./User";
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/user/:id" element={<User />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+export default App;
+Understanding :id
+/user/:id
+
+The : indicates a route parameter.
+
+Examples:
+
+/user/101
+/user/102
+/user/500
+
+Here:
+
+id = 101
+id = 102
+id = 500
+User.jsx
+import { useParams } from "react-router-dom";
+
+function User() {
+  const { id } = useParams();
+
+  return (
+    <div>
+      <h2>User ID: {id}</h2>
+    </div>
+  );
+}
+
+export default User;
+Output
+
+If URL is:
+
+http://localhost:5173/user/101
+
+Output:
+
+User ID: 101
+Example 2: Multiple Parameters
+Route
+<Route path="/employee/:id/:name" element={<Employee />} />
+URL
+/employee/101/Priya
+Employee.jsx
+import { useParams } from "react-router-dom";
+
+function Employee() {
+  const { id, name } = useParams();
+
+  return (
+    <div>
+      <h2>ID: {id}</h2>
+      <h2>Name: {name}</h2>
+    </div>
+  );
+}
+
+export default Employee;
+Output
+ID: 101
+Name: Priya
+Example 3: Navigate Using Links
+App.jsx
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import User from "./User";
+
+function App() {
+  return (
+    <BrowserRouter>
+
+      <Link to="/user/101">User 101</Link>
+      <br />
+      <Link to="/user/102">User 102</Link>
+
+      <Routes>
+        <Route path="/user/:id" element={<User />} />
+      </Routes>
+
+    </BrowserRouter>
+  );
+}
+
+export default App;
+User.jsx
+import { useParams } from "react-router-dom";
+
+function User() {
+  const { id } = useParams();
+
+  return <h2>User ID: {id}</h2>;
+}
+
+export default User;
+Real-World Example
+
+Suppose you have a product list:
+
+const products = [
+  { id: 1, name: "Laptop" },
+  { id: 2, name: "Mobile" },
+  { id: 3, name: "Headphones" }
+];
+Product Links
+<Link to="/product/1">Laptop</Link>
+<Link to="/product/2">Mobile</Link>
+<Link to="/product/3">Headphones</Link>
+Route
+<Route path="/product/:id" element={<ProductDetails />} />
+ProductDetails.jsx
+import { useParams } from "react-router-dom";
+
+function ProductDetails() {
+  const { id } = useParams();
+
+  return (
+    <div>
+      <h2>Product ID: {id}</h2>
+    </div>
+  );
+}
+
+export default ProductDetails;
+Difference Between Params and Query Parameters
+Route Parameter
+/user/101
+
+Route:
+
+<Route path="/user/:id" element={<User />} />
+
+Access using:
+
+const { id } = useParams();
+Query Parameter
+/user?id=101
+
+Access using:
+
+const searchParams = new URLSearchParams(window.location.search);
+
+const id = searchParams.get("id");
+
+We'll learn a React Router way (useSearchParams) later.
+
+Interview Questions
+What is a Route Parameter?
+
+A dynamic value passed through the URL.
+
+Example:
+
+/user/101
+
+where 101 is the route parameter.
+
+What does :id mean?
+
+It defines a dynamic route segment.
+
+<Route path="/user/:id" element={<User />} />
+What hook is used to access route parameters?
+useParams()
+What does useParams() return?
+
+An object containing all route parameters.
+
+Example:
+
+const { id } = useParams();
