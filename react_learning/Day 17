@@ -211,3 +211,31 @@ How do you go back?
 navigate(-1);
 How do you replace history?
 navigate("/home", { replace: true });
+
+
+Navigation with Replace
+navigate("/home", { replace: true });
+
+Instead of adding a new history entry, React Router replaces the current one.
+
+Example
+
+Current page:
+
+/login
+
+Execute:
+
+navigate("/home", { replace: true });
+
+History becomes:
+
+/home
+
+The /login entry is removed.
+
+Now if the user clicks Back:
+
+Nothing to go back to
+
+The login page won't appear again.
