@@ -1,0 +1,247 @@
+Day 18: Nested Routes in React Router
+
+Nested Routes allow you to create parent-child routes.
+
+Example:
+
+/dashboard
+/dashboard/profile
+/dashboard/settings
+/dashboard/users
+
+Instead of creating separate pages, you can have a common Dashboard layout and load child pages inside it.
+
+Why Nested Routes?
+
+Suppose every Dashboard page should show:
+
+Dashboard Header
+Dashboard Menu
+
+Profile Page
+
+or
+
+Dashboard Header
+Dashboard Menu
+
+Settings Page
+
+Without nested routes, you would repeat the header and menu in every component.
+
+Nested routes solve this problem.
+
+Project Structure
+components/
+│
+├── Dashboard.jsx
+├── Profile.jsx
+├── Settings.jsx
+└── Users.jsx
+Step 1: Create Child Components
+Profile.jsx
+function Profile() {
+    return <h2>Profile Page</h2>;
+}
+
+export default Profile;
+Settings.jsx
+function Settings() {
+    return <h2>Settings Page</h2>;
+}
+
+export default Settings;
+Users.jsx
+function Users() {
+    return <h2>Users Page</h2>;
+}
+
+export default Users;
+Step 2: Create Dashboard Layout
+Dashboard.jsx
+import { Link, Outlet } from "react-router-dom";
+
+function Dashboard() {
+    return (
+        <div>
+            <h1>Dashboard</h1>
+
+            <nav>
+                <Link to="profile">Profile</Link> |
+                <Link to="settings">Settings</Link> |
+                <Link to="users">Users</Link>
+            </nav>
+
+            <hr />
+
+            <Outlet />
+        </div>
+    );
+}
+
+export default Dashboard;
+What is Outlet?
+
+Outlet is a placeholder where child routes are rendered.
+
+<Outlet />
+
+When visiting:
+
+/dashboard/profile
+
+React renders:
+
+Dashboard
+
+Profile Page
+
+inside the Outlet.
+
+Step 3: Configure Routes
+App.jsx
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import Dashboard from "./Dashboard";
+import Profile from "./Profile";
+import Settings from "./Settings";
+import Users from "./Users";
+
+function App() {
+    return (
+        <BrowserRouter>
+            <Routes>
+
+                <Route path="/dashboard" element={<Dashboard />}>
+
+                    <Route
+                        path="profile"
+                        element={<Profile />}
+                    />
+
+                    <Route
+                        path="settings"
+                        element={<Settings />}
+                    />
+
+                    <Route
+                        path="users"
+                        element={<Users />}
+                    />
+
+                </Route>
+
+            </Routes>
+        </BrowserRouter>
+    );
+}
+
+export default App;
+Route Structure
+/dashboard
+    ├── profile
+    ├── settings
+    └── users
+URLs
+Dashboard
+/dashboard
+
+Shows:
+
+Dashboard
+Profile
+/dashboard/profile
+
+Shows:
+
+Dashboard
+
+Profile Page
+Settings
+/dashboard/settings
+
+Shows:
+
+Dashboard
+
+Settings Page
+Users
+/dashboard/users
+
+Shows:
+
+Dashboard
+
+Users Page
+Default Child Route (Index Route)
+
+Suppose user visits:
+
+/dashboard
+
+and you want Profile to appear automatically.
+
+<Route path="/dashboard" element={<Dashboard />}>
+
+    <Route
+        index
+        element={<Profile />}
+    />
+
+    <Route
+        path="settings"
+        element={<Settings />}
+    />
+
+    <Route
+        path="users"
+        element={<Users />}
+    />
+
+</Route>
+
+Now:
+
+/dashboard
+
+shows:
+
+Dashboard
+
+Profile Page
+Important: Relative Paths
+
+Inside Dashboard:
+
+<Link to="profile">Profile</Link>
+
+✅ Correct
+
+Do NOT write:
+
+<Link to="/dashboard/profile">
+
+inside a nested route component.
+
+React Router already knows you're inside /dashboard.
+
+Interview Questions
+What are Nested Routes?
+
+Routes defined inside another route, creating a parent-child relationship.
+
+What is Outlet?
+
+A React Router component used as a placeholder for child routes.
+
+<Outlet />
+What is an Index Route?
+
+A default child route rendered when the parent route is accessed.
+
+<Route index element={<Profile />} />
+Why use Nested Routes?
+Reusable layouts
+Shared navigation
+Cleaner route structure
+Better organization
