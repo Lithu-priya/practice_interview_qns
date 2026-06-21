@@ -1,0 +1,243 @@
+Day 19: Layout Components in React Router
+
+A Layout Component is a reusable component that contains common UI shared across multiple pages.
+
+Examples:
+
+Header
+Navbar
+Sidebar
+Footer
+
+Instead of repeating them in every page, we place them in a layout component and render page content using Outlet.
+
+Without Layout Component
+Home.jsx
+<>
+    <Header />
+    <HomeContent />
+    <Footer />
+</>
+About.jsx
+<>
+    <Header />
+    <AboutContent />
+    <Footer />
+</>
+Contact.jsx
+<>
+    <Header />
+    <ContactContent />
+    <Footer />
+</>
+
+Problem:
+
+Header repeated
+Footer repeated
+Navbar repeated
+With Layout Component
+
+Create one common layout.
+
+Header
+Navbar
+
+<Outlet />
+
+Footer
+
+Every page automatically gets the same layout.
+
+Project Structure
+components/
+│
+├── Layout.jsx
+├── Home.jsx
+├── About.jsx
+├── Contact.jsx
+└── NotFound.jsx
+Step 1: Create Layout.jsx
+import { Link, Outlet } from "react-router-dom";
+
+function Layout() {
+    return (
+        <div>
+            <header>
+                <h1>My Website</h1>
+            </header>
+
+            <nav>
+                <Link to="/">Home</Link> |
+                <Link to="/about">About</Link> |
+                <Link to="/contact">Contact</Link>
+            </nav>
+
+            <hr />
+
+            <Outlet />
+
+            <hr />
+
+            <footer>
+                <p>© 2026 My Website</p>
+            </footer>
+        </div>
+    );
+}
+
+export default Layout;
+What is Outlet?
+
+Outlet is where the matched page component will be rendered.
+
+<Outlet />
+
+If URL is:
+
+/about
+
+React renders:
+
+Header
+Navbar
+
+About Page
+
+Footer
+Step 2: Create Pages
+Home.jsx
+function Home() {
+    return <h2>Home Page</h2>;
+}
+
+export default Home;
+About.jsx
+function About() {
+    return <h2>About Page</h2>;
+}
+
+export default About;
+Contact.jsx
+function Contact() {
+    return <h2>Contact Page</h2>;
+}
+
+export default Contact;
+Step 3: Configure Routes
+App.jsx
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import Layout from "./components/Layout";
+import Home from "./components/Home";
+import About from "./components/About";
+import Contact from "./components/Contact";
+import NotFound from "./components/NotFound";
+
+function App() {
+    return (
+        <BrowserRouter>
+            <Routes>
+
+                <Route path="/" element={<Layout />}>
+
+                    <Route
+                        index
+                        element={<Home />}
+                    />
+
+                    <Route
+                        path="about"
+                        element={<About />}
+                    />
+
+                    <Route
+                        path="contact"
+                        element={<Contact />}
+                    />
+
+                </Route>
+
+                <Route
+                    path="*"
+                    element={<NotFound />}
+                />
+
+            </Routes>
+        </BrowserRouter>
+    );
+}
+
+export default App;
+Understanding the Route Structure
+/
+├── Home
+├── About
+└── Contact
+
+All pages use:
+
+Layout
+
+because they are nested inside:
+
+<Route path="/" element={<Layout />}>
+Index Route
+
+Instead of:
+
+<Route path="" element={<Home />} />
+
+use:
+
+<Route index element={<Home />} />
+
+This means:
+
+/  → Home
+Real-World Example
+Admin Layout
+Admin Header
+Sidebar
+
+Dashboard Content
+
+Footer
+
+Routes:
+
+/admin/dashboard
+/admin/users
+/admin/settings
+
+All pages share the same layout.
+
+Layout Component vs Nested Routes
+Layout Component	Nested Route
+Shared UI	Parent-child route structure
+Uses Outlet	Uses Outlet
+Header/Navbar/Footer	Dashboard/Profile/Settings
+Reusable page structure	Route organization
+
+In practice, they are often used together.
+
+Interview Questions
+What is a Layout Component?
+
+A reusable component containing shared UI such as header, footer, navbar, and an Outlet for page content.
+
+Why use Layout Components?
+Avoid code duplication
+Centralize navigation
+Improve maintainability
+Create consistent UI
+What is Outlet?
+
+A placeholder where child routes are rendered.
+
+<Outlet />
+What is an Index Route?
+
+The default route rendered when the parent route is accessed.
+
+<Route index element={<Home />} />
