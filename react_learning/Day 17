@@ -1,0 +1,213 @@
+Day 17: Navigation using useNavigate()
+
+So far, you've used Link for navigation:
+
+<Link to="/about">About</Link>
+
+But sometimes you need to navigate programmatically after an action such as:
+
+Login success
+Form submission
+Button click
+API response
+Logout
+
+For that, React Router provides useNavigate().
+
+What is useNavigate()?
+
+useNavigate() is a hook used to navigate to another route from JavaScript code.
+
+import { useNavigate } from "react-router-dom";
+Basic Example
+Home.jsx
+import { useNavigate } from "react-router-dom";
+
+function Home() {
+    const navigate = useNavigate();
+
+    return (
+        <div>
+            <h2>Home Page</h2>
+
+            <button onClick={() => navigate("/about")}>
+                Go to About
+            </button>
+        </div>
+    );
+}
+
+export default Home;
+Result
+
+Clicking the button takes you to:
+
+/about
+Example 2: Navigation After Login
+Login.jsx
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+function Login() {
+    const [username, setUsername] = useState("");
+    const navigate = useNavigate();
+
+    const handleLogin = () => {
+        if (username === "admin") {
+            navigate("/dashboard");
+        }
+    };
+
+    return (
+        <div>
+            <input
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder="Username"
+            />
+
+            <button onClick={handleLogin}>
+                Login
+            </button>
+        </div>
+    );
+}
+
+export default Login;
+Example 3: Passing Route Parameters
+import { useNavigate } from "react-router-dom";
+
+function Users() {
+    const navigate = useNavigate();
+
+    return (
+        <div>
+            <button onClick={() => navigate("/user/101")}>
+                User 101
+            </button>
+
+            <button onClick={() => navigate("/user/102")}>
+                User 102
+            </button>
+        </div>
+    );
+}
+
+export default Users;
+Go Back
+
+Navigate to the previous page:
+
+navigate(-1);
+
+Example:
+
+<button onClick={() => navigate(-1)}>
+    Back
+</button>
+
+Works like the browser Back button.
+
+Go Forward
+navigate(1);
+
+Example:
+
+<button onClick={() => navigate(1)}>
+    Forward
+</button>
+Replace Current History Entry
+
+Normally:
+
+navigate("/home");
+
+adds a history entry.
+
+To replace the current page:
+
+navigate("/home", { replace: true });
+
+Useful after login/logout.
+
+Complete Example
+App.jsx
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./Home";
+import About from "./About";
+
+function App() {
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+            </Routes>
+        </BrowserRouter>
+    );
+}
+
+export default App;
+Home.jsx
+import { useNavigate } from "react-router-dom";
+
+function Home() {
+    const navigate = useNavigate();
+
+    return (
+        <div>
+            <h2>Home Page</h2>
+
+            <button onClick={() => navigate("/about")}>
+                Go To About
+            </button>
+        </div>
+    );
+}
+
+export default Home;
+About.jsx
+import { useNavigate } from "react-router-dom";
+
+function About() {
+    const navigate = useNavigate();
+
+    return (
+        <div>
+            <h2>About Page</h2>
+
+            <button onClick={() => navigate("/")}>
+                Go To Home
+            </button>
+
+            <button onClick={() => navigate(-1)}>
+                Back
+            </button>
+        </div>
+    );
+}
+
+export default About;
+Link vs useNavigate
+
+| Feature | Link | useNavigate |
+|----------|----------|
+| Navigation via UI links | ✅ | ❌ |
+| Navigation from JavaScript | ❌ | ✅ |
+| Button click navigation | Possible but not preferred | ✅ |
+| Login redirect | ❌ | ✅ |
+| Logout redirect | ❌ | ✅ |
+
+Interview Questions
+What is useNavigate()?
+
+A React Router hook used for programmatic navigation.
+
+How do you navigate to another page?
+const navigate = useNavigate();
+
+navigate("/about");
+How do you go back?
+navigate(-1);
+How do you replace history?
+navigate("/home", { replace: true });
