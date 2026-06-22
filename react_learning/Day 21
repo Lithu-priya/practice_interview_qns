@@ -1,0 +1,280 @@
+Day 22: Connect React with Spring Boot API
+Goal
+
+Learn how React communicates with a Spring Boot REST API using fetch() and axios.
+
+Step 1: Create Spring Boot REST API
+Employee.java
+public class Employee {
+
+    private Long id;
+    private String name;
+    private String department;
+
+    public Employee(Long id, String name, String department) {
+        this.id = id;
+        this.name = name;
+        this.department = department;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+}
+EmployeeController.java
+@RestController
+@RequestMapping("/api/employees")
+@CrossOrigin(origins = "http://localhost:5173")
+public class EmployeeController {
+
+    @GetMapping
+    public List<Employee> getEmployees() {
+
+        return Arrays.asList(
+                new Employee(1L, "John", "IT"),
+                new Employee(2L, "David", "HR"),
+                new Employee(3L, "Sara", "Finance")
+        );
+    }
+}
+
+Run Spring Boot:
+
+http://localhost:8080/api/employees
+
+Output:
+
+[
+  {
+    "id":1,
+    "name":"John",
+    "department":"IT"
+  }
+]
+Step 2: Create React Component
+EmployeeList.jsx
+import { useEffect, useState } from "react";
+
+function EmployeeList() {
+
+    const [employees, setEmployees] = useState([]);
+
+    useEffect(() => {
+
+        fetch("http://localhost:8080/api/employees")
+            .then(response => response.json())
+            .then(data => setEmployees(data))
+            .catch(error => console.log(error));
+
+    }, []);
+
+    return (
+        <>
+            <h2>Employee List</h2>
+
+            <ul>
+                {
+                    employees.map(emp => (
+                        <li key={emp.id}>
+                            {emp.name} - {emp.department}
+                        </li>
+                    ))
+                }
+            </ul>
+        </>
+    );
+}
+
+export default EmployeeList;
+Step 3: Use Component in App.jsx
+import EmployeeList from "./EmployeeList";
+
+function App() {
+
+  return (
+    <>
+      <EmployeeList />
+    </>
+  );
+}
+
+export default App;
+Understanding useEffect
+useEffect(() => {
+
+   fetch("http://localhost:8080/api/employees")
+
+}, []);
+
+The empty dependency array:
+
+[]
+
+means:
+
+✅ Run only once when component loads.
+
+Similar to:
+
+@PostConstruct
+public void init() {
+}
+
+in Spring Boot.
+
+Step 4: Using Async/Await
+
+More professional approach:
+
+import { useEffect, useState } from "react";
+
+function EmployeeList() {
+
+    const [employees, setEmployees] = useState([]);
+
+    useEffect(() => {
+
+        const fetchEmployees = async () => {
+
+            try {
+
+                const response = await fetch(
+                    "http://localhost:8080/api/employees"
+                );
+
+                const data = await response.json();
+
+                setEmployees(data);
+
+            } catch(error) {
+
+                console.log(error);
+
+            }
+        };
+
+        fetchEmployees();
+
+    }, []);
+
+    return (
+        <div>
+            {employees.map(emp => (
+                <p key={emp.id}>
+                    {emp.name}
+                </p>
+            ))}
+        </div>
+    );
+}
+
+export default EmployeeList;
+Step 5: Install Axios
+
+Axios is widely used in React projects.
+
+Install:
+
+npm install axios
+Using Axios
+import axios from "axios";
+import { useEffect, useState } from "react";
+
+function EmployeeList() {
+
+    const [employees, setEmployees] = useState([]);
+
+    useEffect(() => {
+
+        axios.get(
+            "http://localhost:8080/api/employees"
+        )
+        .then(response => {
+            setEmployees(response.data);
+        })
+        .catch(error => {
+            console.log(error);
+        });
+
+    }, []);
+
+    return (
+        <>
+            {employees.map(emp => (
+                <p key={emp.id}>
+                    {emp.name}
+                </p>
+            ))}
+        </>
+    );
+}
+
+export default EmployeeList;
+Step 6: Loading State
+const [loading, setLoading] = useState(true);
+useEffect(() => {
+
+    fetch(url)
+      .then(res => res.json())
+      .then(data => {
+          setEmployees(data);
+          setLoading(false);
+      });
+
+}, []);
+if(loading){
+   return <h2>Loading...</h2>;
+}
+Step 7: Error Handling
+const [error, setError] = useState("");
+try {
+
+    const response = await fetch(url);
+
+    if(!response.ok){
+        throw new Error("Failed to fetch");
+    }
+
+} catch(error) {
+
+    setError(error.message);
+
+}
+if(error){
+    return <h2>{error}</h2>;
+}
+Real Project Structure
+src
+│
+├── components
+│   └── EmployeeList.jsx
+│
+├── services
+│   └── EmployeeService.js
+│
+├── pages
+│
+└── App.jsx
+EmployeeService.js
+import axios from "axios";
+
+const API_URL =
+    "http://localhost:8080/api/employees";
+
+export const getEmployees = () => {
+    return axios.get(API_URL);
+};
+
+Component:
+
+import { getEmployees } from "../services/EmployeeService";
+
+This separation is the standard approach in enterprise React applications.
