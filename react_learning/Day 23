@@ -1,0 +1,190 @@
+Day 23: Working with GET APIs in React
+
+Today you'll learn how to consume GET APIs professionally in React applications.
+
+What You'll Learn
+
+✅ GET API using Axios
+✅ GET API using Fetch
+✅ Loading State
+✅ Error Handling
+✅ Service Layer Pattern
+✅ Display Data in Table
+✅ useEffect with APIs
+
+Project Structure
+src
+│
+├── components
+│   └── EmployeeList.jsx
+│
+├── services
+│   └── EmployeeService.js
+│
+└── App.jsx
+Step 1: Create Spring Boot API
+EmployeeController.java
+@RestController
+@RequestMapping("/api/employees")
+@CrossOrigin(origins = "http://localhost:5173")
+public class EmployeeController {
+
+    @GetMapping
+    public List<Employee> getEmployees() {
+
+        return Arrays.asList(
+                new Employee(1L, "John", "IT"),
+                new Employee(2L, "David", "HR"),
+                new Employee(3L, "Sara", "Finance")
+        );
+    }
+}
+
+Test:
+
+http://localhost:8080/api/employees
+Step 2: Create Service Layer
+services/EmployeeService.js
+import axios from "axios";
+
+const API_URL = "http://localhost:8080/api/employees";
+
+export const getEmployees = () => {
+    return axios.get(API_URL);
+};
+Step 3: Consume API
+EmployeeList.jsx
+import { useEffect, useState } from "react";
+import { getEmployees } from "../services/EmployeeService";
+
+function EmployeeList() {
+
+    const [employees, setEmployees] = useState([]);
+
+    useEffect(() => {
+
+        getEmployees()
+            .then(response => {
+                setEmployees(response.data);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+
+    }, []);
+
+    return (
+        <div>
+            <h2>Employees</h2>
+
+            <ul>
+                {
+                    employees.map(emp => (
+                        <li key={emp.id}>
+                            {emp.name} - {emp.department}
+                        </li>
+                    ))
+                }
+            </ul>
+        </div>
+    );
+}
+
+export default EmployeeList;
+Step 4: Loading State
+const [loading, setLoading] = useState(true);
+useEffect(() => {
+
+    getEmployees()
+        .then(response => {
+            setEmployees(response.data);
+            setLoading(false);
+        });
+
+}, []);
+if (loading) {
+    return <h2>Loading...</h2>;
+}
+Step 5: Error Handling
+const [error, setError] = useState("");
+useEffect(() => {
+
+    getEmployees()
+        .then(response => {
+            setEmployees(response.data);
+        })
+        .catch(error => {
+            setError("Failed to load employees");
+        })
+        .finally(() => {
+            setLoading(false);
+        });
+
+}, []);
+if(error){
+    return <h2>{error}</h2>;
+}
+Step 6: Display Data in Table
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Department</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {
+            employees.map(emp => (
+                <tr key={emp.id}>
+                    <td>{emp.id}</td>
+                    <td>{emp.name}</td>
+                    <td>{emp.department}</td>
+                </tr>
+            ))
+        }
+    </tbody>
+</table>
+Using Async/Await
+useEffect(() => {
+
+    const fetchEmployees = async () => {
+
+        try {
+
+            const response = await getEmployees();
+
+            setEmployees(response.data);
+
+        } catch(error) {
+
+            setError("Failed to fetch data");
+
+        } finally {
+
+            setLoading(false);
+
+        }
+    };
+
+    fetchEmployees();
+
+}, []);
+Interview Questions
+Why use useEffect for API calls?
+
+Because API calls are side effects and should run after component rendering.
+
+Why use Axios instead of Fetch?
+Automatic JSON parsing
+Better error handling
+Request/Response interceptors
+Timeout support
+What is response.data?
+
+Axios wraps the HTTP response.
+
+response.data
+
+contains the actual API payload.
