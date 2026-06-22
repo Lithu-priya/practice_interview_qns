@@ -1,0 +1,204 @@
+Day 24: POST APIs (React + Spring Boot)
+Goal
+
+Learn how to send data from a React form to a Spring Boot backend using Axios POST requests.
+
+Flow
+React Form
+    ↓
+Axios POST Request
+    ↓
+Spring Boot REST API
+    ↓
+Save Data
+    ↓
+Response Back to React
+Step 1: Spring Boot POST API
+Employee.java
+public class Employee {
+
+    private Long id;
+    private String name;
+    private String department;
+
+    public Employee() {
+    }
+
+    public Employee(Long id, String name, String department) {
+        this.id = id;
+        this.name = name;
+        this.department = department;
+    }
+
+    // Getters and Setters
+}
+EmployeeController.java
+@RestController
+@RequestMapping("/api/employees")
+@CrossOrigin(origins = "http://localhost:5173")
+public class EmployeeController {
+
+    @PostMapping
+    public Employee saveEmployee(@RequestBody Employee employee) {
+
+        System.out.println(employee.getName());
+        System.out.println(employee.getDepartment());
+
+        return employee;
+    }
+}
+Step 2: Create Service Layer
+EmployeeService.js
+import axios from "axios";
+
+const API_URL = "http://localhost:8080/api/employees";
+
+export const saveEmployee = (employee) => {
+    return axios.post(API_URL, employee);
+};
+Step 3: Create Form Component
+EmployeeForm.jsx
+import { useState } from "react";
+import { saveEmployee } from "../services/EmployeeService";
+
+function EmployeeForm() {
+
+    const [name, setName] = useState("");
+    const [department, setDepartment] = useState("");
+
+    const handleSubmit = async (e) => {
+
+        e.preventDefault();
+
+        const employee = {
+            name,
+            department
+        };
+
+        try {
+
+            const response = await saveEmployee(employee);
+
+            console.log(response.data);
+
+            alert("Employee Saved Successfully");
+
+            setName("");
+            setDepartment("");
+
+        } catch (error) {
+
+            console.log(error);
+
+            alert("Failed to save employee");
+        }
+    };
+
+    return (
+        <div>
+
+            <h2>Add Employee</h2>
+
+            <form onSubmit={handleSubmit}>
+
+                <div>
+                    <label>Name:</label>
+                    <input
+                        type="text"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                    />
+                </div>
+
+                <br />
+
+                <div>
+                    <label>Department:</label>
+                    <input
+                        type="text"
+                        value={department}
+                        onChange={(e) => setDepartment(e.target.value)}
+                    />
+                </div>
+
+                <br />
+
+                <button type="submit">
+                    Save Employee
+                </button>
+
+            </form>
+
+        </div>
+    );
+}
+
+export default EmployeeForm;
+Step 4: Use Component in App.jsx
+import EmployeeForm from "./components/EmployeeForm";
+
+function App() {
+
+    return (
+        <>
+            <EmployeeForm />
+        </>
+    );
+}
+
+export default App;
+How POST Request Works
+
+When user enters:
+
+Name = John
+Department = IT
+
+React sends:
+
+{
+  "name": "John",
+  "department": "IT"
+}
+
+Spring Boot receives it through:
+
+@RequestBody Employee employee
+Add Validation
+if (!name || !department) {
+    alert("All fields are required");
+    return;
+}
+
+Place it before calling the API.
+
+Using .then() Instead of async/await
+saveEmployee(employee)
+    .then(response => {
+        alert("Employee Saved");
+    })
+    .catch(error => {
+        console.log(error);
+    });
+Interview Questions
+What is @RequestBody?
+
+Used to convert incoming JSON into a Java object.
+
+@PostMapping
+public Employee saveEmployee(
+        @RequestBody Employee employee) {
+}
+Why call e.preventDefault()?
+
+Prevents the browser from refreshing the page when the form is submitted.
+
+e.preventDefault();
+What is a Controlled Component?
+
+A form element whose value is controlled by React state.
+
+<input
+   value={name}
+   onChange={(e) => setName(e.target.value)}
+/>
