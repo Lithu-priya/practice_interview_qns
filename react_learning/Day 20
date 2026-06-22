@@ -1,0 +1,238 @@
+Day 20: Protected Routes Concept
+
+A Protected Route is a route that can only be accessed by authenticated users.
+
+Real-world Examples
+
+✅ Logged-in users can access:
+
+/dashboard
+/profile
+/orders
+/settings
+
+❌ Non-logged-in users cannot access them.
+
+If they try, they are redirected to:
+
+/login
+Why Do We Need Protected Routes?
+
+Suppose your app has:
+
+/login
+/dashboard
+/profile
+
+Without protection, anyone can type:
+
+http://localhost:5173/dashboard
+
+and access the page.
+
+Protected Routes prevent this.
+
+Concept
+User tries to access Dashboard
+          ↓
+     Is Logged In?
+       /      \
+     Yes       No
+      ↓         ↓
+ Dashboard    Login Page
+Step 1: Create Pages
+Login.jsx
+function Login() {
+    return <h2>Login Page</h2>;
+}
+
+export default Login;
+Dashboard.jsx
+function Dashboard() {
+    return <h2>Dashboard Page</h2>;
+}
+
+export default Dashboard;
+Step 2: Create ProtectedRoute Component
+ProtectedRoute.jsx
+import { Navigate } from "react-router-dom";
+
+function ProtectedRoute({ isAuthenticated, children }) {
+
+    if (!isAuthenticated) {
+        return <Navigate to="/login" />;
+    }
+
+    return children;
+}
+
+export default ProtectedRoute;
+Understanding Navigate
+
+Navigate redirects users to another route.
+
+<Navigate to="/login" />
+
+means:
+
+Go to Login Page
+Step 3: Configure Routes
+App.jsx
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import Login from "./Login";
+import Dashboard from "./Dashboard";
+import ProtectedRoute from "./ProtectedRoute";
+
+function App() {
+
+    const isAuthenticated = false;
+
+    return (
+        <BrowserRouter>
+            <Routes>
+
+                <Route
+                    path="/login"
+                    element={<Login />}
+                />
+
+                <Route
+                    path="/dashboard"
+                    element={
+                        <ProtectedRoute
+                            isAuthenticated={isAuthenticated}
+                        >
+                            <Dashboard />
+                        </ProtectedRoute>
+                    }
+                />
+
+            </Routes>
+        </BrowserRouter>
+    );
+}
+
+export default App;
+What Happens?
+User opens:
+/dashboard
+
+Current value:
+
+const isAuthenticated = false;
+
+ProtectedRoute executes:
+
+if (!isAuthenticated) {
+    return <Navigate to="/login" />;
+}
+
+Result:
+
+/dashboard
+      ↓
+Redirect
+      ↓
+/login
+If User Is Logged In
+const isAuthenticated = true;
+
+Now:
+
+/dashboard
+
+shows:
+
+Dashboard Page
+More Reusable Version
+
+Instead of:
+
+<ProtectedRoute isAuthenticated={true}>
+    <Dashboard />
+</ProtectedRoute>
+
+many applications use Context API or Redux to store login status.
+
+Example:
+
+const auth = useAuth();
+
+Then:
+
+if (!auth.isLoggedIn) {
+    return <Navigate to="/login" />;
+}
+
+We'll learn this after Context API.
+
+Example with Login Button
+import { useNavigate } from "react-router-dom";
+
+function Login() {
+
+    const navigate = useNavigate();
+
+    const handleLogin = () => {
+        navigate("/dashboard");
+    };
+
+    return (
+        <button onClick={handleLogin}>
+            Login
+        </button>
+    );
+}
+
+export default Login;
+
+In a real application:
+
+API Login Success
+      ↓
+Store Token
+      ↓
+Navigate Dashboard
+Protected Route vs Normal Route
+Normal Route
+<Route
+    path="/about"
+    element={<About />}
+/>
+
+Everyone can access.
+
+Protected Route
+<Route
+    path="/dashboard"
+    element={
+        <ProtectedRoute
+            isAuthenticated={isAuthenticated}
+        >
+            <Dashboard />
+        </ProtectedRoute>
+    }
+/>
+
+Only authenticated users can access.
+
+Interview Questions
+What is a Protected Route?
+
+A route that only authenticated users can access.
+
+Which React Router component is used for redirection?
+<Navigate />
+What happens if an unauthorized user accesses a protected route?
+
+They are redirected to the login page.
+
+Why are Protected Routes important?
+
+To secure private pages such as:
+
+Dashboard
+Profile
+Orders
+Settings
