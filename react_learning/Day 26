@@ -1,0 +1,207 @@
+Day 26: DELETE APIs (React + Spring Boot)
+Goal
+
+Learn how to delete records from React using Axios and Spring Boot.
+
+What is DELETE?
+
+DELETE removes an existing resource.
+
+Example:
+
+Before:
+1 - John
+2 - David
+3 - Sara
+
+Delete Employee 2
+
+After:
+1 - John
+3 - Sara
+Step 1: Spring Boot DELETE API
+EmployeeController.java
+@RestController
+@RequestMapping("/api/employees")
+@CrossOrigin(origins = "http://localhost:5173")
+public class EmployeeController {
+
+    @DeleteMapping("/delete/{id}")
+    public String deleteEmployee(@PathVariable Long id) {
+
+        System.out.println("Deleting employee: " + id);
+
+        return "Employee Deleted Successfully";
+    }
+}
+Step 2: Create Service Method
+EmployeeService.js
+import axios from "axios";
+
+const DELETE_API_URL =
+    "http://localhost:8070/api/employees/delete";
+
+export const deleteEmployee = (id) => {
+    return axios.delete(`${DELETE_API_URL}/${id}`);
+}
+Step 3: Employee List Component
+import { useEffect, useState } from "react";
+import {
+    getEmployees,
+    deleteEmployee
+} from "../../service/EmployeeService";
+
+function EmployeeList() {
+
+    const [employees, setEmployees] = useState([]);
+
+    useEffect(() => {
+        loadEmployees();
+    }, []);
+
+    const loadEmployees = async () => {
+
+        try {
+
+            const response =
+                await getEmployees();
+
+            setEmployees(response.data);
+
+        } catch (error) {
+
+            console.log(error);
+
+        }
+    };
+
+    const handleDelete = async (id) => {
+
+        try {
+
+            await deleteEmployee(id);
+
+            alert("Employee Deleted");
+
+            loadEmployees();
+
+        } catch (error) {
+
+            console.log(error);
+
+            alert("Delete Failed");
+        }
+    };
+
+    return (
+        <div>
+
+            <h2>Employees</h2>
+
+            <table border="1">
+
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Department</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    {
+                        employees.map(emp => (
+
+                            <tr key={emp.id}>
+
+                                <td>{emp.id}</td>
+                                <td>{emp.name}</td>
+                                <td>{emp.department}</td>
+
+                                <td>
+                                    <button
+                                        onClick={() =>
+                                            handleDelete(emp.id)
+                                        }
+                                    >
+                                        Delete
+                                    </button>
+                                </td>
+
+                            </tr>
+                        ))
+                    }
+
+                </tbody>
+
+            </table>
+
+        </div>
+    );
+}
+
+export default EmployeeList;
+Add Confirmation Dialog
+const handleDelete = async (id) => {
+
+    const confirmDelete =
+        window.confirm(
+            "Are you sure you want to delete?"
+        );
+
+    if (!confirmDelete) {
+        return;
+    }
+
+    try {
+
+        await deleteEmployee(id);
+
+        alert("Deleted Successfully");
+
+        loadEmployees();
+
+    } catch (error) {
+
+        console.log(error);
+
+    }
+};
+Axios DELETE Syntax
+axios.delete(url);
+
+Example:
+
+axios.delete(
+    "http://localhost:8070/api/employees/delete/1"
+);
+Interview Questions
+Difference between PUT and DELETE?
+PUT	DELETE
+Updates data	Removes data
+Existing resource	Existing resource
+Sends request body	Usually no request body
+Why reload data after delete?
+
+To refresh the UI and display the latest data.
+
+loadEmployees();
+Real REST API Style
+
+Instead of:
+
+@DeleteMapping("/delete/{id}")
+
+Most projects use:
+
+@DeleteMapping("/{id}")
+
+React:
+
+axios.delete(
+    `http://localhost:8070/api/employees/${id}`
+);
+
+This follows REST standards.
