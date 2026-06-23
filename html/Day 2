@@ -1,0 +1,107 @@
+Day 2: Text Formatting & Links
+
+Today you'll learn how to format text and create hyperlinks.
+
+1. Bold Text
+<b> Tag
+
+Makes text bold visually.
+
+<b>Java Developer</b>
+
+Output:
+Java Developer
+
+2. Strong Text
+<strong> Tag
+
+Makes text important and usually bold.
+
+<strong>Important Notice</strong>
+
+Output:
+Important Notice
+
+Interview Question
+
+Difference between <b> and <strong>?
+
+<b> → Only bold appearance.
+<strong> → Indicates important content (semantic meaning).
+
+Prefer <strong> in modern HTML.
+
+3. Italic Text
+<i> Tag
+<i>Learning HTML</i>
+
+Output:
+Learning HTML
+
+4. Emphasized Text
+<em> Tag
+<em>Read Carefully</em>
+
+Output:
+Read Carefully
+
+Difference
+<i> → Visual italic.
+<em> → Adds emphasis/importance.
+5. Highlight Text
+<mark>HTML is easy</mark>
+
+Output:
+<mark>HTML is easy</mark>
+
+6. Small Text
+<small>Terms and Conditions Apply</small>
+
+Output:
+<small>Terms and Conditions Apply</small>
+
+7. Superscript
+x<sup>2</sup>
+
+Output:
+
+x²
+
+8. Subscript
+H<sub>2</sub>O
+
+Output:
+
+H₂O
+
+9. Links (Very Important)
+Basic Link
+<a href="https://www.google.com">
+    Google
+</a>
+
+Clicking it opens Google.
+
+Open Link in New Tab
+<a href="https://www.google.com" target="_blank">
+    Open Google
+</a>
+Important Attribute
+Attribute	Purpose
+href	URL
+target="_blank"	Open in new tab
+10. Absolute vs Relative URL
+Absolute URL
+
+Full web address:
+
+<a href="https://www.google.com">
+    Google
+</a>
+Relative URL
+
+Points to another file in your project:
+
+<a href="about.html">
+    About Page
+</a>
