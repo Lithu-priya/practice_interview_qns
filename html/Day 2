@@ -105,3 +105,97 @@ Points to another file in your project:
 <a href="about.html">
     About Page
 </a>
+
+1. Difference between <b> and <strong>
+<b>	<strong>
+Makes text bold visually.	Indicates that the text is important.
+No semantic meaning.	Has semantic meaning.
+Used for styling only.	Used for importance and accessibility.
+
+Example:
+
+<b>Java Developer</b>
+<strong>Important Notice</strong>
+
+Interview Answer:
+
+<b> only makes text bold, whereas <strong> makes text bold and also indicates that the content is important. <strong> is preferred in modern HTML because it provides semantic meaning.
+
+2. Difference between <i> and <em>
+<i>	<em>
+Displays text in italic style.	Emphasizes the text.
+Visual formatting only.	Semantic meaning.
+Used for styling.	Used to stress or emphasize content.
+
+Example:
+
+<i>HTML</i>
+<em>Read Carefully</em>
+
+Interview Answer:
+
+<i> is used only to display text in italics, while <em> is used to emphasize text and has semantic meaning. Screen readers may give extra emphasis to <em> content.
+
+3. What is the purpose of href?
+
+The href (Hypertext Reference) attribute specifies the destination URL of a link.
+
+Example:
+
+<a href="https://www.google.com">Google</a>
+
+Interview Answer:
+
+The href attribute defines the URL or destination that the browser should navigate to when a user clicks a hyperlink.
+
+4. What does target="_blank" do?
+
+It opens the linked page in a new browser tab or window.
+
+Example:
+
+<a href="https://www.google.com" target="_blank">
+    Google
+</a>
+
+Interview Answer:
+
+target="_blank" opens the linked document in a new browser tab, allowing users to stay on the current page while viewing the linked content.
+
+5. Difference between Absolute URL and Relative URL
+Absolute URL
+
+Contains the complete web address.
+
+<a href="https://www.google.com">Google</a>
+Relative URL
+
+Contains the path to a file within the same project.
+
+<a href="about.html">About</a>
+Absolute URL	Relative URL
+Full web address.	Path relative to current page.
+Includes protocol (https://).	Does not include domain name.
+Used for external websites.	Used for internal project pages.
+
+Interview Answer:
+
+An absolute URL contains the complete address of a resource, including the protocol and domain name. A relative URL specifies the location of a resource relative to the current page and is commonly used for navigation within the same website.
+
+Quick Revision
+<b>       -> Bold only
+<strong>  -> Important text
+
+<i>       -> Italic only
+<em>      -> Emphasized text
+
+href      -> Link destination
+
+target="_blank"
+           -> Opens in new tab
+
+Absolute URL
+           -> https://www.google.com
+
+Relative URL
+           -> about.html
