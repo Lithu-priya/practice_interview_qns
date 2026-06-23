@@ -1,0 +1,154 @@
+Day 1: HTML Fundamentals
+
+Today you'll learn the basic structure of an HTML page and the most commonly used tags.
+
+1. What is HTML?
+
+HTML (HyperText Markup Language) is used to create the structure of web pages.
+
+Think of HTML as the skeleton of a website.
+
+Example:
+
+<h1>Welcome</h1>
+<p>This is my first webpage.</p>
+2. Basic HTML Document Structure
+
+Every HTML page starts with:
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My First Page</title>
+</head>
+<body>
+
+    <h1>Hello World!</h1>
+    <p>Welcome to HTML.</p>
+
+</body>
+</html>
+Explanation
+Tag	Purpose
+<!DOCTYPE html>	Tells browser this is HTML5
+<html>	Root element
+<head>	Contains page information
+<title>	Browser tab title
+<body>	Visible content
+3. Headings
+
+HTML provides 6 heading levels.
+
+<h1>Main Heading</h1>
+<h2>Sub Heading</h2>
+<h3>Section Heading</h3>
+<h4>Smaller Heading</h4>
+<h5>Very Small Heading</h5>
+<h6>Smallest Heading</h6>
+Important
+
+Use only one h1 per page whenever possible.
+
+4. Paragraph Tag
+<p>This is a paragraph.</p>
+
+Example:
+
+<p>I am learning HTML.</p>
+<p>HTML is easy to learn.</p>
+5. Line Break
+
+Move content to the next line.
+
+Hello<br>
+World
+
+Output:
+
+Hello
+World
+6. Horizontal Line
+<hr>
+
+Example:
+
+<h1>About Me</h1>
+<hr>
+<p>I am a Java Developer.</p>
+7. Comments
+
+Comments are ignored by browsers.
+
+<!-- This is a comment -->
+
+Example:
+
+<!-- Header Section -->
+<h1>Welcome</h1>
+8. Create Your First HTML Page
+
+Create a file named:
+
+index.html
+
+Add:
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Profile</title>
+</head>
+<body>
+
+    <h1>Priyadharshini</h1>
+
+    <hr>
+
+    <p>I am learning HTML.</p>
+
+    <p>I work as a Java Developer.</p>
+
+</body>
+</html>
+
+Open it in your browser.
+
+Day 1 Practice Task
+
+Create a page with:
+
+Your name using h1
+Your designation using h2
+Two paragraphs about yourself
+One horizontal line
+One comment
+
+Expected structure:
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>About Me</title>
+</head>
+<body>
+
+    <!-- My Introduction -->
+
+    <h1>Your Name</h1>
+
+    <h2>Java Developer</h2>
+
+    <hr>
+
+    <p>Paragraph 1</p>
+
+    <p>Paragraph 2</p>
+
+</body>
+</html>
+Interview Questions
+What is HTML?
+What is the purpose of <!DOCTYPE html>?
+Difference between <head> and <body>?
+What is the purpose of the <title> tag?
+How many heading tags are available in HTML?
