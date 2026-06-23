@@ -1,0 +1,118 @@
+Day 3: Images & Lists
+
+Today you'll learn how to display images and create lists, which are used on almost every website.
+
+1. Image Tag (img)
+
+Used to display images.
+
+<img src="profile.jpg" alt="Profile Picture">
+Attributes
+Attribute	Purpose
+src	Image path
+alt	Alternative text
+width	Image width
+height	Image height
+
+Example:
+
+<img src="profile.jpg" alt="My Photo" width="200">
+Important
+
+Always use alt.
+
+<img src="profile.jpg" alt="Priyadharshini Profile Picture">
+
+If the image doesn't load, the alt text is shown.
+
+2. Image from Internet
+<img src="https://via.placeholder.com/200" alt="Sample Image">
+3. Ordered List (ol)
+
+Displays items with numbers.
+
+<ol>
+    <li>HTML</li>
+    <li>CSS</li>
+    <li>JavaScript</li>
+</ol>
+
+Output:
+
+1. HTML
+2. CSS
+3. JavaScript
+4. Unordered List (ul)
+
+Displays bullet points.
+
+<ul>
+    <li>Java</li>
+    <li>Spring Boot</li>
+    <li>React</li>
+</ul>
+
+Output:
+
+• Java
+• Spring Boot
+• React
+5. List Items (li)
+
+Every list item must be inside <li>.
+
+<ul>
+    <li>Apple</li>
+    <li>Mango</li>
+</ul>
+6. Nested Lists
+
+Lists inside lists.
+
+<ul>
+    <li>Frontend
+        <ul>
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>React</li>
+        </ul>
+    </li>
+
+    <li>Backend
+        <ul>
+            <li>Java</li>
+            <li>Spring Boot</li>
+        </ul>
+    </li>
+</ul>
+
+Interview Questions
+1. What is the purpose of the alt attribute?
+
+Answer:
+
+The alt attribute provides alternative text for an image if the image cannot be displayed. It also improves accessibility for screen readers.
+
+2. Difference between <ol> and <ul>?
+
+Answer:
+
+<ol> creates an ordered (numbered) list, while <ul> creates an unordered (bulleted) list.
+
+3. What does the src attribute do?
+
+Answer:
+
+The src attribute specifies the path or URL of the image to be displayed.
+
+4. Can we put a list inside another list?
+
+Answer:
+
+Yes, this is called a nested list.
+
+5. Why should we always use alt?
+
+Answer:
+
+It improves accessibility and provides descriptive text if the image fails to load.
