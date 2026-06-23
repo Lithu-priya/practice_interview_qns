@@ -1,0 +1,208 @@
+Day 25: PUT APIs (Update Employee using React + Spring Boot)
+Goal
+
+Learn how to update existing records using a PUT request.
+
+What is PUT?
+
+PUT is used to update an existing resource.
+
+Example:
+
+Before:
+{
+  "id": 1,
+  "name": "John",
+  "department": "IT"
+}
+
+After:
+{
+  "id": 1,
+  "name": "John Smith",
+  "department": "Finance"
+}
+Step 1: Spring Boot PUT API
+Employee.java
+public class Employee {
+
+    private Long id;
+    private String name;
+    private String department;
+
+    // Constructors
+    // Getters
+    // Setters
+}
+EmployeeController.java
+@RestController
+@RequestMapping("/api/employees")
+@CrossOrigin(origins = "http://localhost:5173")
+public class EmployeeController {
+
+    @PutMapping("/{id}")
+    public Employee updateEmployee(
+            @PathVariable Long id,
+            @RequestBody Employee employee) {
+
+        employee.setId(id);
+
+        return employee;
+    }
+}
+Step 2: Service Layer
+EmployeeService.js
+import axios from "axios";
+
+const API_URL = "http://localhost:8070/api/employees";
+
+export const updateEmployee = (id, employee) => {
+    return axios.put(`${API_URL}/${id}`, employee);
+};
+Step 3: Create Update Form
+EmployeeUpdate.jsx
+import { useState } from "react";
+import { updateEmployee } from "../../service/EmployeeService";
+
+function EmployeeUpdate() {
+
+    const [id, setId] = useState("");
+    const [name, setName] = useState("");
+    const [department, setDepartment] = useState("");
+
+    const handleSubmit = async (e) => {
+
+        e.preventDefault();
+
+        const employee = {
+            name,
+            department
+        };
+
+        try {
+
+            const response =
+                await updateEmployee(id, employee);
+
+            console.log(response.data);
+
+            alert("Employee Updated Successfully");
+
+        } catch (error) {
+
+            console.log(error);
+
+            alert("Update Failed");
+        }
+    };
+
+    return (
+        <div>
+
+            <h2>Update Employee</h2>
+
+            <form onSubmit={handleSubmit}>
+
+                <input
+                    type="number"
+                    placeholder="Employee Id"
+                    value={id}
+                    onChange={(e) => setId(e.target.value)}
+                />
+
+                <br /><br />
+
+                <input
+                    type="text"
+                    placeholder="Name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                />
+
+                <br /><br />
+
+                <input
+                    type="text"
+                    placeholder="Department"
+                    value={department}
+                    onChange={(e) => setDepartment(e.target.value)}
+                />
+
+                <br /><br />
+
+                <button type="submit">
+                    Update
+                </button>
+
+            </form>
+
+        </div>
+    );
+}
+
+export default EmployeeUpdate;
+JSON Sent to Backend
+
+If:
+
+Id = 1
+Name = John
+Department = Finance
+
+React sends:
+
+{
+  "name": "John",
+  "department": "Finance"
+}
+
+Request URL:
+
+PUT /api/employees/1
+Better Real-World Flow
+
+Usually:
+
+GET Employee by ID
+@GetMapping("/{id}")
+public Employee getEmployee(
+        @PathVariable Long id) {
+
+    return employeeService.findById(id);
+}
+
+Load employee data into form:
+
+useEffect(() => {
+
+    getEmployee(id)
+        .then(response => {
+
+            setName(response.data.name);
+            setDepartment(response.data.department);
+
+        });
+
+}, []);
+
+User edits fields and clicks Update.
+
+Axios PUT Syntax
+axios.put(url, requestBody);
+
+Example:
+
+axios.put(
+    "http://localhost:8070/api/employees/1",
+    employee
+);
+Interview Questions
+Difference between POST and PUT?
+POST	PUT
+Create resource	Update resource
+New record	Existing record
+Multiple calls may create duplicates	Multiple calls update same record
+Why pass ID in URL?
+/api/employees/1
+
+Identifies which resource to update.
