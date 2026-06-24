@@ -1,0 +1,173 @@
+Day 4: HTML Tables
+
+Tables are used to display data in rows and columns.
+
+Examples:
+
+Employee List
+Student Records
+Product Details
+Reports and Dashboards
+1. Basic Table Structure
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+    </tr>
+
+    <tr>
+        <td>1</td>
+        <td>Priyadharshini</td>
+    </tr>
+</table>
+
+Output:
+
+ID	Name
+1	Priyadharshini
+2. Important Table Tags
+Tag	Purpose
+table	Creates table
+tr	Table row
+th	Table header
+td	Table data
+3. Multiple Rows
+<table border="1">
+
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Role</th>
+    </tr>
+
+    <tr>
+        <td>1</td>
+        <td>Priya</td>
+        <td>Java Developer</td>
+    </tr>
+
+    <tr>
+        <td>2</td>
+        <td>Ram</td>
+        <td>Tester</td>
+    </tr>
+
+</table>
+4. Table Sections
+thead
+
+Header section.
+
+tbody
+
+Data section.
+
+<table border="1">
+
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>Priya</td>
+        </tr>
+
+        <tr>
+            <td>2</td>
+            <td>Ram</td>
+        </tr>
+    </tbody>
+
+</table>
+5. colspan
+
+Merge columns.
+
+<table border="1">
+
+    <tr>
+        <th colspan="2">
+            Employee Information
+        </th>
+    </tr>
+
+    <tr>
+        <td>Name</td>
+        <td>Priya</td>
+    </tr>
+
+</table>
+6. rowspan
+
+Merge rows.
+
+<table border="1">
+
+    <tr>
+        <td rowspan="2">Java</td>
+        <td>Spring Boot</td>
+    </tr>
+
+    <tr>
+        <td>Hibernate</td>
+    </tr>
+
+</table>
+
+Interview Questions
+1. What is the difference between <th> and <td>?
+
+Answer:
+
+<th> is used for table headers, while <td> is used for table data cells.
+
+2. What is the purpose of <tr>?
+
+Answer:
+
+<tr> defines a table row.
+
+3. What is colspan?
+
+Answer:
+
+colspan is used to merge multiple columns into a single cell.
+
+Example:
+
+<th colspan="2">Employee Details</th>
+4. What is rowspan?
+
+Answer:
+
+rowspan is used to merge multiple rows into a single cell.
+
+Example:
+
+<td rowspan="2">Java</td>
+5. Why use thead and tbody?
+
+Answer:
+
+They organize table data into header and body sections, making the table more readable and maintainable.
+
+Project Upgrade
+
+Update your Profile Project from Day 1–3:
+
+Add an Education Table:
+
+Degree	College	Year
+B.Sc CS	XYZ College	2020
+
+This combines:
+
+Headings
+Images
+Lists
+Tables
