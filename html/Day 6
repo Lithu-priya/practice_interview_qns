@@ -1,0 +1,171 @@
+Day 6: Semantic HTML (VERY Important 🔥)
+
+Semantic HTML means using meaningful tags that clearly describe the content.
+
+👉 Instead of only using <div>, we use proper tags like:
+
+<header>
+<nav>
+<main>
+<section>
+<article>
+<footer>
+
+This is VERY important for:
+
+Interviews
+SEO (Google ranking)
+React component structure
+Clean code writing
+1. Why Semantic HTML?
+Without semantic HTML
+<div id="header">Header</div>
+<div id="nav">Menu</div>
+<div id="content">Content</div>
+With semantic HTML
+<header>Header</header>
+<nav>Menu</nav>
+<main>Content</main>
+
+👉 Clean, readable, meaningful
+
+2. Semantic Tags
+Header
+
+Used for top section of page
+
+<header>
+    <h1>My Website</h1>
+</header>
+Navigation (nav)
+
+Used for menu links
+
+<nav>
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+</nav>
+Main Content (main)
+
+Primary content of page
+
+<main>
+    <h2>Welcome</h2>
+    <p>This is main content</p>
+</main>
+Section (section)
+
+Groups related content
+
+<section>
+    <h2>About Me</h2>
+    <p>I am a Java Developer</p>
+</section>
+Article (article)
+
+Independent content (blog, post)
+
+<article>
+    <h2>Blog Post</h2>
+    <p>This is a blog article</p>
+</article>
+Aside (aside)
+
+Side content (ads, sidebar)
+
+<aside>
+    <p>Advertisement</p>
+</aside>
+Footer
+
+Bottom section
+
+<footer>
+    <p>© 2026 My Website</p>
+</footer>
+3. Complete Layout Example
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Semantic Page</title>
+</head>
+<body>
+
+<header>
+    <h1>My Portfolio</h1>
+</header>
+
+<nav>
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Projects</a>
+    <a href="#">Contact</a>
+</nav>
+
+<main>
+
+    <section>
+        <h2>About Me</h2>
+        <p>I am a Java + React Developer.</p>
+    </section>
+
+    <section>
+        <h2>Skills</h2>
+        <ul>
+            <li>Java</li>
+            <li>Spring Boot</li>
+            <li>React</li>
+        </ul>
+    </section>
+
+    <article>
+        <h2>Latest Project</h2>
+        <p>Built a Library Management System using Spring Boot.</p>
+    </article>
+
+</main>
+
+<aside>
+    <p>Contact me for freelance work!</p>
+</aside>
+
+<footer>
+    <p>© 2026 Priyadharshini</p>
+</footer>
+
+</body>
+</html>
+4. Difference between <div> and Semantic Tags
+<div>	Semantic Tags
+Generic container	Meaningful container
+No meaning	Gives structure
+Hard for SEO	SEO friendly
+5. Interview Questions
+1. What is semantic HTML?
+
+Answer:
+
+Semantic HTML uses meaningful tags that clearly describe the content, like <header>, <nav>, <section>, and <footer>.
+
+2. Why do we use semantic tags?
+
+Answer:
+
+They improve readability, SEO, accessibility, and help browsers understand the page structure.
+
+3. Difference between <section> and <article>?
+section	article
+Groups related content	Independent content
+Part of page	Can stand alone
+4. Why avoid using only <div>?
+
+Answer:
+
+Because <div> has no meaning and makes code harder to understand and less SEO friendly.
+
+5. What is <nav> used for?
+
+Answer:
+
+It is used to define navigation links of the website.
