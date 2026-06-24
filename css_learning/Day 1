@@ -1,0 +1,132 @@
+Day 1: CSS Basics (Start Here 🔥)
+
+Today you will learn:
+
+What CSS is
+How to connect CSS to HTML
+3 ways to write CSS
+Basic selectors
+Simple styling
+1. What is CSS?
+
+CSS = Cascading Style Sheets
+
+👉 It is used to style HTML pages:
+
+Colors
+Fonts
+Layout
+Spacing
+Design
+Example:
+
+HTML = structure
+CSS = beauty/design
+
+2. How to Add CSS (3 Ways)
+1. Inline CSS (Not preferred)
+<h1 style="color: red;">Hello</h1>
+
+👉 Used only for testing
+
+2. Internal CSS
+
+Inside <style> tag
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        h1 {
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Welcome</h1>
+
+</body>
+</html>
+3. External CSS (MOST IMPORTANT 🔥)
+Step 1: HTML file
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>Hello CSS</h1>
+
+</body>
+</html>
+Step 2: style.css
+h1 {
+    color: green;
+}
+3. CSS Syntax
+selector {
+    property: value;
+}
+
+Example:
+
+p {
+    color: blue;
+    font-size: 20px;
+}
+4. CSS Selectors (VERY IMPORTANT)
+1. Element Selector
+h1 {
+    color: red;
+}
+
+👉 Applies to all <h1>
+
+2. Class Selector
+<p class="text">Hello</p>
+.text {
+    color: green;
+}
+3. ID Selector
+<p id="para1">Hello</p>
+#para1 {
+    color: blue;
+}
+5. Basic Styling Properties
+Color
+h1 {
+    color: red;
+}
+Background Color
+body {
+    background-color: lightgray;
+}
+Font Size
+p {
+    font-size: 18px;
+}
+Text Alignment
+h1 {
+    text-align: center;
+}
+
+
+
+1. What is CSS?
+
+👉 CSS is used to style HTML elements like color, layout, and design.
+
+2. Difference between inline, internal, external CSS?
+Type	Usage
+Inline	inside tag
+Internal	inside <style>
+External	separate .css file
+3. Difference between class and id?
+Class	ID
+Can be reused	Unique
+.class	#id
+4. What is selector?
+
+👉 Selector is used to target HTML elements.
