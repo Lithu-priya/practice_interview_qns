@@ -130,3 +130,15 @@ Can be reused	Unique
 4. What is selector?
 
 👉 Selector is used to target HTML elements.
+
+
+Complete CSS Priority
+
+From highest to lowest:
+
+1. !important
+2. Inline CSS
+3. ID Selector (#id)
+4. Class Selector (.class)
+5. Element Selector (h1, p, div)
+6. Browser Default Styles
