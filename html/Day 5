@@ -1,0 +1,146 @@
+Day 5: HTML Forms (Very Important 🔥)
+
+Forms are used to collect user input in websites:
+
+Login page
+Registration page
+Contact form
+Search box
+
+This is one of the MOST important topics for React + Spring Boot too.
+
+1. Basic Form Structure
+<form>
+    <!-- form elements go here -->
+</form>
+2. Input Field
+<input type="text">
+
+Used to take text input.
+
+Example:
+
+Name: <input type="text">
+3. Label (Very Important)
+
+Used to describe input fields.
+
+<label>Name</label>
+<input type="text">
+4. Common Input Types
+Type	Purpose
+text	Name, city
+password	Hidden text
+email	Email validation
+number	Numbers only
+date	Date picker
+
+Examples:
+
+<input type="text">
+<input type="password">
+<input type="email">
+<input type="number">
+<input type="date">
+5. Password Field
+<label>Password</label>
+<input type="password">
+6. Button
+<button>Submit</button>
+
+OR
+
+<button type="submit">Login</button>
+7. Textarea (Large Input)
+<textarea rows="4" cols="30"></textarea>
+
+Used for:
+
+Comments
+Address
+Feedback
+8. Select Dropdown
+<select>
+    <option>Java</option>
+    <option>React</option>
+    <option>Spring Boot</option>
+</select>
+9. Radio Buttons (Single Choice)
+Gender:
+<input type="radio" name="gender"> Male
+<input type="radio" name="gender"> Female
+10. Checkbox (Multiple Choice)
+Skills:
+<input type="checkbox"> Java
+<input type="checkbox"> React
+<input type="checkbox"> SQL
+Mini Project: Registration Form
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration Form</title>
+</head>
+<body>
+
+<h1>User Registration</h1>
+
+<form>
+
+    <label>Name:</label><br>
+    <input type="text"><br><br>
+
+    <label>Email:</label><br>
+    <input type="email"><br><br>
+
+    <label>Password:</label><br>
+    <input type="password"><br><br>
+
+    <label>Date of Birth:</label><br>
+    <input type="date"><br><br>
+
+    <label>Gender:</label><br>
+    <input type="radio" name="gender"> Male
+    <input type="radio" name="gender"> Female<br><br>
+
+    <label>Skills:</label><br>
+    <input type="checkbox"> Java
+    <input type="checkbox"> Spring Boot
+    <input type="checkbox"> React<br><br>
+
+    <label>Role:</label><br>
+    <select>
+        <option>Developer</option>
+        <option>Tester</option>
+        <option>DevOps</option>
+    </select><br><br>
+
+    <label>Address:</label><br>
+    <textarea rows="4" cols="30"></textarea><br><br>
+
+    <button type="submit">Register</button>
+
+</form>
+
+</body>
+</html>
+Important Concepts (Interview Focus)
+1. Why do we use <form>?
+
+To collect and submit user data to a server.
+
+2. Difference between input types
+text → normal text
+password → hidden text
+email → validates email format
+3. Why do radio buttons use the same name?
+<input type="radio" name="gender">
+
+Because it allows only one selection.
+
+4. Difference between checkbox and radio
+Radio	Checkbox
+Single selection	Multiple selection
+Same name required	Independent selection
+5. What is textarea?
+
+Used for multi-line input like comments or address.
