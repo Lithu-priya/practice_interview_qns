@@ -1,0 +1,151 @@
+CSS Day 2: Text Styling, Fonts & Colors
+
+Today you'll learn how to make text look professional.
+
+Topics
+
+✅ Colors
+✅ Font Size
+✅ Font Family
+✅ Font Weight
+✅ Text Alignment
+✅ Text Decoration
+✅ Line Height
+
+1. Text Color
+
+Change text color using color.
+
+h1 {
+    color: blue;
+}
+
+p {
+    color: green;
+}
+
+You can use:
+
+color: red;
+color: #ff0000;
+color: rgb(255, 0, 0);
+2. Background Color
+body {
+    background-color: lightgray;
+}
+h1 {
+    background-color: yellow;
+}
+3. Font Size
+h1 {
+    font-size: 36px;
+}
+
+p {
+    font-size: 18px;
+}
+
+Common sizes:
+
+16px → normal text
+24px → subheading
+32px+ → heading
+4. Font Family
+
+Changes the text style.
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+Examples:
+
+font-family: Arial;
+font-family: Verdana;
+font-family: Times New Roman;
+font-family: sans-serif;
+5. Font Weight
+
+Controls boldness.
+
+h1 {
+    font-weight: bold;
+}
+
+Values:
+
+font-weight: normal;
+font-weight: bold;
+font-weight: 100;
+font-weight: 400;
+font-weight: 700;
+6. Text Alignment
+h1 {
+    text-align: center;
+}
+
+Options:
+
+text-align: left;
+text-align: center;
+text-align: right;
+7. Text Decoration
+
+Remove or add underlines.
+
+a {
+    text-decoration: none;
+}
+
+Examples:
+
+text-decoration: underline;
+text-decoration: none;
+text-decoration: line-through;
+8. Line Height
+
+Controls spacing between lines.
+
+p {
+    line-height: 1.8;
+}
+
+Without line-height:
+
+Text looks crowded
+
+With line-height:
+
+Text becomes easier to read
+
+
+Interview Questions
+1. Difference between color and background-color?
+
+Answer:
+
+color changes text color.
+background-color changes the background color.
+2. What is font-family?
+
+Answer:
+
+It specifies the font style used to display text.
+
+3. What is font-weight?
+
+Answer:
+
+It controls the thickness or boldness of text.
+
+4. What does text-align: center do?
+
+Answer:
+
+It aligns text horizontally in the center.
+
+5. Why use line-height?
+
+Answer:
+
+It improves readability by increasing space between lines.
