@@ -1,0 +1,145 @@
+CSS Day 3: Box Model (Most Important CSS Topic 🔥)
+
+Every HTML element is a box.
+
+Understanding the Box Model is essential for:
+
+React UI development
+Responsive design
+Interview questions
+Box Model Structure
++-----------------------+
+|        Margin         |
+|  +-----------------+  |
+|  |     Border      |  |
+|  | +-------------+ |  |
+|  | |   Padding   | |  |
+|  | | +---------+ | |  |
+|  | | | Content | | |  |
+|  | | +---------+ | |  |
+|  | +-------------+ |  |
+|  +-----------------+  |
++-----------------------+
+1. Width and Height
+.box {
+    width: 300px;
+    height: 150px;
+}
+
+Example:
+
+<div class="box">
+    Hello CSS
+</div>
+.box {
+    width: 300px;
+    height: 150px;
+    background-color: lightblue;
+}
+2. Border
+
+Adds a border around an element.
+
+.box {
+    border: 2px solid black;
+}
+
+Syntax:
+
+border: width style color;
+
+Examples:
+
+border: 1px solid black;
+border: 3px dashed red;
+border: 5px dotted blue;
+3. Padding
+
+Space inside the border.
+
+.box {
+    padding: 20px;
+}
+
+Example:
+
+<div class="box">
+    Java Developer
+</div>
+.box {
+    border: 2px solid black;
+    padding: 20px;
+}
+
+👉 Text moves away from the border.
+
+4. Margin
+
+Space outside the border.
+
+.box {
+    margin: 20px;
+}
+
+👉 Creates distance between elements.
+
+5. Padding vs Margin
+Padding
+Border
+   Padding
+      Text
+
+Space inside.
+
+Margin
+Element      Margin      Another Element
+
+Space outside.
+
+6. Individual Sides
+Padding
+padding-top: 10px;
+padding-right: 20px;
+padding-bottom: 10px;
+padding-left: 20px;
+
+Short form:
+
+padding: 10px 20px;
+Margin
+margin-top: 20px;
+margin-bottom: 20px;
+
+Short form:
+
+margin: 20px;
+
+Interview Questions
+1. What is the CSS Box Model?
+
+Answer:
+
+The CSS Box Model consists of Content, Padding, Border, and Margin. Every HTML element is treated as a box.
+
+2. Difference between Margin and Padding?
+Margin	Padding
+Outside border	Inside border
+Space between elements	Space between content and border
+3. What does border: 2px solid black; mean?
+
+Answer:
+
+2px → thickness
+solid → border style
+black → color
+4. What is the purpose of width and height?
+
+Answer:
+
+They define the size of an element.
+
+5. What does margin: auto; do?
+
+Answer:
+
+It centers a block element horizontally when a width is specified.
