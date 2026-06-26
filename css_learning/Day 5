@@ -1,0 +1,171 @@
+CSS Day 5: Flexbox (Most Important CSS Topic)
+
+Flexbox is the most commonly used CSS layout system in modern web development.
+
+It is used to:
+
+Align items
+Create responsive layouts
+Build navigation bars
+Display cards in rows
+Center elements
+
+React applications use Flexbox extensively.
+
+What is Flexbox?
+
+Without Flexbox:
+
+Java
+React
+Spring Boot
+
+Everything appears one below another.
+
+With Flexbox:
+
+Java    React    Spring Boot
+
+Items are arranged in a row.
+
+1. Enable Flexbox
+
+To use Flexbox:
+
+.container {
+    display: flex;
+}
+HTML
+<div class="container">
+    <div class="box">Java</div>
+    <div class="box">React</div>
+    <div class="box">Spring Boot</div>
+</div>
+CSS
+.container {
+    display: flex;
+}
+
+.box {
+    width: 150px;
+    height: 80px;
+    border: 2px solid black;
+}
+
+Output:
+
+[Java] [React] [Spring Boot]
+2. justify-content
+
+Controls horizontal alignment of items.
+
+flex-start (Default)
+.container {
+    display: flex;
+    justify-content: flex-start;
+}
+
+Output:
+
+[Java][React][Spring Boot]
+center
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+Output:
+
+      [Java][React][Spring Boot]
+flex-end
+.container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+Output:
+
+                [Java][React][Spring Boot]
+space-between
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+
+Output:
+
+[Java]         [React]         [Spring Boot]
+space-around
+.container {
+    display: flex;
+    justify-content: space-around;
+}
+
+Output:
+
+   [Java]     [React]     [Spring Boot]
+space-evenly
+.container {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+Output:
+
+   [Java]   [React]   [Spring Boot]
+
+All spaces are equal.
+
+3. align-items
+
+Controls vertical alignment.
+
+Example:
+
+.container {
+    display: flex;
+    align-items: center;
+    height: 300px;
+}
+
+Values:
+
+align-items: flex-start;
+align-items: center;
+align-items: flex-end;
+4. gap
+
+Adds space between flex items.
+
+.container {
+    display: flex;
+    gap: 20px;
+}
+
+Output:
+
+[Java]    [React]    [Spring Boot]
+5. flex-direction
+
+Changes the direction of items.
+
+Row (Default)
+.container {
+    display: flex;
+    flex-direction: row;
+}
+
+Output:
+
+Java React Spring Boot
+Column
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+Output:
+
+Java
+React
+Spring Boot
