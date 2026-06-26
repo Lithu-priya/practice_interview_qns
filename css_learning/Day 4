@@ -1,0 +1,178 @@
+CSS Day 4: Display Property
+
+The display property controls how an element appears on the page.
+
+This is a very important topic before learning Flexbox.
+
+1. Block Elements
+
+Block elements:
+
+✅ Start on a new line
+✅ Take full available width
+
+Examples:
+
+<div>Div</div>
+<p>Paragraph</p>
+<h1>Heading</h1>
+
+Example:
+
+<div>Java</div>
+<div>React</div>
+
+Output:
+
+Java
+React
+
+Each element starts on a new line.
+
+2. Inline Elements
+
+Inline elements:
+
+✅ Stay on the same line
+❌ Width and height usually don't work as expected
+
+Examples:
+
+<span>Java</span>
+<span>React</span>
+
+Output:
+
+Java React
+
+Other inline elements:
+
+<span>
+<a>
+<strong>
+<em>
+3. Inline-Block
+
+Combination of block and inline.
+
+✅ Stays on same line
+✅ Width and height work
+
+Example:
+
+<div class="box">Java</div>
+<div class="box">React</div>
+.box {
+    display: inline-block;
+    width: 150px;
+    height: 80px;
+    border: 1px solid black;
+}
+
+Output:
+
+[ Java ] [ React ]
+4. Display None
+
+Hides an element completely.
+
+.hide {
+    display: none;
+}
+<p class="hide">Hidden Text</p>
+
+Output:
+
+Nothing is shown.
+
+Visual Comparison
+Block
+[Java        ]
+
+[React       ]
+
+[Spring Boot ]
+Inline
+Java React Spring Boot
+Inline-Block
+[Java] [React] [Spring Boot]
+Mini Project
+HTML
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="card">Java</div>
+<div class="card">React</div>
+<div class="card">Spring Boot</div>
+
+</body>
+</html>
+CSS
+.card {
+    display: inline-block;
+
+    width: 150px;
+    height: 100px;
+
+    border: 2px solid black;
+
+    margin: 10px;
+    padding: 20px;
+
+    text-align: center;
+}
+Difference Between Block and Inline
+Feature	Block	Inline
+New line	Yes	No
+Full width	Yes	No
+Width works	Yes	No
+Height works	Yes	No
+Difference Between Inline and Inline-Block
+Feature	Inline	Inline-Block
+Same line	Yes	Yes
+Width works	No	Yes
+Height works	No	Yes
+Interview Questions
+1. What is a block element?
+
+Answer:
+
+A block element starts on a new line and takes the full available width.
+
+Examples:
+
+<div>
+<p>
+<h1>
+2. What is an inline element?
+
+Answer:
+
+An inline element stays on the same line and only takes the space required by its content.
+
+Examples:
+
+<span>
+<a>
+<strong>
+3. What is display: inline-block?
+
+Answer:
+
+It allows elements to stay on the same line while still supporting width and height properties.
+
+4. What does display: none do?
+
+Answer:
+
+It completely hides the element and removes it from the page layout.
+
+5. Why is inline-block useful?
+
+Answer:
+
+It is useful for creating cards, buttons, and menu items that need custom width and height while remaining on the same line.
