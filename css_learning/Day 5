@@ -169,3 +169,52 @@ Output:
 Java
 React
 Spring Boot
+
+
+Interview Questions
+1. What is Flexbox?
+
+Answer:
+
+Flexbox is a CSS layout model used to arrange and align elements efficiently in rows or columns.
+
+2. Why do we use display: flex?
+
+Answer:
+
+It turns an element into a flex container, allowing its child elements to be aligned and distributed using Flexbox properties.
+
+3. What does justify-content do?
+
+Answer:
+
+It controls the horizontal alignment of flex items along the main axis.
+
+Examples:
+
+flex-start
+center
+flex-end
+space-between
+space-around
+space-evenly
+4. What does align-items do?
+
+Answer:
+
+It controls the vertical alignment of flex items along the cross axis.
+
+5. What is the purpose of gap?
+
+Answer:
+
+It adds consistent spacing between flex items without needing individual margins.
+
+6. What does flex-direction do?
+
+Answer:
+
+It specifies the direction in which flex items are displayed.
+
+row → Horizontal (default)
+column → Vertical
