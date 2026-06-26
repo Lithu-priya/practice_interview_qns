@@ -218,3 +218,10 @@ It specifies the direction in which flex items are displayed.
 
 row → Horizontal (default)
 column → Vertical
+
+
+Q: Why is justify-content: space-between commonly used in a navbar?
+
+Answer:
+
+It places the first item (such as a logo) on the left and the last item (such as the navigation menu) on the right, using all the available horizontal space between them. This creates a clean and balanced navigation layout.
