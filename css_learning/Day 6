@@ -1,0 +1,214 @@
+The position property in CSS controls how an element is positioned on a webpage. It works together with the properties top, right, bottom, and left.
+
+There are 5 main values for the position property:
+
+1. static (Default)
+Every HTML element is position: static by default.
+Elements appear in the normal document flow.
+top, left, right, and bottom do not work.
+Example
+<div class="box">Static Box</div>
+.box {
+    position: static;
+    background: lightblue;
+    width: 150px;
+    height: 100px;
+}
+
+Output:
+
+Normal Flow
+----------------
+| Static Box   |
+----------------
+2. relative
+
+The element stays in its normal position, but you can move it using top, left, right, or bottom.
+
+The original space is still reserved.
+
+Example
+<div class="box">Relative Box</div>
+.box {
+    position: relative;
+    top: 20px;
+    left: 30px;
+    background: orange;
+    width: 150px;
+    height: 100px;
+}
+
+Original Position:
+
+[X]
+
+After moving:
+
+Original Space
+[X]
+
+Moved Box
+        [X]
+
+Notice:
+
+The box moves.
+The original space remains empty.
+3. absolute
+
+The element is removed from the normal flow.
+
+It is positioned relative to the nearest ancestor with a position other than static (relative, absolute, fixed, or sticky). If none exists, it is positioned relative to the page (<body>/viewport).
+
+Example
+<div class="container">
+    <div class="box">Absolute</div>
+</div>
+.container {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    background: lightgray;
+}
+
+.box {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 80px;
+    height: 80px;
+    background: red;
+}
+
+Visualization:
+
+------------------------
+|                      |
+|                [Box] |
+|                      |
+|                      |
+------------------------
+
+The red box is positioned relative to the container.
+
+4. fixed
+
+The element stays fixed relative to the browser window.
+
+Even when you scroll, it stays in the same position.
+
+Example
+button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+
+Result:
+
+------------------------
+|                      |
+|                      |
+|                      |
+|                 Btn  |
+------------------------
+
+Scroll the page:
+
+------------------------
+|                      |
+|                      |
+|                      |
+|                 Btn  |
+------------------------
+
+The button never moves.
+
+Common uses:
+
+Chat icon
+Back to Top button
+Floating action button
+5. sticky
+
+Acts like relative until a specified scroll position is reached, then behaves like fixed.
+
+Example
+header {
+    position: sticky;
+    top: 0;
+}
+
+Initially:
+
+Header
+Content
+Content
+
+After scrolling:
+
+Header (sticks here)
+---------------------
+Content
+Content
+
+Common uses:
+
+Navigation bars
+Table headers
+Difference Between Relative and Absolute
+Relative	Absolute
+Stays in normal flow	Removed from normal flow
+Original space remains	No original space
+Moves from its original position	Moves relative to nearest positioned parent
+Used for small adjustments	Used for precise positioning
+Difference Between Fixed and Sticky
+Fixed	Sticky
+Always fixed to the viewport	Becomes fixed only after scrolling to a threshold
+Doesn't move while scrolling	Scrolls normally until it reaches the specified position
+Uses the browser viewport	Depends on its scroll container
+Position Hierarchy Example
+<div class="parent">
+    Parent
+    <div class="child">
+        Child
+    </div>
+</div>
+.parent {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    background: lightgray;
+}
+
+.child {
+    position: absolute;
+    top: 30px;
+    left: 50px;
+    width: 100px;
+    height: 60px;
+    background: tomato;
+}
+
+Here:
+
+.parent is the reference because it has position: relative.
+.child is positioned 30px from the top and 50px from the left of the parent.
+Quick Summary
+Position	In Normal Flow?	Moves Relative To	Scroll Behavior
+static	✅ Yes	Normal flow	Scrolls normally
+relative	✅ Yes	Its original position	Scrolls normally
+absolute	❌ No	Nearest positioned ancestor	Scrolls normally
+fixed	❌ No	Browser viewport	Stays fixed
+sticky	✅ Initially	Scroll container/viewport after threshold	Sticks after reaching the specified offset
+Interview Questions
+What is the default value of the position property?
+Answer: static
+Which position value removes an element from the normal document flow?
+Answer: absolute and fixed
+Why is position: relative commonly applied to a parent of an absolutely positioned element?
+Answer: It creates the positioning context, so the child is positioned relative to the parent instead of the page.
+What is the difference between fixed and sticky?
+Answer: fixed is always attached to the viewport, while sticky behaves like relative until the scroll reaches the specified offset, then it sticks.
+Do top, left, right, and bottom work with position: static?
+Answer: No. They only work with positioned elements (relative, absolute, fixed, or sticky).
