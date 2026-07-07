@@ -1,0 +1,244 @@
+CSS Background
+
+The background properties control how the background of an element looks.
+
+Example:
+
+<div class="box">
+    Hello World
+</div>
+
+We can change:
+
+Background color
+Background image
+Image repetition
+Image size
+Image position
+1. background-color
+
+Sets the background color of an element.
+
+Syntax
+background-color: color;
+Example
+.box{
+    width:200px;
+    height:100px;
+    background-color:lightblue;
+}
+
+Output
+
++----------------------+
+|                      |
+|     Hello World      |
+|                      |
++----------------------+
+
+You can use:
+
+background-color:red;
+background-color:#ff0000;
+background-color:rgb(255,0,0);
+background-color:rgba(255,0,0,0.5);
+2. background-image
+
+Adds an image as the background.
+
+Syntax
+background-image:url("image.jpg");
+Example
+.box{
+    width:300px;
+    height:200px;
+    background-image:url("nature.jpg");
+}
+
+Output
+
++----------------------+
+|      🌳🌳🌳🌳       |
+|      🌳🌳🌳🌳       |
+|      🌳🌳🌳🌳       |
++----------------------+
+
+If the image is smaller than the element, it repeats by default.
+
+3. background-repeat
+
+Controls whether the background image repeats.
+
+Default
+background-repeat:repeat;
+🌸🌸🌸🌸
+🌸🌸🌸🌸
+🌸🌸🌸🌸
+no-repeat
+background-repeat:no-repeat;
+🌸
+
+Only one image appears.
+
+repeat-x
+
+Repeats only horizontally.
+
+background-repeat:repeat-x;
+🌸🌸🌸🌸🌸
+repeat-y
+
+Repeats only vertically.
+
+background-repeat:repeat-y;
+🌸
+🌸
+🌸
+🌸
+4. background-size
+
+Controls the size of the background image.
+
+Example
+background-size:100px 100px;
+
+Makes the image exactly 100 × 100 px.
+
+cover
+background-size:cover;
+
+The image:
+
+Covers the entire element.
+Maintains its aspect ratio.
+May crop some parts.
+Before
+
++------------+
+|            |
++------------+
+
+After
+
+🌄🌄🌄🌄🌄
+🌄🌄🌄🌄🌄
+🌄🌄🌄🌄🌄
+contain
+background-size:contain;
+
+The image:
+
+Fits completely inside the element.
+Maintains its aspect ratio.
+Leaves empty space if necessary.
++------------------+
+|      🌄          |
+|                  |
++------------------+
+Difference: cover vs contain
+cover	contain
+Fills the entire container	Fits the entire image inside the container
+May crop the image	Never crops the image
+Usually used for hero banners	Used when the whole image must be visible
+5. background-position
+
+Controls where the background image appears.
+
+Center
+background-position:center;
++----------------+
+|                |
+|      🌄        |
+|                |
++----------------+
+Top Left
+background-position:left top;
+🌄
+Bottom Right
+background-position:right bottom;
+              🌄
+
+You can also use pixel values.
+
+background-position:20px 40px;
+
+Meaning:
+
+Move image 20px from the left
+Move image 40px from the top
+Complete Example
+HTML
+<div class="banner">
+    Welcome
+</div>
+CSS
+.banner{
+    width:600px;
+    height:300px;
+
+    background-image:url("nature.jpg");
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-position:center;
+
+    color:white;
+    font-size:30px;
+    text-align:center;
+    line-height:300px;
+}
+
+Output
+
++------------------------------------+
+|                                    |
+|          Welcome                   |
+|                                    |
++------------------------------------+
+
+The image covers the whole banner, doesn't repeat, and stays centered.
+
+Shorthand Property
+
+Instead of writing multiple background properties separately:
+
+.box{
+    background-color:lightblue;
+    background-image:url("bg.jpg");
+    background-repeat:no-repeat;
+    background-position:center;
+    background-size:cover;
+}
+
+You can use the shorthand:
+
+.box{
+    background: lightblue url("bg.jpg") no-repeat center/cover;
+}
+
+Note: The / separates background-position (center) from background-size (cover).
+
+Interview Questions
+1. What is the default value of background-repeat?
+
+Answer: repeat
+
+2. What is the difference between cover and contain?
+cover fills the entire element, even if part of the image is cropped.
+contain displays the entire image without cropping, even if empty space remains.
+3. What does background-position: center; do?
+
+It places the background image in the center of the element.
+
+4. How do you prevent a background image from repeating?
+background-repeat: no-repeat;
+5. Can an element have both a background color and a background image?
+
+Yes. If the image doesn't fully cover the element or has transparent areas, the background color will be visible behind it.
+
+Quick Summary
+Property	Purpose	Example
+background-color	Sets the background color	background-color: lightblue;
+background-image	Adds a background image	background-image: url("bg.jpg");
+background-repeat	Controls image repetition	no-repeat, repeat-x, repeat-y
+background-size	Controls image size	cover, contain, 100px 100px
+background-position	Controls image placement	center, top left, right bottom
