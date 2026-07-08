@@ -1,0 +1,442 @@
+CSS Lists
+
+Lists in HTML are of two types:
+
+1. Ordered List (<ol>)
+
+Displays numbers.
+
+<ol>
+    <li>Java</li>
+    <li>Python</li>
+    <li>React</li>
+</ol>
+
+Output
+
+1. Java
+2. Python
+3. React
+2. Unordered List (<ul>)
+
+Displays bullets.
+
+<ul>
+    <li>Apple</li>
+    <li>Mango</li>
+    <li>Orange</li>
+</ul>
+
+Output
+
+• Apple
+• Mango
+• Orange
+CSS List Properties
+
+There are mainly 3 properties you should know.
+
+1. list-style-type
+2. list-style-position
+3. list-style-image
+1. list-style-type ⭐⭐⭐
+
+Changes the bullet or numbering style.
+
+Syntax
+list-style-type: value;
+Example 1 : Disc (Default)
+.disc{
+    list-style-type: disc;
+}
+
+Output
+
+• Apple
+• Mango
+• Orange
+Example 2 : Circle
+.circle{
+    list-style-type: circle;
+}
+
+Output
+
+○ Apple
+○ Mango
+○ Orange
+  
+Example 3 : Square
+.square{
+    list-style-type: square;
+}
+
+Output
+
+■ Apple
+■ Mango
+■ Orange
+Example 4 : None
+
+Removes bullets.
+
+.none{
+    list-style-type: none;
+}
+
+Output
+
+Apple
+Mango
+Orange
+
+Used a lot in navigation menus.
+
+Example
+
+<ul class="menu">
+    <li>Home</li>
+    <li>About</li>
+    <li>Contact</li>
+</ul>
+.menu{
+    list-style-type:none;
+}
+Ordered List Types
+Decimal (Default)
+ol{
+    list-style-type: decimal;
+}
+
+Output
+
+1.
+2.
+3.
+Upper Roman
+ol{
+    list-style-type: upper-roman;
+}
+
+Output
+
+I.
+II.
+III.
+Lower Roman
+ol{
+    list-style-type: lower-roman;
+}
+
+Output
+
+i.
+ii.
+iii.
+Upper Alpha
+ol{
+    list-style-type: upper-alpha;
+}
+
+Output
+
+A.
+B.
+C.
+Lower Alpha
+ol{
+    list-style-type: lower-alpha;
+}
+
+Output
+
+a.
+b.
+c.
+Common list-style-type values
+Value	Output
+disc	•
+circle	○
+square	■
+none	No bullet
+decimal	1,2,3
+upper-roman	I,II,III
+lower-roman	i,ii,iii
+upper-alpha	A,B,C
+lower-alpha	a,b,c
+2. list-style-position ⭐⭐
+
+Controls whether the bullet is inside or outside the content.
+
+Syntax
+
+list-style-position: outside;
+
+or
+
+list-style-position: inside;
+Outside (Default)
+ul{
+    list-style-position: outside;
+}
+
+Output
+
+• Apple is very healthy.
+  It contains vitamins.
+
+The text starts after the bullet.
+
+Inside
+ul{
+    list-style-position: inside;
+}
+
+Output
+
+• Apple is very healthy.
+It contains vitamins.
+
+The bullet becomes part of the text block.
+
+Example
+<ul class="inside">
+    <li>This is a very long list item to show how inside works.</li>
+</ul>
+.inside{
+    list-style-position: inside;
+}
+Difference
+
+Outside
+
+• This is a long sentence
+  continues here
+
+Inside
+
+• This is a long sentence
+continues here
+3. list-style-image ⭐⭐
+
+Instead of bullets, you can use an image.
+
+Syntax
+
+list-style-image: url("star.png");
+
+Example
+
+<ul class="fruit">
+    <li>Apple</li>
+    <li>Mango</li>
+    <li>Orange</li>
+</ul>
+.fruit{
+    list-style-image:url("star.png");
+}
+
+Output
+
+⭐ Apple
+⭐ Mango
+⭐ Orange
+
+The image replaces the default bullet.
+
+Note: If the image cannot be loaded, the browser falls back to the list-style-type (or its default).
+
+Shorthand Property
+
+Instead of writing multiple properties separately, you can combine them.
+
+ul{
+    list-style: square inside;
+}
+
+Equivalent to
+
+ul{
+    list-style-type: square;
+    list-style-position: inside;
+}
+
+You can also use an image:
+
+ul{
+    list-style: url("star.png") inside;
+}
+Complete Example
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+.disc{
+    list-style-type:disc;
+}
+
+.square{
+    list-style-type:square;
+}
+
+.circle{
+    list-style-type:circle;
+}
+
+.none{
+    list-style-type:none;
+}
+
+.inside{
+    list-style-type:square;
+    list-style-position:inside;
+}
+
+.image{
+    list-style-image:url("star.png");
+}
+
+</style>
+</head>
+
+<body>
+
+<h2>Disc</h2>
+<ul class="disc">
+    <li>Apple</li>
+    <li>Mango</li>
+</ul>
+
+<h2>Square</h2>
+<ul class="square">
+    <li>Apple</li>
+    <li>Mango</li>
+</ul>
+
+<h2>Circle</h2>
+<ul class="circle">
+    <li>Apple</li>
+    <li>Mango</li>
+</ul>
+
+<h2>No Bullet</h2>
+<ul class="none">
+    <li>Apple</li>
+    <li>Mango</li>
+</ul>
+
+<h2>Inside Position</h2>
+<ul class="inside">
+    <li>This is a long list item to demonstrate how list-style-position: inside works.</li>
+</ul>
+
+</body>
+</html>
+Interview Questions
+1. What is list-style-type?
+
+It changes the appearance of the list marker (bullet or numbering), such as disc, circle, square, decimal, or none.
+
+2. What is list-style-position?
+
+It specifies whether the list marker appears inside or outside the list item's content box.
+
+3. What is list-style-image?
+
+It replaces the default list marker with a custom image.
+
+4. How do you remove bullets from a list?
+ul{
+    list-style-type: none;
+}
+5. What is the shorthand for list styles?
+list-style: square inside;
+Summary
+Property	Purpose	Example
+list-style-type	Changes bullet/number style	square, circle, decimal, none
+list-style-position	Places marker inside or outside	inside, outside
+list-style-image	Uses an image as the marker	url("star.png")
+list-style	Shorthand for all list properties	list-style: square inside;
+
+These three properties are enough for beginner to intermediate CSS interviews, and list-style-type: none is especially common for creating navigation menus.
+
+my image is large how to make it to set properly
+
+If your image used in list-style-image is too large, CSS does not provide a direct way to resize list-style-image. Here are the best approaches.
+
+Method 1 (Recommended): Use ::before with an Image
+
+Instead of list-style-image, remove the default bullet and insert your own image.
+
+HTML
+<ul class="custom-list">
+    <li>Apple</li>
+    <li>Mango</li>
+    <li>Orange</li>
+</ul>
+CSS
+.custom-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.custom-list li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.custom-list li::before {
+    content: "";
+    background-image: url("star.png");
+    background-size: 20px 20px; /* Resize image */
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+Output
+
+⭐ Apple
+⭐ Mango
+⭐ Orange
+
+Here you can easily change the size:
+
+background-size: 15px 15px;
+
+or
+
+width: 30px;
+height: 30px;
+Method 2: Resize the Original Image
+
+If you're using:
+
+ul {
+    list-style-image: url("star.png");
+}
+
+and star.png is 100 × 100 px, it will appear large because browsers use the image at its original size.
+
+Resize the image itself using an image editor (e.g., to 16 × 16 px or 20 × 20 px) before using it.
+
+Why doesn't width and height work?
+
+Many beginners try this:
+
+ul {
+    list-style-image: url("star.png");
+    width: 20px;   /* ❌ Doesn't resize the bullet */
+    height: 20px;  /* ❌ Doesn't resize the bullet */
+}
+
+This does not work because list-style-image doesn't support resizing with CSS.
+
+Interview Tip
+
+Question: Can we resize an image used with list-style-image?
+
+Answer: No. CSS doesn't allow resizing list-style-image directly. The preferred approach is to remove the default marker (list-style: none) and use the ::before pseudo-element with background-image or an <img> element, where you can control the size.
