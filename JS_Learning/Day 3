@@ -1,0 +1,328 @@
+JavaScript Day 3 – Control Statements ⭐⭐⭐⭐⭐
+
+Control statements help JavaScript make decisions.
+
+For example:
+
+If the user is logged in → Show Dashboard.
+If the password is incorrect → Show Error.
+If marks are above 40 → Pass.
+
+Today we'll learn:
+
+if
+if...else
+else if
+switch
+1. if Statement ⭐⭐⭐⭐⭐
+
+The if statement executes code only if the condition is true.
+
+Syntax
+if (condition) {
+    // code to execute
+}
+Example
+let age = 20;
+
+if (age >= 18) {
+    console.log("You can vote");
+}
+Output
+You can vote
+
+Since 20 >= 18 is true, the code inside the if block runs.
+
+Example 2
+let age = 15;
+
+if (age >= 18) {
+    console.log("Eligible");
+}
+Output
+(No Output)
+
+The condition is false, so nothing is printed.
+
+2. if...else ⭐⭐⭐⭐⭐
+
+Use if...else when you want one block of code to run if the condition is true, and another block if it's false.
+
+Syntax
+if (condition) {
+    // true block
+} else {
+    // false block
+}
+Example
+let age = 16;
+
+if (age >= 18) {
+    console.log("Eligible to Vote");
+} else {
+    console.log("Not Eligible");
+}
+Output
+Not Eligible
+Example 2
+let password = "admin123";
+
+if (password === "admin123") {
+    console.log("Login Successful");
+} else {
+    console.log("Invalid Password");
+}
+Output
+Login Successful
+3. else if ⭐⭐⭐⭐⭐
+
+Used when there are multiple conditions.
+
+Syntax
+if (condition1) {
+
+} else if (condition2) {
+
+} else if (condition3) {
+
+} else {
+
+}
+Example: Student Grade
+let marks = 85;
+
+if (marks >= 90) {
+    console.log("Grade A+");
+} else if (marks >= 75) {
+    console.log("Grade A");
+} else if (marks >= 60) {
+    console.log("Grade B");
+} else if (marks >= 40) {
+    console.log("Grade C");
+} else {
+    console.log("Fail");
+}
+Output
+Grade A
+Example: Traffic Signal
+let signal = "Green";
+
+if (signal === "Red") {
+    console.log("Stop");
+} else if (signal === "Yellow") {
+    console.log("Get Ready");
+} else if (signal === "Green") {
+    console.log("Go");
+} else {
+    console.log("Invalid Signal");
+}
+Output
+Go
+Nested if
+
+You can place an if inside another if.
+
+Example
+let age = 25;
+let hasLicense = true;
+
+if (age >= 18) {
+
+    if (hasLicense) {
+        console.log("You can drive");
+    } else {
+        console.log("License Required");
+    }
+
+} else {
+    console.log("Too Young");
+}
+Output
+You can drive
+4. switch Statement ⭐⭐⭐⭐⭐
+
+Used when comparing one variable against multiple values.
+
+Syntax
+switch (expression) {
+
+    case value1:
+        // code
+        break;
+
+    case value2:
+        // code
+        break;
+
+    default:
+        // code
+}
+Example
+let day = 3;
+
+switch (day) {
+
+    case 1:
+        console.log("Monday");
+        break;
+
+    case 2:
+        console.log("Tuesday");
+        break;
+
+    case 3:
+        console.log("Wednesday");
+        break;
+
+    case 4:
+        console.log("Thursday");
+        break;
+
+    default:
+        console.log("Invalid Day");
+}
+Output
+Wednesday
+Why is break Important?
+
+Without break, JavaScript continues executing the following cases.
+
+Example
+let day = 2;
+
+switch (day) {
+
+    case 1:
+        console.log("Monday");
+
+    case 2:
+        console.log("Tuesday");
+
+    case 3:
+        console.log("Wednesday");
+
+    default:
+        console.log("Done");
+}
+Output
+Tuesday
+Wednesday
+Done
+
+This is called fall-through.
+
+Correct Example
+let day = 2;
+
+switch (day) {
+
+    case 1:
+        console.log("Monday");
+        break;
+
+    case 2:
+        console.log("Tuesday");
+        break;
+
+    case 3:
+        console.log("Wednesday");
+        break;
+
+    default:
+        console.log("Invalid");
+}
+Output
+Tuesday
+switch with Strings
+let color = "blue";
+
+switch (color) {
+
+    case "red":
+        console.log("Stop");
+        break;
+
+    case "green":
+        console.log("Go");
+        break;
+
+    case "blue":
+        console.log("Ocean");
+        break;
+
+    default:
+        console.log("Unknown Color");
+}
+Output
+Ocean
+if vs switch
+if...else	switch
+Works with any condition	Best for checking one variable against many values
+Can use <, >, <=, >=	Checks exact matches (===)
+More flexible	Cleaner for multiple fixed values
+Real-World Examples
+Example 1: ATM Withdrawal
+let balance = 5000;
+let amount = 3000;
+
+if (amount <= balance) {
+    console.log("Withdrawal Successful");
+} else {
+    console.log("Insufficient Balance");
+}
+Output
+Withdrawal Successful
+Example 2: Login System
+let username = "admin";
+let password = "12345";
+
+if (username === "admin" && password === "12345") {
+    console.log("Login Successful");
+} else {
+    console.log("Invalid Credentials");
+}
+Example 3: Even or Odd
+let number = 18;
+
+if (number % 2 === 0) {
+    console.log("Even");
+} else {
+    console.log("Odd");
+}
+Output
+Even
+Interview Questions ⭐⭐⭐⭐⭐
+1. What is the difference between if and if...else?
+if executes code only when the condition is true.
+if...else executes one block when true and another when false.
+2. When should you use switch instead of if...else?
+
+Use switch when comparing a single variable against many fixed values.
+
+3. Why is break used in a switch statement?
+
+It stops execution after the matching case. Without it, execution continues into the next cases (fall-through).
+
+4. Can you use comparison operators like > inside a switch case?
+
+No. switch compares values using strict equality (===). For range checks like >, <, or >=, use if...else.
+
+Common Mistakes
+❌ Using = instead of ===
+if (age = 18) {
+    console.log("Wrong");
+}
+
+This assigns 18 to age instead of comparing it.
+
+✅ Correct
+if (age === 18) {
+    console.log("Correct");
+}
+❌ Forgetting break
+switch(day) {
+    case 1:
+        console.log("Monday");
+}
+
+Always use break unless you intentionally want fall-through.
