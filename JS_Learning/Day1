@@ -1,0 +1,306 @@
+JavaScript Day 1 – Introduction ⭐⭐⭐⭐⭐
+What is JavaScript?
+
+JavaScript is a programming language that makes web pages interactive.
+
+HTML → Structure (Skeleton)
+
+CSS → Style (Beauty)
+
+JavaScript → Behavior (Brain)
+
+For example:
+
+Click a button
+Validate a form
+Show a popup
+Fetch data from a server
+Build dynamic websites
+Example
+HTML only
+<button>Click Me</button>
+
+Nothing happens when you click it.
+
+HTML + JavaScript
+<button onclick="sayHello()">Click Me</button>
+
+<script>
+function sayHello() {
+    alert("Hello!");
+}
+</script>
+
+Now clicking the button shows an alert.
+
+Where can we write JavaScript?
+1. Inline (Not recommended)
+<button onclick="alert('Hello')">Click</button>
+2. Internal JavaScript
+<script>
+    console.log("Hello");
+</script>
+3. External JavaScript ⭐⭐⭐⭐⭐ (Recommended)
+
+index.html
+
+<script src="script.js"></script>
+
+script.js
+
+console.log("Hello JavaScript");
+
+This is how real projects are organized.
+
+Variables
+
+A variable stores data.
+
+Think of it as a box that holds a value.
+
+Example:
+
+Age Box → 25
+
+Name Box → Priya
+Declaring Variables
+
+JavaScript provides three ways:
+
+var
+let
+const
+1. var (Older way)
+var name = "Priya";
+
+console.log(name);
+
+Output
+
+Priya
+2. let ⭐⭐⭐⭐⭐
+let age = 27;
+
+console.log(age);
+
+Output
+
+27
+
+The value can be changed later.
+
+let age = 27;
+
+age = 28;
+
+console.log(age);
+
+Output
+
+28
+3. const ⭐⭐⭐⭐⭐
+
+Used when the value should not change.
+
+const country = "India";
+
+console.log(country);
+
+Output
+
+India
+
+Trying to change it causes an error.
+
+const country = "India";
+
+country = "USA";
+
+❌ Error
+
+Assignment to constant variable.
+Difference Between var, let, and const
+Feature	var	let	const
+Can reassign?	✅ Yes	✅ Yes	❌ No
+Can redeclare in same scope?	✅ Yes	❌ No	❌ No
+Modern?	❌ No	✅ Yes	✅ Yes
+Interview Tip
+
+Use:
+
+const by default
+let if the value needs to change
+Avoid var in modern JavaScript
+Data Types
+
+JavaScript has two categories:
+
+Primitive Data Types
+1. String
+let name = "Priya";
+
+Text inside quotes.
+
+2. Number
+let age = 27;
+
+Integers and decimals are both number.
+
+let price = 99.99;
+3. Boolean
+
+Only two values:
+
+true
+
+false
+
+Example
+
+let isLoggedIn = true;
+4. Undefined
+
+Declared but not assigned.
+
+let city;
+
+console.log(city);
+
+Output
+
+undefined
+5. Null
+
+Represents an intentional empty value.
+
+let phone = null;
+6. BigInt
+
+For very large integers.
+
+let big = 12345678901234567890n;
+7. Symbol
+
+Used to create unique identifiers.
+
+let id = Symbol("id");
+
+Not commonly used by beginners.
+
+Non-Primitive Data Type
+Object
+let person = {
+    name: "Priya",
+    age: 27
+};
+
+Objects store data as key-value pairs.
+
+Check Data Type
+
+Use typeof.
+
+let age = 27;
+
+console.log(typeof age);
+
+Output
+
+number
+
+More examples:
+
+console.log(typeof "Hello");
+string
+console.log(typeof true);
+boolean
+console.log(typeof undefined);
+undefined
+console.log(typeof null);
+
+Output:
+
+object
+
+⚠️ This is a well-known quirk in JavaScript. Although typeof null returns "object", null is actually a primitive value.
+
+Comments
+
+Comments are ignored by JavaScript and are used to explain code.
+
+Single-line comment
+// This is a comment
+
+let age = 27;
+Multi-line comment
+/*
+This is
+a multi-line
+comment
+*/
+Console Methods ⭐⭐⭐⭐⭐
+
+The browser console is very useful for debugging.
+
+console.log()
+console.log("Hello");
+
+Output
+
+Hello
+console.error()
+console.error("Something went wrong");
+
+Displays an error message.
+
+console.warn()
+console.warn("Warning!");
+
+Displays a warning message.
+
+console.table()
+const student = {
+    name: "Priya",
+    age: 27,
+    city: "Coimbatore"
+};
+
+console.table(student);
+
+Shows the object in a table format.
+
+console.clear()
+console.clear();
+
+Clears the browser console.
+
+Complete Example
+// Variables
+const name = "Priya";
+let age = 27;
+let city = "Coimbatore";
+
+// Print values
+console.log(name);
+console.log(age);
+console.log(city);
+
+// Data types
+console.log(typeof name);
+console.log(typeof age);
+console.log(typeof city);
+
+// Warning
+console.warn("Learning JavaScript");
+
+// Error
+console.error("Sample Error");
+
+// Object
+const student = {
+    name: "Priya",
+    age: 27,
+    city: "Coimbatore"
+};
+
+console.table(student);
