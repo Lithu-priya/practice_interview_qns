@@ -1,151 +1,273 @@
-CSS Day 2: Text Styling, Fonts & Colors
+1. color ⭐⭐⭐
 
-Today you'll learn how to make text look professional.
+Used to change the text color.
 
-Topics
-
-✅ Colors
-✅ Font Size
-✅ Font Family
-✅ Font Weight
-✅ Text Alignment
-✅ Text Decoration
-✅ Line Height
-
-1. Text Color
-
-Change text color using color.
-
-h1 {
+Syntax
+color: red;
+Example
+<p class="one">Hello World</p>
+.one{
     color: blue;
 }
 
-p {
-    color: green;
-}
+Output
 
-You can use:
+🔵 Hello World
 
+Different Ways
+Color Name
 color: red;
+Hex Code
 color: #ff0000;
-color: rgb(255, 0, 0);
-2. Background Color
-body {
-    background-color: lightgray;
-}
-h1 {
-    background-color: yellow;
-}
-3. Font Size
-h1 {
-    font-size: 36px;
-}
+RGB
+color: rgb(255,0,0);
+RGBA (with transparency)
+color: rgba(255,0,0,0.5);
+2. font-size ⭐⭐⭐
 
-p {
-    font-size: 18px;
+Changes the size of text.
+
+font-size: 20px;
+Example
+<p class="size">CSS Learning</p>
+.size{
+    font-size:30px;
 }
 
-Common sizes:
+Output:
 
-16px → normal text
-24px → subheading
-32px+ → heading
-4. Font Family
+Large text
 
-Changes the text style.
+Common Units
+font-size:16px;
+font-size:2em;
+font-size:1.5rem;
+font-size:150%;
 
-body {
-    font-family: Arial, sans-serif;
-}
+For beginners, px is the easiest to use.
 
-Examples:
+3. font-family ⭐⭐⭐
+
+Changes the font style.
 
 font-family: Arial;
-font-family: Verdana;
-font-family: Times New Roman;
+Example
+p{
+    font-family: Arial;
+}
+Multiple Fonts (Best Practice)
+font-family: Arial, Helvetica, sans-serif;
+
+If Arial isn't available, the browser uses Helvetica.
+
+Font Categories
+font-family: serif;
 font-family: sans-serif;
-5. Font Weight
+font-family: monospace;
+font-family: cursive;
+font-family: fantasy;
+4. font-weight ⭐⭐⭐
 
-Controls boldness.
+Controls how bold the text is.
 
-h1 {
-    font-weight: bold;
+font-weight:bold;
+Example
+p{
+    font-weight:bold;
 }
 
-Values:
+Output:
 
-font-weight: normal;
-font-weight: bold;
-font-weight: 100;
-font-weight: 400;
-font-weight: 700;
-6. Text Alignment
-h1 {
-    text-align: center;
+Bold Text
+
+Numeric Values
+font-weight:100;
+font-weight:300;
+font-weight:400; /* Normal */
+font-weight:700; /* Bold */
+font-weight:900;
+5. text-align ⭐⭐⭐
+
+Aligns text horizontally.
+
+Left
+text-align:left;
+Center
+text-align:center;
+Right
+text-align:right;
+Justify
+text-align:justify;
+Example
+<h1>Welcome</h1>
+h1{
+    text-align:center;
 }
 
-Options:
+Output:
 
-text-align: left;
-text-align: center;
-text-align: right;
-7. Text Decoration
+        Welcome
+6. text-transform ⭐⭐⭐
 
-Remove or add underlines.
+Changes the capitalization.
 
-a {
-    text-decoration: none;
+Uppercase
+text-transform:uppercase;
+
+Output
+
+HELLO WORLD
+Lowercase
+text-transform:lowercase;
+
+Output
+
+hello world
+Capitalize
+text-transform:capitalize;
+
+Output
+
+Hello World
+Example
+p{
+    text-transform:uppercase;
 }
+7. text-decoration ⭐⭐⭐
 
-Examples:
+Adds or removes decorations.
 
-text-decoration: underline;
-text-decoration: none;
-text-decoration: line-through;
-8. Line Height
+Underline
+text-decoration:underline;
 
-Controls spacing between lines.
+Output
 
-p {
-    line-height: 1.8;
+<u>Hello</u>
+
+Overline
+text-decoration:overline;
+Line Through
+text-decoration:line-through;
+
+Output
+
+Hello
+
+Remove Underline from Links
+<a href="#">Home</a>
+a{
+    text-decoration:none;
 }
+8. line-height ⭐⭐⭐
+
+Controls the space between lines.
 
 Without line-height:
 
-Text looks crowded
+Hello
+World
+CSS
 
-With line-height:
+With
 
-Text becomes easier to read
+line-height:40px;
 
+There will be more vertical spacing.
 
+Example
+p{
+    line-height:35px;
+}
+
+Useful for paragraphs.
+
+9. letter-spacing ⭐⭐⭐
+
+Controls spacing between letters.
+
+letter-spacing:5px;
+
+Output
+
+H E L L O
+Example
+h1{
+    letter-spacing:8px;
+}
+Complete Example
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+h1{
+    color:blue;
+    font-size:40px;
+    font-family:Arial, sans-serif;
+    font-weight:bold;
+    text-align:center;
+    text-transform:uppercase;
+    text-decoration:underline;
+    letter-spacing:5px;
+}
+
+p{
+    color:gray;
+    font-size:18px;
+    line-height:30px;
+    text-align:justify;
+}
+
+a{
+    text-decoration:none;
+    color:red;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>CSS Tutorial</h1>
+
+<p>
+CSS makes web pages beautiful.
+It controls colors, fonts, spacing,
+alignment and much more.
+</p>
+
+<a href="#">Click Here</a>
+
+</body>
+</html>
 Interview Questions
-1. Difference between color and background-color?
+1. What is the difference between font-weight: bold and font-weight: 700?
 
-Answer:
+They are generally equivalent for most fonts. bold is a keyword, while 700 is the numeric value. Numeric values provide finer control when a font supports multiple weights.
 
-color changes text color.
-background-color changes the background color.
-2. What is font-family?
+2. What is the difference between text-transform and text-decoration?
+text-transform	text-decoration
+Changes the case of text (uppercase, lowercase, capitalize).	Adds visual decoration like underline, overline, or line-through.
+3. How do you remove the underline from a hyperlink?
+a{
+    text-decoration:none;
+}
+4. What does line-height do?
 
-Answer:
+It controls the vertical spacing between lines of text, improving readability.
 
-It specifies the font style used to display text.
+5. What does letter-spacing do?
 
-3. What is font-weight?
+It increases or decreases the spacing between individual characters.
 
-Answer:
-
-It controls the thickness or boldness of text.
-
-4. What does text-align: center do?
-
-Answer:
-
-It aligns text horizontally in the center.
-
-5. Why use line-height?
-
-Answer:
-
-It improves readability by increasing space between lines.
+Quick Revision
+Property	Purpose	Example
+color	Changes text color	color: blue;
+font-size	Sets text size	font-size: 20px;
+font-family	Changes font	font-family: Arial, sans-serif;
+font-weight	Controls boldness	font-weight: 700;
+text-align	Aligns text	text-align: center;
+text-transform	Changes letter case	text-transform: uppercase;
+text-decoration	Adds/removes decoration	text-decoration: underline;
+line-height	Sets spacing between lines	line-height: 30px;
+letter-spacing	Sets spacing between letters	letter-spacing: 3px;
