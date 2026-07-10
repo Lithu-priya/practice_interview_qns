@@ -1,0 +1,303 @@
+JavaScript Day 5 – Functions ⭐⭐⭐⭐⭐
+
+Functions are one of the most important concepts in JavaScript. They let you write reusable code, making programs easier to maintain. Functions are used everywhere in JavaScript, React, Node.js, and real-world projects.
+
+Today we'll learn:
+
+Function Declaration
+Function Expression
+Arrow Functions
+Parameters
+Return Statement
+Default Parameters
+What is a Function?
+
+A function is a block of code that performs a specific task.
+
+Instead of writing the same code repeatedly:
+
+console.log("Welcome");
+console.log("Welcome");
+console.log("Welcome");
+
+You can write:
+
+function welcome() {
+    console.log("Welcome");
+}
+
+welcome();
+welcome();
+welcome();
+
+Output:
+
+Welcome
+Welcome
+Welcome
+
+The function is written once and can be called many times.
+
+1. Function Declaration ⭐⭐⭐⭐⭐
+Syntax
+function functionName() {
+    // code
+}
+Example
+function greet() {
+    console.log("Hello!");
+}
+
+greet();
+
+Output:
+
+Hello!
+Function with Multiple Statements
+function introduction() {
+    console.log("My name is Priya");
+    console.log("I am learning JavaScript");
+}
+
+introduction();
+
+Output:
+
+My name is Priya
+I am learning JavaScript
+2. Function Parameters ⭐⭐⭐⭐⭐
+
+Parameters allow you to pass values into a function.
+
+Example
+function greet(name) {
+    console.log("Hello " + name);
+}
+
+greet("Priya");
+greet("Lokesh");
+
+Output:
+
+Hello Priya
+Hello Lokesh
+
+name is a parameter, while "Priya" and "Lokesh" are arguments.
+
+Multiple Parameters
+function add(a, b) {
+    console.log(a + b);
+}
+
+add(10, 20);
+
+Output:
+
+30
+3. Return Statement ⭐⭐⭐⭐⭐
+
+The return statement sends a value back to the caller.
+
+Without Return
+function add(a, b) {
+    console.log(a + b);
+}
+
+let result = add(5, 10);
+
+console.log(result);
+
+Output:
+
+15
+undefined
+
+Because console.log() prints the result, but the function doesn't return anything.
+
+With Return
+function add(a, b) {
+    return a + b;
+}
+
+let result = add(5, 10);
+
+console.log(result);
+
+Output:
+
+15
+
+This is the preferred approach because you can reuse the returned value.
+
+Another Example
+function square(number) {
+    return number * number;
+}
+
+console.log(square(6));
+
+Output:
+
+36
+4. Function Expression ⭐⭐⭐⭐
+
+A function can also be stored in a variable.
+
+const greet = function () {
+    console.log("Hello");
+};
+
+greet();
+
+Output:
+
+Hello
+Function Expression with Parameters
+const multiply = function (a, b) {
+    return a * b;
+};
+
+console.log(multiply(4, 5));
+
+Output:
+
+20
+5. Arrow Functions ⭐⭐⭐⭐⭐
+
+Arrow functions are a shorter way to write functions and are heavily used in modern JavaScript and React.
+
+Syntax
+const functionName = () => {
+    // code
+};
+Example
+const greet = () => {
+    console.log("Hello");
+};
+
+greet();
+
+Output:
+
+Hello
+Arrow Function with Parameters
+const add = (a, b) => {
+    return a + b;
+};
+
+console.log(add(10, 15));
+
+Output:
+
+25
+Short Form Arrow Function
+
+If there is only one expression, you can omit return and curly braces.
+
+const square = number => number * number;
+
+console.log(square(8));
+
+Output:
+
+64
+6. Default Parameters ⭐⭐⭐⭐⭐
+
+Default parameters provide a value when an argument isn't supplied.
+
+function greet(name = "Guest") {
+    console.log("Hello " + name);
+}
+
+greet();
+greet("Priya");
+
+Output:
+
+Hello Guest
+Hello Priya
+Function Scope
+
+Variables declared inside a function are only available within that function.
+
+function test() {
+    let message = "Hello";
+    console.log(message);
+}
+
+test();
+
+// console.log(message); // Error
+
+Output:
+
+Hello
+Real-World Examples
+Example 1: Find Maximum Number
+function max(a, b) {
+    if (a > b) {
+        return a;
+    }
+    return b;
+}
+
+console.log(max(15, 25));
+
+Output:
+
+25
+Example 2: Check Even or Odd
+function isEven(number) {
+    return number % 2 === 0;
+}
+
+console.log(isEven(10));
+console.log(isEven(7));
+
+Output:
+
+true
+false
+Example 3: Calculate Area of a Rectangle
+function area(length, width) {
+    return length * width;
+}
+
+console.log(area(10, 5));
+
+Output:
+
+50
+Function Declaration vs Function Expression
+Function Declaration	Function Expression
+Uses function name()	Stored in a variable
+Can be called before it's defined (hoisted)	Cannot be called before assignment
+Common for reusable functions	Often used with callbacks
+Function Expression vs Arrow Function
+Function Expression	Arrow Function
+Uses function keyword	Uses =>
+Has its own this	Does not have its own this
+Slightly longer syntax	Shorter and commonly used in React
+Interview Questions ⭐⭐⭐⭐⭐
+1. What is the difference between parameters and arguments?
+Parameters are variables defined in the function declaration.
+Arguments are the actual values passed when calling the function.
+
+Example:
+
+function greet(name) { // name is a parameter
+    console.log(name);
+}
+
+greet("Priya"); // "Priya" is an argument
+2. What is the purpose of the return statement?
+
+return sends a value back to the caller, allowing it to be stored or reused.
+
+3. Why are arrow functions popular in React?
+
+They have concise syntax and are commonly used for event handlers, callbacks, and array methods.
+
+4. What happens if you don't use return?
+
+The function returns undefined by default.
