@@ -1,0 +1,390 @@
+JavaScript Day 4 – Loops ⭐⭐⭐⭐⭐
+
+Loops allow you to repeat a block of code multiple times without writing it repeatedly.
+
+Instead of this:
+
+console.log("Hello");
+console.log("Hello");
+console.log("Hello");
+console.log("Hello");
+console.log("Hello");
+
+You can simply write:
+
+for (let i = 1; i <= 5; i++) {
+    console.log("Hello");
+}
+Types of Loops
+
+Today we'll learn:
+
+for
+while
+do...while
+for...of
+for...in
+break
+continue
+1. for Loop ⭐⭐⭐⭐⭐
+
+The for loop is the most commonly used loop in JavaScript.
+
+Syntax
+for (initialization; condition; increment/decrement) {
+    // Code to execute
+}
+Example
+for (let i = 1; i <= 5; i++) {
+    console.log(i);
+}
+Output
+1
+2
+3
+4
+5
+How the for loop works
+for (let i = 1; i <= 5; i++) {
+    console.log(i);
+}
+Step-by-step
+Step	Value of i	Condition	Output
+Start	1	1 <= 5 ✅	1
+Next	2	2 <= 5 ✅	2
+Next	3	3 <= 5 ✅	3
+Next	4	4 <= 5 ✅	4
+Next	5	5 <= 5 ✅	5
+Next	6	6 <= 5 ❌	Stop
+Print Even Numbers
+for (let i = 2; i <= 10; i += 2) {
+    console.log(i);
+}
+
+Output
+
+2
+4
+6
+8
+10
+Print Odd Numbers
+for (let i = 1; i <= 10; i += 2) {
+    console.log(i);
+}
+
+Output
+
+1
+3
+5
+7
+9
+Reverse Loop
+for (let i = 10; i >= 1; i--) {
+    console.log(i);
+}
+
+Output
+
+10
+9
+8
+7
+6
+5
+4
+3
+2
+1
+2. while Loop ⭐⭐⭐⭐
+
+The while loop runs as long as the condition is true.
+
+Syntax
+while (condition) {
+    // Code
+}
+Example
+let i = 1;
+
+while (i <= 5) {
+    console.log(i);
+    i++;
+}
+
+Output
+
+1
+2
+3
+4
+5
+Example: Countdown
+let count = 5;
+
+while (count > 0) {
+    console.log(count);
+    count--;
+}
+
+Output
+
+5
+4
+3
+2
+1
+3. do...while Loop ⭐⭐⭐⭐
+
+The do...while loop executes the code at least once, even if the condition is false.
+
+Syntax
+do {
+    // Code
+} while (condition);
+Example
+let i = 1;
+
+do {
+    console.log(i);
+    i++;
+} while (i <= 5);
+
+Output
+
+1
+2
+3
+4
+5
+Difference Between while and do...while
+while
+let i = 10;
+
+while (i <= 5) {
+    console.log(i);
+}
+
+Output
+
+No Output
+do...while
+let i = 10;
+
+do {
+    console.log(i);
+} while (i <= 5);
+
+Output
+
+10
+
+The loop body executes once before checking the condition.
+
+4. for...of ⭐⭐⭐⭐⭐
+
+Used to iterate over arrays and other iterable objects.
+
+Example
+let fruits = ["Apple", "Banana", "Orange"];
+
+for (let fruit of fruits) {
+    console.log(fruit);
+}
+
+Output
+
+Apple
+Banana
+Orange
+Another Example
+let numbers = [10, 20, 30];
+
+for (let num of numbers) {
+    console.log(num);
+}
+
+Output
+
+10
+20
+30
+5. for...in ⭐⭐⭐⭐⭐
+
+Used to iterate over the keys of an object.
+
+Example
+let student = {
+    name: "Priya",
+    age: 27,
+    city: "Coimbatore"
+};
+
+for (let key in student) {
+    console.log(key);
+}
+
+Output
+
+name
+age
+city
+Access Keys and Values
+let student = {
+    name: "Priya",
+    age: 27,
+    city: "Coimbatore"
+};
+
+for (let key in student) {
+    console.log(key, student[key]);
+}
+
+Output
+
+name Priya
+age 27
+city Coimbatore
+for...of vs for...in
+for...of	for...in
+Used for arrays	Used for objects
+Returns values	Returns keys
+Apple	name
+6. break ⭐⭐⭐⭐⭐
+
+The break statement immediately exits a loop.
+
+Example
+for (let i = 1; i <= 10; i++) {
+
+    if (i === 5) {
+        break;
+    }
+
+    console.log(i);
+}
+
+Output
+
+1
+2
+3
+4
+
+The loop stops when i becomes 5.
+
+7. continue ⭐⭐⭐⭐⭐
+
+The continue statement skips the current iteration and moves to the next one.
+
+Example
+for (let i = 1; i <= 5; i++) {
+
+    if (i === 3) {
+        continue;
+    }
+
+    console.log(i);
+}
+
+Output
+
+1
+2
+4
+5
+
+The number 3 is skipped.
+
+Real-World Examples
+Print Multiplication Table
+let number = 5;
+
+for (let i = 1; i <= 10; i++) {
+    console.log(number + " x " + i + " = " + (number * i));
+}
+
+Output
+
+5 x 1 = 5
+5 x 2 = 10
+...
+5 x 10 = 50
+Find Sum of Numbers
+let sum = 0;
+
+for (let i = 1; i <= 10; i++) {
+    sum += i;
+}
+
+console.log(sum);
+
+Output
+
+55
+Print Array Elements
+let colors = ["Red", "Green", "Blue"];
+
+for (let color of colors) {
+    console.log(color);
+}
+
+Output
+
+Red
+Green
+Blue
+Common Mistakes
+❌ Infinite Loop
+let i = 1;
+
+while (i <= 5) {
+    console.log(i);
+}
+
+This never ends because i is never incremented.
+
+✅ Correct
+let i = 1;
+
+while (i <= 5) {
+    console.log(i);
+    i++;
+}
+❌ Using for...in on Arrays
+let fruits = ["Apple", "Banana"];
+
+for (let item in fruits) {
+    console.log(item);
+}
+
+Output
+
+0
+1
+
+for...in returns indexes for arrays, not values.
+
+✅ Correct
+for (let fruit of fruits) {
+    console.log(fruit);
+}
+
+Output
+
+Apple
+Banana
+Interview Questions ⭐⭐⭐⭐⭐
+1. Difference between for and while?
+for is ideal when you know the number of iterations.
+while is useful when the number of iterations depends on a condition.
+2. Difference between while and do...while?
+while checks the condition before executing the loop.
+do...while executes the loop once before checking the condition.
+3. Difference between for...of and for...in?
+for...of iterates over values of arrays.
+for...in iterates over keys of objects.
+4. Difference between break and continue?
+break exits the loop completely.
+continue skips the current iteration and continues with the next one.
