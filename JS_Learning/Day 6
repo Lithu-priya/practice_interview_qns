@@ -1,0 +1,325 @@
+1. Creating Strings
+
+A string is a sequence of characters enclosed in quotes.
+
+let name = "Priya";
+let city = 'Coimbatore';
+
+console.log(name);
+console.log(city);
+
+Output:
+
+Priya
+Coimbatore
+String Length
+
+Use the .length property to find the number of characters.
+
+let name = "Priya";
+
+console.log(name.length);
+
+Output:
+
+5
+Access Characters
+
+Strings are indexed starting from 0.
+
+P  r  i  y  a
+0  1  2  3  4
+let name = "Priya";
+
+console.log(name[0]);
+console.log(name[2]);
+
+Output:
+
+P
+i
+2. String Methods ⭐⭐⭐⭐⭐
+toUpperCase()
+
+Converts all letters to uppercase.
+
+let name = "Priya";
+
+console.log(name.toUpperCase());
+
+Output:
+
+PRIYA
+toLowerCase()
+
+Converts all letters to lowercase.
+
+let name = "PRIYA";
+
+console.log(name.toLowerCase());
+
+Output:
+
+priya
+trim()
+
+Removes spaces from the beginning and end.
+
+let text = "   Hello JavaScript   ";
+
+console.log(text.trim());
+
+Output:
+
+Hello JavaScript
+concat()
+
+Joins two or more strings.
+
+let firstName = "Priya";
+let lastName = "D";
+
+console.log(firstName.concat(" ", lastName));
+
+Output:
+
+Priya D
+replace()
+
+Replaces the first matching text.
+
+let message = "I like Java";
+
+console.log(message.replace("Java", "JavaScript"));
+
+Output:
+
+I like JavaScript
+replaceAll()
+
+Replaces all matching text.
+
+let text = "cat cat cat";
+
+console.log(text.replaceAll("cat", "dog"));
+
+Output:
+
+dog dog dog
+repeat()
+
+Repeats a string.
+
+console.log("Hi ".repeat(3));
+
+Output:
+
+Hi Hi Hi
+3. Template Literals ⭐⭐⭐⭐⭐
+
+Template literals make it easy to insert variables into strings.
+
+Instead of:
+
+let name = "Priya";
+
+console.log("Hello " + name);
+
+Use:
+
+let name = "Priya";
+
+console.log(`Hello ${name}`);
+
+Output:
+
+Hello Priya
+Multiple Variables
+let name = "Priya";
+let age = 27;
+
+console.log(`My name is ${name} and I am ${age} years old.`);
+
+Output:
+
+My name is Priya and I am 27 years old.
+Expressions
+let a = 10;
+let b = 20;
+
+console.log(`Sum = ${a + b}`);
+
+Output:
+
+Sum = 30
+4. String Searching ⭐⭐⭐⭐⭐
+includes()
+
+Checks if a string contains another string.
+
+let text = "JavaScript";
+
+console.log(text.includes("Script"));
+
+Output:
+
+true
+startsWith()
+
+Checks the beginning of a string.
+
+let text = "JavaScript";
+
+console.log(text.startsWith("Java"));
+
+Output:
+
+true
+endsWith()
+
+Checks the end of a string.
+
+let text = "JavaScript";
+
+console.log(text.endsWith("Script"));
+
+Output:
+
+true
+indexOf()
+
+Returns the position of the first occurrence.
+
+let text = "JavaScript";
+
+console.log(text.indexOf("S"));
+
+Output:
+
+4
+
+If not found:
+
+console.log(text.indexOf("Python"));
+
+Output:
+
+-1
+lastIndexOf()
+
+Returns the last occurrence.
+
+let text = "apple apple";
+
+console.log(text.lastIndexOf("apple"));
+
+Output:
+
+6
+5. String Slicing ⭐⭐⭐⭐⭐
+slice()
+
+Extracts part of a string.
+
+let text = "JavaScript";
+
+console.log(text.slice(0, 4));
+
+Output:
+
+Java
+substring()
+
+Similar to slice().
+
+let text = "JavaScript";
+
+console.log(text.substring(4, 10));
+
+Output:
+
+Script
+charAt()
+
+Returns the character at a given index.
+
+let text = "JavaScript";
+
+console.log(text.charAt(2));
+
+Output:
+
+v
+Real-World Examples
+Capitalize a Name
+let name = "priya";
+
+let result =
+    name.charAt(0).toUpperCase() +
+    name.slice(1).toLowerCase();
+
+console.log(result);
+
+Output:
+
+Priya
+Check Email Domain
+let email = "user@gmail.com";
+
+if (email.endsWith("@gmail.com")) {
+    console.log("Valid Gmail Address");
+} else {
+    console.log("Invalid Email");
+}
+
+Output:
+
+Valid Gmail Address
+Greeting Message
+let name = "Priya";
+
+console.log(`Welcome ${name}!`);
+
+Output:
+
+Welcome Priya!
+Common Mistakes
+❌ Forgetting Parentheses
+let name = "Priya";
+
+console.log(name.toUpperCase);
+
+Output:
+
+[Function: toUpperCase]
+✅ Correct
+console.log(name.toUpperCase());
+❌ Using + Everywhere
+let name = "Priya";
+let age = 27;
+
+console.log("Name: " + name + ", Age: " + age);
+✅ Better
+console.log(`Name: ${name}, Age: ${age}`);
+Interview Questions ⭐⭐⭐⭐⭐
+1. What is the difference between slice() and substring()?
+slice() supports negative indexes.
+substring() does not support negative indexes.
+
+Example:
+
+let text = "JavaScript";
+
+console.log(text.slice(-6));      // Script
+console.log(text.substring(-6));  // JavaScript
+2. What does trim() do?
+
+It removes whitespace from the beginning and end of a string.
+
+3. What is a Template Literal?
+
+A template literal is a string enclosed in backticks (`) that allows variable interpolation using ${}.
+
+4. What is the difference between replace() and replaceAll()?
+replace() replaces only the first match.
+replaceAll() replaces every matching occurrence.
