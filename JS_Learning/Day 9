@@ -1,0 +1,332 @@
+What is an Object?
+
+An object stores data as key-value pairs.
+
+Example:
+
+let student = {
+    name: "Priya",
+    age: 27,
+    city: "Coimbatore"
+};
+
+Here:
+
+name, age, city → Keys (Properties)
+"Priya", 27, "Coimbatore" → Values
+Creating Objects
+Method 1 (Recommended)
+let employee = {
+    id: 101,
+    name: "Lokesh",
+    salary: 50000
+};
+
+console.log(employee);
+
+Output
+
+{
+  id: 101,
+  name: "Lokesh",
+  salary: 50000
+}
+Empty Object
+let person = {};
+
+person.name = "Priya";
+person.age = 27;
+
+console.log(person);
+
+Output
+
+{
+  name: "Priya",
+  age: 27
+}
+Accessing Object Properties ⭐⭐⭐⭐⭐
+
+There are two ways.
+
+1. Dot Notation (Most Common)
+let student = {
+    name: "Priya",
+    age: 27
+};
+
+console.log(student.name);
+console.log(student.age);
+
+Output
+
+Priya
+27
+2. Bracket Notation
+let student = {
+    name: "Priya",
+    age: 27
+};
+
+console.log(student["name"]);
+console.log(student["age"]);
+
+Output
+
+Priya
+27
+When to Use Bracket Notation
+
+Useful when the property name is stored in a variable.
+
+let key = "name";
+
+let student = {
+    name: "Priya"
+};
+
+console.log(student[key]);
+
+Output
+
+Priya
+Modify Properties
+let student = {
+    name: "Priya",
+    age: 27
+};
+
+student.age = 28;
+
+console.log(student);
+
+Output
+
+{
+  name: "Priya",
+  age: 28
+}
+Add New Property
+let student = {
+    name: "Priya"
+};
+
+student.city = "Coimbatore";
+
+console.log(student);
+
+Output
+
+{
+  name: "Priya",
+  city: "Coimbatore"
+}
+Delete Property
+let student = {
+    name: "Priya",
+    age: 27
+};
+
+delete student.age;
+
+console.log(student);
+
+Output
+
+{
+  name: "Priya"
+}
+Nested Objects ⭐⭐⭐⭐⭐
+
+Objects can contain other objects.
+
+let employee = {
+    id: 101,
+    name: "Lokesh",
+
+    address: {
+        city: "Coimbatore",
+        state: "Tamil Nadu",
+        pincode: 641005
+    }
+};
+
+console.log(employee.address.city);
+
+Output
+
+Coimbatore
+Another Example
+let user = {
+    name: "Priya",
+
+    contact: {
+        email: "priya@gmail.com",
+        mobile: "9876543210"
+    }
+};
+
+console.log(user.contact.email);
+
+Output
+
+priya@gmail.com
+Object Methods ⭐⭐⭐⭐⭐
+
+Objects can contain functions.
+
+let student = {
+
+    name: "Priya",
+
+    greet: function () {
+        console.log("Welcome!");
+    }
+
+};
+
+student.greet();
+
+Output
+
+Welcome!
+Using this
+let employee = {
+
+    name: "Lokesh",
+
+    greet() {
+        console.log("Hello " + this.name);
+    }
+
+};
+
+employee.greet();
+
+Output
+
+Hello Lokesh
+
+this refers to the current object.
+
+Object Destructuring ⭐⭐⭐⭐⭐
+
+Extract values from an object into variables.
+
+Without destructuring:
+
+let student = {
+    name: "Priya",
+    age: 27
+};
+
+let name = student.name;
+let age = student.age;
+
+With destructuring:
+
+let student = {
+    name: "Priya",
+    age: 27
+};
+
+let { name, age } = student;
+
+console.log(name);
+console.log(age);
+
+Output
+
+Priya
+27
+Rename Variables
+let student = {
+    name: "Priya",
+    age: 27
+};
+
+let { name: studentName, age: studentAge } = student;
+
+console.log(studentName);
+console.log(studentAge);
+
+Output
+
+Priya
+27
+Loop Through an Object
+
+Use for...in.
+
+let student = {
+    name: "Priya",
+    age: 27,
+    city: "Coimbatore"
+};
+
+for (let key in student) {
+    console.log(key, student[key]);
+}
+
+Output
+
+name Priya
+age 27
+city Coimbatore
+Built-in Object Methods
+Object.keys()
+
+Returns all keys.
+
+let student = {
+    name: "Priya",
+    age: 27
+};
+
+console.log(Object.keys(student));
+
+Output
+
+["name", "age"]
+Object.values()
+
+Returns all values.
+
+console.log(Object.values(student));
+
+Output
+
+["Priya", 27]
+Object.entries()
+
+Returns key-value pairs.
+
+console.log(Object.entries(student));
+
+Output
+
+[
+  ["name", "Priya"],
+  ["age", 27]
+]
+
+
+Interview Questions ⭐⭐⭐⭐⭐
+1. What is an object?
+
+An object is a collection of key-value pairs used to store related data and behavior.
+
+2. Difference between Dot Notation and Bracket Notation?
+Dot notation: student.name
+Bracket notation: student["name"]
+Use bracket notation when the property name is stored in a variable.
+3. What is Object Destructuring?
+
+Object destructuring lets you extract properties into variables.
+
+Example:
+
+let { name, age } = student;
+4. What does this refer to in an object?
+
+this refers to the current object that is calling the method.
