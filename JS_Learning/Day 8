@@ -1,0 +1,274 @@
+1. map() ⭐⭐⭐⭐⭐
+
+map() creates a new array by applying a function to each element.
+
+Syntax
+array.map(function(element) {
+    return newValue;
+});
+Example 1: Double Every Number
+let numbers = [10, 20, 30];
+
+let result = numbers.map(num => num * 2);
+
+console.log(result);
+
+Output
+
+[20, 40, 60]
+
+Original array:
+
+[10, 20, 30]
+Example 2: Add 5
+let marks = [70, 80, 90];
+
+let updated = marks.map(mark => mark + 5);
+
+console.log(updated);
+
+Output
+
+[75, 85, 95]
+2. filter() ⭐⭐⭐⭐⭐
+
+Returns only the elements that satisfy a condition.
+
+Example
+let numbers = [10, 25, 30, 15, 40];
+
+let result = numbers.filter(num => num >= 20);
+
+console.log(result);
+
+Output
+
+[25, 30, 40]
+Even Numbers
+let nums = [1,2,3,4,5,6];
+
+let even = nums.filter(num => num % 2 === 0);
+
+console.log(even);
+
+Output
+
+[2,4,6]
+3. find() ⭐⭐⭐⭐⭐
+
+Returns the first matching element.
+
+let numbers = [10,20,30,40];
+
+let result = numbers.find(num => num > 25);
+
+console.log(result);
+
+Output
+
+30
+
+If nothing matches:
+
+let result = numbers.find(num => num > 100);
+
+console.log(result);
+
+Output
+
+undefined
+4. reduce() ⭐⭐⭐⭐⭐
+
+Used to reduce an array into a single value.
+
+Sum of Numbers
+let numbers = [10,20,30];
+
+let total = numbers.reduce((sum, num) => sum + num, 0);
+
+console.log(total);
+
+Output
+
+60
+Multiply All Numbers
+let numbers = [2,3,4];
+
+let result = numbers.reduce((total,num)=>total*num,1);
+
+console.log(result);
+
+Output
+
+24
+How reduce() Works
+let numbers = [10,20,30];
+Current Sum	Current Number	New Sum
+0	10	10
+10	20	30
+30	30	60
+
+Final answer:
+
+60
+5. some() ⭐⭐⭐⭐⭐
+
+Returns true if at least one element satisfies the condition.
+
+let marks = [45,55,70];
+
+let pass = marks.some(mark => mark >= 50);
+
+console.log(pass);
+
+Output
+
+true
+
+Another example
+
+let numbers=[1,3,5];
+
+console.log(numbers.some(num=>num%2===0));
+
+Output
+
+false
+6. every() ⭐⭐⭐⭐⭐
+
+Returns true only if every element satisfies the condition.
+
+let marks=[70,80,90];
+
+console.log(marks.every(mark=>mark>=50));
+
+Output
+
+true
+
+Example
+
+let numbers=[2,4,5];
+
+console.log(numbers.every(num=>num%2===0));
+
+Output
+
+false
+Difference: some() vs every()
+some()	every()
+At least one	All elements
+OR condition	AND condition
+7. includes() ⭐⭐⭐⭐⭐
+
+Checks if an array contains a value.
+
+let fruits=["Apple","Banana","Orange"];
+
+console.log(fruits.includes("Banana"));
+
+Output
+
+true
+
+Example
+
+console.log(fruits.includes("Mango"));
+
+Output
+
+false
+8. sort() ⭐⭐⭐⭐⭐
+
+Sorts an array.
+
+Strings
+let fruits=["Orange","Apple","Banana"];
+
+fruits.sort();
+
+console.log(fruits);
+
+Output
+
+["Apple","Banana","Orange"]
+Numbers (Important)
+
+Wrong
+
+let numbers=[10,2,50,8];
+
+numbers.sort();
+
+console.log(numbers);
+
+Output
+
+[10,2,50,8]
+
+Because JavaScript sorts numbers as strings by default.
+
+Correct
+
+let numbers=[10,2,50,8];
+
+numbers.sort((a,b)=>a-b);
+
+console.log(numbers);
+
+Output
+
+[2,8,10,50]
+
+Descending
+
+numbers.sort((a,b)=>b-a);
+
+Output
+
+[50,10,8,2]
+9. forEach() ⭐⭐⭐⭐⭐
+
+Executes a function for each element.
+
+let fruits=["Apple","Banana","Orange"];
+
+fruits.forEach(fruit=>{
+    console.log(fruit);
+});
+
+Output
+
+Apple
+Banana
+Orange
+
+Difference
+
+forEach()
+
+Only performs an action.
+
+numbers.forEach(num=>console.log(num));
+map()
+
+Returns a new array.
+
+let result=numbers.map(num=>num*2);
+
+
+Interview Questions ⭐⭐⭐⭐⭐
+1. Difference between map() and forEach()?
+map()	forEach()
+Returns a new array	Returns undefined
+Used to transform data	Used for side effects (logging, updating UI)
+2. Difference between filter() and find()?
+filter() returns all matching elements in an array.
+find() returns only the first matching element.
+3. What does reduce() do?
+
+It combines all elements of an array into a single value, such as a sum, product, or object.
+
+4. Difference between some() and every()?
+some() checks if at least one element matches.
+every() checks if all elements match.
