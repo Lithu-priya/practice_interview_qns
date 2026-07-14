@@ -1,0 +1,266 @@
+What is an Event?
+
+An event is something that happens in the browser.
+
+Examples:
+
+Clicking a button
+Typing in a textbox
+Moving the mouse
+Pressing a keyboard key
+Submitting a form
+
+JavaScript listens for these events and executes code.
+
+1. Click Event ⭐⭐⭐⭐⭐
+HTML
+<button onclick="showMessage()">Click Me</button>
+JavaScript
+function showMessage() {
+    alert("Button Clicked!");
+}
+
+When you click the button, an alert appears.
+
+Another Example
+HTML
+<h1 id="title">JavaScript</h1>
+
+<button onclick="changeText()">
+    Change Text
+</button>
+JavaScript
+function changeText() {
+    document.getElementById("title").textContent =
+        "Welcome Priya!";
+}
+2. addEventListener() ⭐⭐⭐⭐⭐
+
+This is the recommended way to handle events.
+
+HTML
+<button id="btn">Click Me</button>
+JavaScript
+let button = document.getElementById("btn");
+
+button.addEventListener("click", function () {
+    alert("Button Clicked");
+});
+Using Arrow Functions
+button.addEventListener("click", () => {
+    console.log("Hello");
+});
+Why Use addEventListener()?
+
+❌ Avoid this:
+
+<button onclick="showMessage()">
+
+✅ Prefer this:
+
+button.addEventListener("click", showMessage);
+
+Benefits:
+
+Keeps HTML clean.
+Allows multiple event listeners.
+Easier to maintain.
+3. Input Event ⭐⭐⭐⭐⭐
+
+Runs whenever the user types.
+
+HTML
+<input type="text" id="username">
+JavaScript
+let input = document.getElementById("username");
+
+input.addEventListener("input", function () {
+    console.log(input.value);
+});
+
+Typing:
+
+P
+Pr
+Pri
+Priya
+
+Console:
+
+P
+Pr
+Pri
+Priya
+Display Input on Screen
+HTML
+<input id="name">
+
+<h2 id="output"></h2>
+JavaScript
+let nameInput = document.getElementById("name");
+let output = document.getElementById("output");
+
+nameInput.addEventListener("input", () => {
+    output.textContent = nameInput.value;
+});
+4. Submit Event ⭐⭐⭐⭐⭐
+HTML
+<form id="loginForm">
+
+<input type="text" id="username">
+
+<button type="submit">
+Login
+</button>
+
+</form>
+JavaScript
+let form = document.getElementById("loginForm");
+
+form.addEventListener("submit", function (event) {
+
+    event.preventDefault();
+
+    alert("Form Submitted");
+
+});
+What is preventDefault()?
+
+Normally, a form reloads the page after submission.
+
+preventDefault() stops that behavior.
+
+5. Keyboard Events ⭐⭐⭐⭐⭐
+
+Common keyboard events:
+
+keydown
+keyup
+keydown
+document.addEventListener("keydown", function (event) {
+
+    console.log(event.key);
+
+});
+
+Press:
+
+A
+
+Console:
+
+a
+Detect Enter Key
+document.addEventListener("keydown", function (event) {
+
+    if (event.key === "Enter") {
+
+        console.log("Enter Pressed");
+
+    }
+
+});
+6. Mouse Events ⭐⭐⭐⭐⭐
+
+Common mouse events:
+
+click
+dblclick
+mouseover
+mouseout
+mousedown
+mouseup
+Mouse Over
+HTML
+<h1 id="title">
+Move Mouse Here
+</h1>
+JavaScript
+let title = document.getElementById("title");
+
+title.addEventListener("mouseover", function () {
+
+    title.style.color = "red";
+
+});
+Mouse Out
+title.addEventListener("mouseout", function () {
+
+    title.style.color = "black";
+
+});
+Double Click
+button.addEventListener("dblclick", () => {
+
+    alert("Double Clicked");
+
+});
+Event Object ⭐⭐⭐⭐⭐
+
+Every event handler receives an event object.
+
+button.addEventListener("click", function (event) {
+
+    console.log(event);
+
+});
+
+Useful properties:
+
+event.target
+event.type
+event.key
+Example
+button.addEventListener("click", function (event) {
+
+    console.log(event.target);
+
+});
+
+Output
+
+<button>Click Me</button>
+Multiple Event Listeners
+button.addEventListener("click", function () {
+
+    console.log("First");
+
+});
+
+button.addEventListener("click", function () {
+
+    console.log("Second");
+
+});
+
+Output
+
+First
+Second
+
+Common Mistakes
+❌ Calling the Function Immediately
+
+Wrong
+
+button.addEventListener("click", showMessage());
+
+The function runs immediately.
+
+✅ Correct
+button.addEventListener("click", showMessage);
+
+or
+
+button.addEventListener("click", () => {
+
+    showMessage();
+
+});
+❌ Forgetting preventDefault()
+
+If you don't call:
+
+event.preventDefault();
+
+the form reloads the page.
