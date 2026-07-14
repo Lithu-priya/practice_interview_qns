@@ -230,3 +230,20 @@ true
 or
 
 false
+
+Interview Questions ⭐⭐⭐⭐⭐
+1. What is the DOM?
+
+The DOM (Document Object Model) is a programming interface that represents an HTML document as objects, allowing JavaScript to read and modify the page.
+
+2. Difference between getElementById() and querySelector()?
+getElementById()	querySelector()
+Selects by ID only	Selects using any CSS selector (ID, class, tag, etc.)
+Faster for ID lookup	More flexible
+3. Difference between innerHTML and textContent?
+innerHTML	textContent
+Parses HTML tags	Displays plain text
+Can insert HTML	Cannot insert HTML
+4. What is classList used for?
+
+classList is used to add, remove, toggle, or check CSS classes on an element.
