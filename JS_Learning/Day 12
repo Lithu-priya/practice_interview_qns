@@ -1,0 +1,276 @@
+What is a Form?
+
+A form collects user input.
+
+Example:
+
+<form>
+    <input type="text">
+    <button>Submit</button>
+</form>
+Basic Form
+index.html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Forms</title>
+</head>
+<body>
+
+<form id="loginForm">
+
+    <label>Name</label><br>
+    <input type="text" id="name"><br><br>
+
+    <label>Password</label><br>
+    <input type="password" id="password"><br><br>
+
+    <button type="submit">
+        Login
+    </button>
+
+</form>
+
+<script src="script.js"></script>
+
+</body>
+</html>
+Reading Input Values ⭐⭐⭐⭐⭐
+script.js
+let form = document.getElementById("loginForm");
+
+form.addEventListener("submit", function(event){
+
+    event.preventDefault();
+
+    let name = document.getElementById("name").value;
+    let password = document.getElementById("password").value;
+
+    console.log(name);
+    console.log(password);
+
+});
+
+If user enters
+
+Name : Priya
+
+Password : 12345
+
+Console
+
+Priya
+12345
+What is .value?
+
+For HTML elements:
+
+<input id="username">
+
+Use
+
+let username =
+document.getElementById("username").value;
+
+.value returns what the user typed.
+
+preventDefault() ⭐⭐⭐⭐⭐
+
+Normally,
+
+After clicking Submit,
+
+the page refreshes.
+
+To stop refreshing,
+
+event.preventDefault();
+
+Without it
+
+Click Submit
+
+↓
+
+Page Reload
+
+With it
+
+Click Submit
+
+↓
+
+No Reload
+Form Validation ⭐⭐⭐⭐⭐
+
+Validation means checking whether the entered data is correct.
+
+Example
+
+Name should not be empty
+Password should have at least 6 characters
+Email should contain "@"
+Example 1
+form.addEventListener("submit", function(event){
+
+    event.preventDefault();
+
+    let name =
+    document.getElementById("name").value;
+
+    if(name===""){
+
+        alert("Name cannot be empty");
+
+    }
+
+});
+Example 2
+
+Password Length
+
+let password =
+document.getElementById("password").value;
+
+if(password.length<6){
+
+    alert("Password must be at least 6 characters");
+
+}
+Multiple Validation
+form.addEventListener("submit", function(event){
+
+event.preventDefault();
+
+let name=document.getElementById("name").value;
+
+let password=document.getElementById("password").value;
+
+if(name===""){
+
+alert("Enter Name");
+
+return;
+
+}
+
+if(password.length<6){
+
+alert("Password too short");
+
+return;
+
+}
+
+alert("Login Successful");
+
+});
+Trim Input ⭐⭐⭐⭐⭐
+
+Suppose user types
+
+"     "
+
+It is not empty.
+
+Use
+
+if(name.trim()===""){
+
+alert("Enter Name");
+
+}
+
+trim() removes spaces from the beginning and end.
+
+Email Validation
+
+HTML
+
+<input
+type="email"
+id="email">
+
+JavaScript
+
+let email =
+document.getElementById("email").value;
+
+if(!email.includes("@")){
+
+alert("Invalid Email");
+
+}
+Reset Form
+form.reset();
+
+Example
+
+alert("Success");
+
+form.reset();
+
+All input fields become empty.
+
+Common Mistakes
+❌ Forgetting .value
+
+Wrong
+
+let name=document.getElementById("name");
+
+console.log(name);
+
+Output
+
+<input ...>
+
+Correct
+
+let name=document.getElementById("name").value;
+
+Output
+
+Priya
+❌ Forgetting preventDefault()
+
+Without
+
+event.preventDefault();
+
+the page refreshes before you can process the data.
+
+❌ Using ==
+
+Prefer
+
+if(name==="")
+
+instead of
+
+if(name=="")
+
+because === checks both value and type.
+
+Interview Questions ⭐⭐⭐⭐⭐
+1. What is form validation?
+
+Form validation ensures the user enters valid and complete data before it is submitted.
+
+2. Why use preventDefault()?
+
+It prevents the browser's default action, such as reloading the page after form submission.
+
+3. How do you read input values?
+let value = document.getElementById("inputId").value;
+4. Why use trim()?
+
+trim() removes extra spaces from the beginning and end of a string.
+
+Example:
+
+"  Priya  ".trim();
+
+Result:
+
+"Priya"
