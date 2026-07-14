@@ -1,0 +1,286 @@
+What is ES6?
+
+ES6 (ECMAScript 2015) is a major update to JavaScript that introduced features like:
+
+let
+const
+Arrow Functions (=>)
+Template Literals
+Destructuring
+Spread Operator
+Modules
+Classes
+Promises
+1. let vs const ⭐⭐⭐⭐⭐
+let
+
+Use let when the value can change.
+
+let age = 27;
+
+console.log(age);
+
+age = 28;
+
+console.log(age);
+
+Output
+
+27
+28
+const
+
+Use const when the value should not change.
+
+const country = "India";
+
+console.log(country);
+
+Output
+
+India
+
+Trying to change it:
+
+const country = "India";
+
+country = "USA";
+
+Output
+
+TypeError: Assignment to constant variable.
+let vs const
+let	const
+Can be reassigned	Cannot be reassigned
+Block scoped	Block scoped
+Use when value changes	Use by default unless it needs to change
+Block Scope ⭐⭐⭐⭐⭐
+
+Variables declared with let and const are block scoped.
+
+if (true) {
+    let name = "Priya";
+    console.log(name);
+}
+
+console.log(name);
+
+Output
+
+Priya
+ReferenceError: name is not defined
+
+The variable exists only inside the {} block.
+
+Difference Between var, let, and const
+Feature	var	let	const
+Scope	Function	Block	Block
+Reassign	✅ Yes	✅ Yes	❌ No
+Redeclare	✅ Yes	❌ No	❌ No
+const with Objects
+
+A common interview question.
+
+const student = {
+    name: "Priya"
+};
+
+student.name = "Lokesh";
+
+console.log(student);
+
+Output
+
+{ name: "Lokesh" }
+
+Why?
+
+const prevents reassigning the variable itself, but you can still modify the object's properties.
+
+This is not allowed:
+
+const student = {
+    name: "Priya"
+};
+
+student = {};
+const with Arrays
+const numbers = [1, 2, 3];
+
+numbers.push(4);
+
+console.log(numbers);
+
+Output
+
+[1, 2, 3, 4]
+
+Again, the array contents can change, but the variable cannot point to a different array.
+
+2. Arrow Functions ⭐⭐⭐⭐⭐
+
+Arrow functions provide a shorter syntax for writing functions.
+
+Traditional Function
+function greet(name) {
+    return "Hello " + name;
+}
+
+console.log(greet("Priya"));
+Arrow Function
+const greet = (name) => {
+    return "Hello " + name;
+};
+
+console.log(greet("Priya"));
+
+Output
+
+Hello Priya
+Single Parameter
+const square = num => {
+    return num * num;
+};
+
+console.log(square(5));
+
+Output
+
+25
+
+Parentheses are optional when there is only one parameter.
+
+Multiple Parameters
+const add = (a, b) => {
+    return a + b;
+};
+
+console.log(add(10, 20));
+
+Output
+
+30
+No Parameters
+const welcome = () => {
+    console.log("Welcome!");
+};
+
+welcome();
+
+Output
+
+Welcome!
+Implicit Return ⭐⭐⭐⭐⭐
+
+If the function has only one expression, you can omit return and braces.
+
+Traditional:
+
+const multiply = (a, b) => {
+    return a * b;
+};
+
+Shorter:
+
+const multiply = (a, b) => a * b;
+
+console.log(multiply(4, 5));
+
+Output
+
+20
+Returning an Object
+
+Wrap the object in parentheses.
+
+const getStudent = () => ({
+    name: "Priya",
+    age: 27
+});
+
+console.log(getStudent());
+
+Output
+
+{ name: "Priya", age: 27 }
+Arrow Functions with Array Methods
+map()
+const numbers = [1, 2, 3];
+
+const doubled = numbers.map(num => num * 2);
+
+console.log(doubled);
+
+Output
+
+[2, 4, 6]
+filter()
+const numbers = [10, 20, 30, 40];
+
+const result = numbers.filter(num => num > 20);
+
+console.log(result);
+
+Output
+
+[30, 40]
+this in Arrow Functions (Basic)
+
+Traditional Function:
+
+const person = {
+    name: "Priya",
+
+    greet: function () {
+        console.log(this.name);
+    }
+};
+
+person.greet();
+
+Output
+
+Priya
+
+
+Common Mistakes
+❌ Reassigning a const
+const age = 27;
+age = 28;
+
+Error:
+
+TypeError: Assignment to constant variable.
+❌ Forgetting return
+const square = (num) => {
+    num * num;
+};
+
+console.log(square(5));
+
+Output
+
+undefined
+✅ Correct
+const square = num => num * num;
+
+or
+
+const square = (num) => {
+    return num * num;
+};
+Interview Questions ⭐⭐⭐⭐⭐
+1. Difference between let and const?
+let can be reassigned.
+const cannot be reassigned.
+2. Why use const by default?
+
+It prevents accidental reassignment and makes code safer.
+
+3. What is an Arrow Function?
+
+An arrow function is a shorter syntax for writing functions introduced in ES6.
+
+4. Can you modify a const object?
+
+Yes. You can modify its properties, but you cannot reassign the object itself.
