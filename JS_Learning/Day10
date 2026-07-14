@@ -1,0 +1,232 @@
+What is the DOM?
+
+DOM (Document Object Model) is a representation of your HTML page that JavaScript can access and modify.
+
+Example HTML:
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1 id="title">Welcome</h1>
+
+</body>
+</html>
+
+JavaScript can access the <h1> element and change it.
+
+Connecting JavaScript to HTML
+
+Create two files:
+
+index.html
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>DOM Practice</title>
+</head>
+
+<body>
+
+<h1 id="title">Hello World</h1>
+
+<script src="script.js"></script>
+
+</body>
+</html>
+script.js
+console.log("JavaScript Connected");
+
+Open index.html in your browser and press F12 → Console.
+
+Output:
+
+JavaScript Connected
+1. getElementById() ⭐⭐⭐⭐⭐
+
+Selects an element using its id.
+
+HTML
+
+<h1 id="title">Welcome</h1>
+
+JavaScript
+
+let heading = document.getElementById("title");
+
+console.log(heading);
+
+Output
+
+<h1 id="title">Welcome</h1>
+Change Text
+let heading = document.getElementById("title");
+
+heading.textContent = "Learning JavaScript";
+
+Result
+
+Learning JavaScript
+2. querySelector() ⭐⭐⭐⭐⭐
+
+Returns the first matching element.
+
+HTML
+
+<h2 class="heading">JavaScript</h2>
+
+JavaScript
+
+let element = document.querySelector(".heading");
+
+console.log(element);
+Select by Tag
+let heading = document.querySelector("h2");
+Select by ID
+let heading = document.querySelector("#title");
+Select by Class
+let heading = document.querySelector(".heading");
+3. querySelectorAll() ⭐⭐⭐⭐⭐
+
+Selects all matching elements.
+
+HTML
+
+<p>Apple</p>
+<p>Banana</p>
+<p>Orange</p>
+
+JavaScript
+
+let items = document.querySelectorAll("p");
+
+console.log(items);
+
+Output
+
+NodeList(3)
+Loop Through Elements
+let items = document.querySelectorAll("p");
+
+items.forEach(item => {
+    console.log(item.textContent);
+});
+
+Output
+
+Apple
+Banana
+Orange
+4. innerHTML ⭐⭐⭐⭐⭐
+
+Reads or changes HTML content.
+
+HTML
+
+<div id="box"></div>
+
+JavaScript
+
+let box = document.getElementById("box");
+
+box.innerHTML = "<h2>Hello</h2>";
+
+Result
+
+Hello
+
+Notice that the <h2> tag is rendered as HTML.
+
+Another Example
+box.innerHTML = `
+    <h2>JavaScript</h2>
+    <button>Click Me</button>
+`;
+5. textContent ⭐⭐⭐⭐⭐
+
+Changes only the text.
+
+<h1 id="title">Hello</h1>
+let title = document.getElementById("title");
+
+title.textContent = "Welcome Priya";
+
+Output
+
+Welcome Priya
+Difference: innerHTML vs textContent
+innerHTML
+title.innerHTML = "<b>Hello</b>";
+
+Output
+
+Hello   (displayed in bold)
+textContent
+title.textContent = "<b>Hello</b>";
+
+Output
+
+<b>Hello</b>
+
+The tags are displayed as plain text.
+
+6. style ⭐⭐⭐⭐⭐
+
+Change CSS using JavaScript.
+
+HTML
+
+<h1 id="title">Hello</h1>
+
+JavaScript
+
+let title = document.getElementById("title");
+
+title.style.color = "blue";
+title.style.fontSize = "40px";
+title.style.backgroundColor = "yellow";
+
+Result
+
+Blue text
+Font size 40px
+Yellow background
+7. classList ⭐⭐⭐⭐⭐
+
+Adds or removes CSS classes.
+
+CSS
+
+.red {
+    color: red;
+}
+
+.big {
+    font-size: 40px;
+}
+
+HTML
+
+<h1 id="title">Hello</h1>
+Add Class
+let title = document.getElementById("title");
+
+title.classList.add("red");
+Remove Class
+title.classList.remove("red");
+Toggle Class
+title.classList.toggle("red");
+
+If the class exists, it removes it; otherwise, it adds it.
+
+Check Class
+console.log(title.classList.contains("red"));
+
+Output
+
+true
+
+or
+
+false
