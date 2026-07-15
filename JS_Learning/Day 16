@@ -1,0 +1,294 @@
+1. Default Parameters ⭐⭐⭐⭐⭐
+
+Default parameters allow you to assign a default value to a function parameter if no argument is provided.
+
+Before ES6
+function greet(name) {
+
+    name = name || "Guest";
+
+    console.log("Hello " + name);
+
+}
+
+greet();
+
+Output
+
+Hello Guest
+ES6 Default Parameters
+function greet(name = "Guest") {
+
+    console.log(`Hello ${name}`);
+
+}
+
+greet();
+
+Output
+
+Hello Guest
+Passing a Value
+function greet(name = "Guest") {
+
+    console.log(`Hello ${name}`);
+
+}
+
+greet("Priya");
+
+Output
+
+Hello Priya
+Multiple Default Parameters
+function add(a = 0, b = 0) {
+
+    return a + b;
+
+}
+
+console.log(add());
+console.log(add(10));
+console.log(add(10, 20));
+
+Output
+
+0
+10
+30
+2. Optional Chaining (?.) ⭐⭐⭐⭐⭐
+
+Optional chaining safely accesses nested object properties.
+
+Without it, accessing a missing property causes an error.
+
+Without Optional Chaining
+let student = {
+    name: "Priya"
+};
+
+console.log(student.address.city);
+
+Output
+
+TypeError:
+Cannot read properties of undefined
+With Optional Chaining
+let student = {
+    name: "Priya"
+};
+
+console.log(student.address?.city);
+
+Output
+
+undefined
+
+No error is thrown.
+
+Nested Example
+let employee = {
+    name: "Lokesh",
+    address: {
+        city: "Coimbatore"
+    }
+};
+
+console.log(employee.address?.city);
+
+Output
+
+Coimbatore
+Optional Chaining with Arrays
+let colors = ["Red", "Green"];
+
+console.log(colors?.[0]);
+console.log(colors?.[5]);
+
+Output
+
+Red
+undefined
+Optional Chaining with Functions
+let user = {
+
+    greet() {
+        return "Hello";
+    }
+
+};
+
+console.log(user.greet?.());
+console.log(user.login?.());
+
+Output
+
+Hello
+undefined
+3. Nullish Coalescing (??) ⭐⭐⭐⭐⭐
+
+The ?? operator returns the right-hand value only if the left-hand value is null or undefined.
+
+Example
+let name = null;
+
+console.log(name ?? "Guest");
+
+Output
+
+Guest
+let city = undefined;
+
+console.log(city ?? "Coimbatore");
+
+Output
+
+Coimbatore
+let course = "Java";
+
+console.log(course ?? "React");
+
+Output
+
+Java
+Difference Between || and ?? ⭐⭐⭐⭐⭐
+
+Many beginners confuse these operators.
+
+Using ||
+let score = 0;
+
+console.log(score || 100);
+
+Output
+
+100
+
+Why?
+
+0 is considered a falsy value.
+
+Using ??
+let score = 0;
+
+console.log(score ?? 100);
+
+Output
+
+0
+
+?? treats only null and undefined as missing values.
+
+More Examples
+Empty String
+let name = "";
+
+console.log(name || "Guest");
+console.log(name ?? "Guest");
+
+Output
+
+Guest
+
+
+(The second output is an empty string.)
+
+Boolean
+let isAdmin = false;
+
+console.log(isAdmin || true);
+console.log(isAdmin ?? true);
+
+Output
+
+true
+false
+Comparison Table
+
+| Value | value || "Default" | value ?? "Default" |
+|--------|----------------------|----------------------|
+| null | Default | Default |
+| undefined | Default | Default |
+| 0 | Default | 0 |
+| false | Default | false |
+| "" | Default | "" |
+
+Combining ?. and ??
+let student = {
+    name: "Priya"
+};
+
+let city = student.address?.city ?? "City Not Available";
+
+console.log(city);
+
+Output
+
+City Not Available
+Real-World Example – API Response
+const user = {
+    name: "Priya"
+};
+
+console.log(user.address?.city ?? "Unknown City");
+
+Output
+
+Unknown City
+Real-World Example – Shopping Website
+const product = {
+    name: "Laptop"
+};
+
+const discount = product.discount ?? 0;
+
+console.log(discount);
+
+Output
+
+0
+Common Mistakes
+❌ Using || for Numeric Values
+
+Wrong
+
+let price = 0;
+
+console.log(price || 100);
+
+Output
+
+100
+
+Correct
+
+console.log(price ?? 100);
+
+Output
+
+0
+❌ Accessing Missing Properties
+
+Wrong
+
+console.log(student.address.city);
+
+Correct
+
+console.log(student.address?.city);
+Interview Questions ⭐⭐⭐⭐⭐
+1. What are Default Parameters?
+
+Default parameters assign a default value to a function parameter when no argument is passed.
+
+2. What is Optional Chaining?
+
+Optional chaining (?.) safely accesses nested properties without throwing an error if an intermediate property is null or undefined.
+
+3. What is Nullish Coalescing?
+
+The ?? operator returns the right-hand value only if the left-hand value is null or undefined.
+
+4. Difference between || and ???
+|| checks all falsy values (0, false, "", null, undefined, NaN).
+?? checks only null and undefined.
