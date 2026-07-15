@@ -1,0 +1,323 @@
+1. Spread Operator (...) ⭐⭐⭐⭐⭐
+
+The Spread Operator expands the elements of an array or object.
+
+Example
+let numbers = [10, 20, 30];
+
+console.log(...numbers);
+Output
+10 20 30
+
+Without spread:
+
+console.log(numbers);
+
+Output:
+
+[10, 20, 30]
+Copying Arrays ⭐⭐⭐⭐⭐
+
+Without Spread
+
+let arr1 = [1, 2, 3];
+let arr2 = arr1;
+
+arr2.push(4);
+
+console.log(arr1);
+
+Output
+
+[1, 2, 3, 4]
+
+Both variables refer to the same array.
+
+Correct Way
+let arr1 = [1, 2, 3];
+
+let arr2 = [...arr1];
+
+arr2.push(4);
+
+console.log(arr1);
+console.log(arr2);
+
+Output
+
+[1, 2, 3]
+[1, 2, 3, 4]
+Merging Arrays ⭐⭐⭐⭐⭐
+let first = [1, 2];
+let second = [3, 4];
+
+let result = [...first, ...second];
+
+console.log(result);
+
+Output
+
+[1, 2, 3, 4]
+Adding New Elements
+let numbers = [20, 30];
+
+let newNumbers = [10, ...numbers, 40];
+
+console.log(newNumbers);
+
+Output
+
+[10, 20, 30, 40]
+Spread with Objects ⭐⭐⭐⭐⭐
+let student = {
+    name: "Priya",
+    age: 27
+};
+
+let copy = { ...student };
+
+console.log(copy);
+
+Output
+
+{
+  name: "Priya",
+  age: 27
+}
+Merging Objects
+let personal = {
+    name: "Priya"
+};
+
+let address = {
+    city: "Coimbatore"
+};
+
+let student = {
+    ...personal,
+    ...address
+};
+
+console.log(student);
+
+Output
+
+{
+ name: "Priya",
+ city: "Coimbatore"
+}
+Overriding Properties
+let student = {
+    name: "Priya",
+    age: 27
+};
+
+let updated = {
+    ...student,
+    age: 28
+};
+
+console.log(updated);
+
+Output
+
+{
+ name: "Priya",
+ age: 28
+}
+Spread in Function Calls
+let numbers = [10, 20, 30];
+
+function add(a, b, c) {
+    return a + b + c;
+}
+
+console.log(add(...numbers));
+
+Output
+
+60
+2. Rest Operator (...) ⭐⭐⭐⭐⭐
+
+The Rest Operator collects multiple values into one array.
+
+Rest Parameters
+function sum(...numbers) {
+
+    console.log(numbers);
+
+}
+
+sum(10, 20, 30, 40);
+
+Output
+
+[10, 20, 30, 40]
+Calculate Total
+function sum(...numbers) {
+
+    return numbers.reduce((total, num) => total + num, 0);
+
+}
+
+console.log(sum(10, 20, 30));
+
+Output
+
+60
+Rest with Normal Parameters
+function student(name, ...marks) {
+
+    console.log(name);
+    console.log(marks);
+
+}
+
+student("Priya", 90, 85, 88);
+
+Output
+
+Priya
+[90, 85, 88]
+
+Rule: The rest parameter must always be the last parameter.
+
+Correct:
+
+function example(a, b, ...rest) {}
+
+Wrong:
+
+function example(...rest, a) {}
+Rest in Destructuring
+Arrays
+let numbers = [10, 20, 30, 40];
+
+let [first, ...others] = numbers;
+
+console.log(first);
+console.log(others);
+
+Output
+
+10
+[20, 30, 40]
+Objects
+let student = {
+    name: "Priya",
+    age: 27,
+    city: "Coimbatore"
+};
+
+let { name, ...details } = student;
+
+console.log(name);
+console.log(details);
+
+Output
+
+Priya
+{
+ age:27,
+ city:"Coimbatore"
+}
+Spread vs Rest ⭐⭐⭐⭐⭐
+Spread	Rest
+Expands values	Collects values
+Used in arrays, objects, function calls	Used in function parameters and destructuring
+Example: ...arr	Example: function(...args)
+Real-World Example – Shopping Cart
+let cart = [
+    "Laptop",
+    "Mouse"
+];
+
+let updatedCart = [
+    ...cart,
+    "Keyboard"
+];
+
+console.log(updatedCart);
+
+Output
+
+[
+ "Laptop",
+ "Mouse",
+ "Keyboard"
+]
+Real-World Example – User Profile Update
+let user = {
+    name: "Priya",
+    city: "Coimbatore"
+};
+
+let updatedUser = {
+    ...user,
+    city: "Chennai"
+};
+
+console.log(updatedUser);
+
+Output
+
+{
+ name:"Priya",
+ city:"Chennai"
+}
+Common Mistakes
+❌ Forgetting ...
+
+Wrong
+
+let arr2 = [arr1];
+
+Output
+
+[[1,2,3]]
+
+Correct
+
+let arr2 = [...arr1];
+❌ Rest Parameter Not Last
+
+Wrong
+
+function test(...a, b) {}
+
+Error
+
+Correct
+
+function test(a, ...b) {}
+Interview Questions ⭐⭐⭐⭐⭐
+1. What is the Spread Operator?
+
+It expands the elements of an array or object.
+
+Example:
+
+let arr = [1,2,3];
+
+console.log(...arr);
+2. What is the Rest Operator?
+
+It collects multiple values into a single array.
+
+function sum(...numbers){}
+3. Difference between Spread and Rest?
+Spread	Rest
+Expands	Collects
+4. Can we use Spread with objects?
+
+Yes.
+
+let copy = {...student};
+5. Why is Spread useful in React?
+
+Because React state should not be modified directly. Instead, create a new copy:
+
+const updatedUser = {
+    ...user,
+    city: "Chennai"
+};
