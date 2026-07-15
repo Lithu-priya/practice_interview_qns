@@ -1,0 +1,298 @@
+1. Template Literals ⭐⭐⭐⭐⭐
+
+Template literals use backticks (`) instead of single (') or double (") quotes.
+
+Before ES6
+let name = "Priya";
+
+console.log("Hello " + name);
+
+Output
+
+Hello Priya
+ES6 Template Literal
+let name = "Priya";
+
+console.log(`Hello ${name}`);
+
+Output
+
+Hello Priya
+
+Notice:
+
+Backticks: `
+Variable inside ${}
+String Interpolation ⭐⭐⭐⭐⭐
+
+Interpolation means inserting variables or expressions inside a string.
+
+let firstName = "Priya";
+let city = "Coimbatore";
+
+console.log(`My name is ${firstName} and I live in ${city}.`);
+
+Output
+
+My name is Priya and I live in Coimbatore.
+Expressions Inside ${}
+let a = 10;
+let b = 20;
+
+console.log(`Sum = ${a + b}`);
+
+Output
+
+Sum = 30
+Function Calls
+function square(num) {
+    return num * num;
+}
+
+console.log(`Square = ${square(5)}`);
+
+Output
+
+Square = 25
+Multi-line Strings ⭐⭐⭐⭐⭐
+
+Before ES6:
+
+let message = "Hello\n" +
+              "Welcome\n" +
+              "JavaScript";
+
+With Template Literals:
+
+let message = `
+Hello
+Welcome
+JavaScript
+`;
+
+console.log(message);
+
+Output
+
+Hello
+Welcome
+JavaScript
+Real-World Example
+let product = "Laptop";
+let price = 55000;
+
+console.log(`Product: ${product}
+Price: ₹${price}`);
+
+Output
+
+Product: Laptop
+Price: ₹55000
+2. Object Destructuring ⭐⭐⭐⭐⭐
+
+Extract object properties into variables.
+
+let student = {
+    name: "Priya",
+    age: 27,
+    city: "Coimbatore"
+};
+
+let { name, age, city } = student;
+
+console.log(name);
+console.log(age);
+console.log(city);
+
+Output
+
+Priya
+27
+Coimbatore
+Rename Variables
+let student = {
+    name: "Priya",
+    age: 27
+};
+
+let {
+    name: studentName,
+    age: studentAge
+} = student;
+
+console.log(studentName);
+console.log(studentAge);
+
+Output
+
+Priya
+27
+Default Values
+let student = {
+    name: "Priya"
+};
+
+let {
+    name,
+    city = "Chennai"
+} = student;
+
+console.log(city);
+
+Output
+
+Chennai
+Nested Object Destructuring
+let employee = {
+    name: "Lokesh",
+    address: {
+        city: "Coimbatore",
+        state: "Tamil Nadu"
+    }
+};
+
+let {
+    address: { city, state }
+} = employee;
+
+console.log(city);
+console.log(state);
+
+Output
+
+Coimbatore
+Tamil Nadu
+3. Array Destructuring ⭐⭐⭐⭐⭐
+
+Extract values from an array.
+
+let colors = ["Red", "Green", "Blue"];
+
+let [first, second, third] = colors;
+
+console.log(first);
+console.log(second);
+console.log(third);
+
+Output
+
+Red
+Green
+Blue
+Skip Values
+let numbers = [10, 20, 30, 40];
+
+let [first, , third] = numbers;
+
+console.log(first);
+console.log(third);
+
+Output
+
+10
+30
+Default Values
+let numbers = [10];
+
+let [a, b = 100] = numbers;
+
+console.log(a);
+console.log(b);
+
+Output
+
+10
+100
+Swap Variables ⭐⭐⭐⭐⭐
+
+Without a temporary variable:
+
+let x = 10;
+let y = 20;
+
+[x, y] = [y, x];
+
+console.log(x);
+console.log(y);
+
+Output
+
+20
+10
+Destructuring Function Parameters
+let student = {
+    name: "Priya",
+    age: 27
+};
+
+function display({ name, age }) {
+    console.log(`${name} is ${age} years old.`);
+}
+
+display(student);
+
+Output
+
+Priya is 27 years old.
+Real-World Example – API Response
+const user = {
+    id: 101,
+    name: "Priya",
+    email: "priya@example.com"
+};
+
+const { name, email } = user;
+
+console.log(name);
+console.log(email);
+
+Output
+
+Priya
+priya@example.com
+Common Mistakes
+❌ Using Quotes in Destructuring
+
+Wrong
+
+let { "name" } = student;
+
+Correct
+
+let { name } = student;
+❌ Forgetting Backticks
+
+Wrong
+
+console.log("Hello ${name}");
+
+Output
+
+Hello ${name}
+
+Correct
+
+console.log(`Hello ${name}`);
+Interview Questions ⭐⭐⭐⭐⭐
+1. What are Template Literals?
+
+Template literals are strings enclosed in backticks (`) that support interpolation and multi-line strings.
+
+2. What is String Interpolation?
+
+It allows variables and expressions to be embedded inside strings using ${}.
+
+Example:
+
+let name = "Priya";
+
+console.log(`Hello ${name}`);
+3. What is Destructuring?
+
+Destructuring extracts values from objects or arrays into variables.
+
+4. Can you provide default values in destructuring?
+
+Yes.
+
+let { city = "Chennai" } = student;
