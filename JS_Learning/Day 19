@@ -1,0 +1,237 @@
+1. What is a Promise?
+
+A Promise is an object that represents the eventual completion (or failure) of an asynchronous operation.
+
+Think of it like ordering food:
+
+🍕 You place an order.
+⏳ The restaurant prepares it.
+✅ You either receive the food or ❌ your order is cancelled.
+Promise States
+
+A Promise has 3 states:
+
+Pending
+   │
+   ├──► Fulfilled (Success)
+   │
+   └──► Rejected (Failure)
+Pending → Initial state
+Fulfilled → Operation completed successfully
+Rejected → Operation failed
+2. Creating a Promise
+const promise = new Promise((resolve, reject) => {
+
+    let success = true;
+
+    if (success) {
+        resolve("Operation Successful");
+    } else {
+        reject("Operation Failed");
+    }
+
+});
+
+Here:
+
+resolve() → Success
+reject() → Failure
+3. Using .then()
+
+.then() is executed when the Promise is fulfilled.
+
+const promise = new Promise((resolve) => {
+
+    resolve("Payment Successful");
+
+});
+
+promise.then((message) => {
+    console.log(message);
+});
+Output
+Payment Successful
+4. Using .catch()
+
+.catch() is executed when the Promise is rejected.
+
+const promise = new Promise((resolve, reject) => {
+
+    reject("Payment Failed");
+
+});
+
+promise
+    .then((message) => {
+        console.log(message);
+    })
+    .catch((error) => {
+        console.log(error);
+    });
+Output
+Payment Failed
+5. Using .finally()
+
+.finally() always runs, whether the Promise succeeds or fails.
+
+const promise = new Promise((resolve) => {
+
+    resolve("Order Completed");
+
+});
+
+promise
+    .then((message) => {
+        console.log(message);
+    })
+    .finally(() => {
+        console.log("Thank you for using our service.");
+    });
+Output
+Order Completed
+Thank you for using our service.
+6. Simulating an API Call
+function fetchUser() {
+
+    return new Promise((resolve) => {
+
+        setTimeout(() => {
+            resolve("User Data Loaded");
+        }, 2000);
+
+    });
+
+}
+
+fetchUser().then((data) => {
+    console.log(data);
+});
+Output
+(wait 2 seconds)
+
+User Data Loaded
+7. Handling Errors
+function login(isValid) {
+
+    return new Promise((resolve, reject) => {
+
+        if (isValid) {
+            resolve("Login Successful");
+        } else {
+            reject("Invalid Username or Password");
+        }
+
+    });
+
+}
+
+login(false)
+    .then((message) => {
+        console.log(message);
+    })
+    .catch((error) => {
+        console.log(error);
+    });
+Output
+Invalid Username or Password
+8. Promise Chaining ⭐⭐⭐⭐⭐
+
+Instead of nested callbacks:
+
+login()
+    .then(() => verifyOTP())
+    .then(() => transferMoney())
+    .then(() => console.log("Transaction Completed"))
+    .catch((error) => console.log(error));
+
+This is much cleaner than Callback Hell.
+
+Real-World Example – ATM
+function verifyPIN() {
+
+    return new Promise((resolve) => {
+
+        setTimeout(() => {
+            resolve("PIN Verified");
+        }, 1000);
+
+    });
+
+}
+
+function checkBalance() {
+
+    return new Promise((resolve) => {
+
+        setTimeout(() => {
+            resolve("Balance: ₹10,000");
+        }, 1000);
+
+    });
+
+}
+
+verifyPIN()
+    .then((message) => {
+        console.log(message);
+        return checkBalance();
+    })
+    .then((balance) => {
+        console.log(balance);
+    })
+    .catch((error) => {
+        console.log(error);
+    });
+Output
+PIN Verified
+Balance: ₹10,000
+Promise vs Callback
+Callback	Promise
+Nested code	Cleaner code
+Callback Hell	Promise Chaining
+Harder to maintain	Easier to read
+Difficult error handling	.catch() handles errors
+Common Mistakes
+❌ Forgetting return
+
+Wrong:
+
+function getData() {
+    new Promise((resolve) => {
+        resolve("Data");
+    });
+}
+
+Correct:
+
+function getData() {
+    return new Promise((resolve) => {
+        resolve("Data");
+    });
+}
+❌ Not Handling Errors
+
+Wrong:
+
+login(false).then((msg) => console.log(msg));
+
+Correct:
+
+login(false)
+    .then((msg) => console.log(msg))
+    .catch((err) => console.log(err));
+Interview Questions ⭐⭐⭐⭐⭐
+1. What is a Promise?
+
+A Promise is an object representing the eventual success or failure of an asynchronous operation.
+
+2. What are the three states of a Promise?
+Pending
+Fulfilled
+Rejected
+3. What is the difference between resolve() and reject()?
+resolve() completes the Promise successfully.
+reject() indicates the Promise has failed.
+4. What is Promise Chaining?
+
+Using multiple .then() methods to execute asynchronous tasks one after another.
