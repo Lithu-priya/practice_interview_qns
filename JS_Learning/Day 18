@@ -1,0 +1,286 @@
+1. What is a Callback?
+
+A callback is a function that is passed as an argument to another function and is executed later.
+
+Think of it like this:
+
+"After finishing this task, call this function."
+
+Basic Example
+function greet(name) {
+    console.log(`Hello ${name}`);
+}
+
+function processUser(callback) {
+    callback("Priya");
+}
+
+processUser(greet);
+Output
+Hello Priya
+How it Works
+processUser(greet)
+        │
+        ▼
+callback("Priya")
+        │
+        ▼
+greet("Priya")
+        │
+        ▼
+Hello Priya
+Callback with Anonymous Function
+
+Instead of creating a separate function:
+
+function processUser(callback) {
+    callback("Priya");
+}
+
+processUser(function(name) {
+    console.log(`Welcome ${name}`);
+});
+Output
+Welcome Priya
+Callback with Arrow Function
+function processUser(callback) {
+    callback("Priya");
+}
+
+processUser((name) => {
+    console.log(`Hello ${name}`);
+});
+Output
+Hello Priya
+2. Why Do We Use Callbacks?
+
+Callbacks allow one function to decide what happens after another function finishes.
+
+Example:
+
+function calculate(a, b, operation) {
+    operation(a, b);
+}
+
+calculate(10, 20, function(x, y) {
+    console.log(x + y);
+});
+Output
+30
+Multiple Callbacks
+function calculate(a, b, operation) {
+    operation(a, b);
+}
+
+function add(x, y) {
+    console.log(x + y);
+}
+
+function multiply(x, y) {
+    console.log(x * y);
+}
+
+calculate(10, 20, add);
+calculate(10, 20, multiply);
+Output
+30
+200
+3. Synchronous vs Asynchronous
+Synchronous
+
+Tasks execute one after another.
+
+console.log("Start");
+
+console.log("Learning JavaScript");
+
+console.log("End");
+Output
+Start
+Learning JavaScript
+End
+
+Flow:
+
+Start
+  ↓
+Learning JavaScript
+  ↓
+End
+Asynchronous
+
+Some tasks take time (API calls, file downloads, timers).
+
+JavaScript doesn't wait.
+
+console.log("Start");
+
+setTimeout(() => {
+    console.log("Inside Timeout");
+}, 2000);
+
+console.log("End");
+Output
+Start
+End
+Inside Timeout
+Why?
+
+setTimeout() schedules the callback to run after 2 seconds, while JavaScript continues executing the next line.
+
+Understanding setTimeout
+setTimeout(function() {
+    console.log("Executed after 3 seconds");
+}, 3000);
+
+Output after 3 seconds:
+
+Executed after 3 seconds
+Example
+function orderFood(callback) {
+
+    console.log("Ordering food...");
+
+    setTimeout(() => {
+        console.log("Food is ready");
+        callback();
+    }, 3000);
+
+}
+
+function eatFood() {
+    console.log("Eating food");
+}
+
+orderFood(eatFood);
+Output
+Ordering food...
+(3-second delay)
+Food is ready
+Eating food
+4. Real-World Example – Download File
+function downloadFile(callback) {
+
+    console.log("Downloading file...");
+
+    setTimeout(() => {
+        console.log("Download Complete");
+        callback();
+    }, 2000);
+
+}
+
+function openFile() {
+    console.log("Opening File");
+}
+
+downloadFile(openFile);
+Output
+Downloading file...
+Download Complete
+Opening File
+5. Callback Hell ⭐⭐⭐⭐⭐
+
+Sometimes callbacks become deeply nested.
+
+setTimeout(() => {
+
+    console.log("Step 1");
+
+    setTimeout(() => {
+
+        console.log("Step 2");
+
+        setTimeout(() => {
+
+            console.log("Step 3");
+
+        }, 1000);
+
+    }, 1000);
+
+}, 1000);
+
+This produces a "pyramid" shape:
+
+setTimeout
+    └── setTimeout
+            └── setTimeout
+
+This is called Callback Hell because the code becomes difficult to read and maintain.
+
+Why Callback Hell is a Problem
+Difficult to read
+Hard to debug
+Hard to maintain
+Error handling becomes complicated
+
+This is why JavaScript introduced Promises and later async/await.
+
+Real-World Example – Bank Transaction
+function verifyOTP(callback) {
+
+    console.log("Verifying OTP...");
+
+    setTimeout(() => {
+        console.log("OTP Verified");
+        callback();
+    }, 2000);
+
+}
+
+function transferMoney() {
+    console.log("Money Transferred");
+}
+
+verifyOTP(transferMoney);
+Output
+Verifying OTP...
+OTP Verified
+Money Transferred
+Common Mistakes
+❌ Calling the Function Instead of Passing It
+
+Wrong:
+
+function greet() {
+    console.log("Hello");
+}
+
+setTimeout(greet(), 2000);
+
+greet() runs immediately.
+
+Correct:
+
+setTimeout(greet, 2000);
+❌ Forgetting the Callback Parameter
+
+Wrong:
+
+function processUser() {
+    callback();
+}
+
+Correct:
+
+function processUser(callback) {
+    callback();
+}
+Interview Questions ⭐⭐⭐⭐⭐
+1. What is a Callback?
+
+A callback is a function passed as an argument to another function and executed later.
+
+2. Why are callbacks used?
+
+They allow JavaScript to perform tasks after another task has completed, especially asynchronous operations.
+
+3. What is Callback Hell?
+
+Callback Hell is the situation where multiple nested callbacks make the code difficult to read and maintain.
+
+4. Give an example of asynchronous code.
+setTimeout(() => {
+    console.log("Hello");
+}, 1000);
