@@ -1,0 +1,304 @@
+What are Modules?
+
+A module is simply a JavaScript file.
+
+Instead of writing all your code in one file:
+
+script.js
+├── Functions
+├── Variables
+├── Classes
+├── Objects
+├── 1000+ lines
+
+You can split it into multiple files:
+
+project/
+│
+├── math.js
+├── user.js
+├── product.js
+├── app.js
+
+This makes your code:
+
+✅ Cleaner
+✅ Easier to maintain
+✅ Reusable
+✅ Better organized
+Why Use Modules?
+
+Imagine an e-commerce application.
+
+Instead of one huge file:
+
+app.js
+
+Create separate modules:
+
+math.js
+user.js
+product.js
+payment.js
+app.js
+
+Each file has a specific responsibility.
+
+Creating a Module
+math.js
+export function add(a, b) {
+    return a + b;
+}
+
+export function subtract(a, b) {
+    return a - b;
+}
+
+Here, export makes the functions available to other files.
+
+Named Import
+app.js
+import { add, subtract } from "./math.js";
+
+console.log(add(10, 20));
+console.log(subtract(30, 10));
+Output
+30
+20
+Exporting Variables
+config.js
+export const company = "OpenAI";
+
+export const year = 2026;
+app.js
+import { company, year } from "./config.js";
+
+console.log(company);
+console.log(year);
+
+Output
+
+OpenAI
+2026
+Exporting Multiple Items
+export const PI = 3.14;
+
+export function square(num) {
+    return num * num;
+}
+
+export let city = "Coimbatore";
+
+Import:
+
+import { PI, square, city } from "./math.js";
+Default Export ⭐⭐⭐⭐⭐
+
+A file can have only one default export.
+
+user.js
+export default function greet() {
+
+    console.log("Hello!");
+
+}
+
+Import:
+
+import greet from "./user.js";
+
+greet();
+
+Output
+
+Hello!
+
+Notice:
+
+No {} with default import.
+
+Default Export with Variables
+const company = "OpenAI";
+
+export default company;
+
+Import:
+
+import company from "./company.js";
+
+console.log(company);
+Named Export vs Default Export
+Named Export	Default Export
+export function add(){}	export default function(){}
+Use {} while importing	No {}
+Multiple allowed	Only one per file
+Import Alias
+
+Suppose:
+
+export function add(a, b) {
+
+    return a + b;
+
+}
+
+Import with another name:
+
+import { add as sum } from "./math.js";
+
+console.log(sum(5, 10));
+
+Output
+
+15
+Import Everything
+
+Instead of importing each function separately:
+
+import * as math from "./math.js";
+
+console.log(math.add(10, 20));
+console.log(math.subtract(20, 10));
+
+Output
+
+30
+10
+Export at the Bottom
+
+Instead of:
+
+export function add() {}
+
+export function sub() {}
+
+You can write:
+
+function add(a, b) {
+    return a + b;
+}
+
+function sub(a, b) {
+    return a - b;
+}
+
+export { add, sub };
+Combining Default and Named Exports
+calculator.js
+export const PI = 3.14;
+
+export function square(x) {
+    return x * x;
+}
+
+export default function add(a, b) {
+    return a + b;
+}
+
+Import:
+
+import add, { PI, square } from "./calculator.js";
+
+console.log(add(10, 20));
+console.log(PI);
+console.log(square(5));
+
+Output
+
+30
+3.14
+25
+Using Modules in HTML
+<script type="module" src="app.js"></script>
+
+Without type="module", import and export will not work.
+
+Folder Structure Example
+project/
+│
+├── index.html
+├── app.js
+├── math.js
+├── user.js
+├── product.js
+
+index.html
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Modules</title>
+</head>
+<body>
+
+<script type="module" src="app.js"></script>
+
+</body>
+</html>
+Real-World Example
+math.js
+export function add(a, b) {
+    return a + b;
+}
+
+export function multiply(a, b) {
+    return a * b;
+}
+app.js
+import { add, multiply } from "./math.js";
+
+console.log(add(5, 5));
+console.log(multiply(5, 5));
+
+Output
+
+10
+25
+Common Mistakes
+❌ Forgetting type="module"
+
+Wrong:
+
+<script src="app.js"></script>
+
+Correct:
+
+<script type="module" src="app.js"></script>
+❌ Wrong Import Path
+
+Wrong:
+
+import { add } from "math.js";
+
+Correct:
+
+import { add } from "./math.js";
+
+Use ./ for files in the same folder.
+
+❌ Using {} with Default Import
+
+Wrong:
+
+import { greet } from "./user.js";
+
+Correct:
+
+import greet from "./user.js";
+Interview Questions ⭐⭐⭐⭐⭐
+1. What is a JavaScript module?
+
+A module is a JavaScript file that contains reusable code and can export or import functions, variables, classes, or objects.
+
+2. Difference between Named Export and Default Export?
+Named Export	Default Export
+Multiple allowed	Only one allowed
+Import with {}	Import without {}
+3. Why do we use Modules?
+Organize code
+Improve readability
+Reuse code
+Avoid global variables
+Easier maintenance
+4. How do you import everything from a module?
+import * as math from "./math.js";
